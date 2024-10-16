@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { AchievementsList } from '../../../features/achievements'
 import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { AppLayout } from '../../../widgets/AppLayout'
 import s from './UserProfilePage.module.css'
@@ -20,7 +19,7 @@ export const UserProfilePage = () => {
       <HeaderWithBackButton title={''} />
       <div className={s.profilePageContainer}>
         {/* <UserCard userProfile={userProfile} isOwnProfile={false} /> */}
-        <AchievementsList />
+        {/* <AchievementsList /> */}
       </div>
     </AppLayout>
   )

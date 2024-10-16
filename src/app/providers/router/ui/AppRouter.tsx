@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
       { path: '/menu', element: <MenuPage /> },
       { path: '/earn', element: <EarnPage /> },
       { path: '/academy', element: <AcademyPage /> },
-      { path: '/achievements', element: <AchievementPage /> },
+      { path: '/achievements', element: <AchievementPage userId={''} /> },
       { path: '/settings', element: <SettingsPage /> },
       { path: '/language', element: <LanguagePage /> },
       { path: '/level', element: <LevelPage /> },
