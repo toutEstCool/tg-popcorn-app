@@ -7,6 +7,12 @@ interface IInviteFriendButtonProps {
   className?: string
 }
 
+declare global {
+  interface Window {
+    Telegram: any
+  }
+}
+
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
@@ -37,13 +43,16 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
 
   const handleCopyLink = async () => {
     if (referralCode) {
-      if (navigator.clipboard && window.isSecureContext) {
+      if (window.Telegram?.WebApp) {
         try {
-          await navigator.clipboard.writeText(inviteLink)
+          window.Telegram.WebApp.showPopup({
+            message: 'Ссылка скопирована в буфер обмена!',
+            buttons: [{ text: 'OK', id: 'ok' }]
+          })
           setCopied(true)
           setTimeout(() => setCopied(false), 3000)
         } catch (error) {
-          console.error('Ошибка при копировании: ', error)
+          console.error('Ошибка при использовании Telegram API: ', error)
         }
       } else {
         const tempInput = document.createElement('textarea')
