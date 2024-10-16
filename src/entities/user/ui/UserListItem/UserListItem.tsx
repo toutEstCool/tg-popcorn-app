@@ -2,10 +2,6 @@ import { ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import s from './UserListItem.module.css'
 
-// interface IUserListItemProps {
-//   user: UsersListSchema
-// }
-
 interface IUserListItemProps {
   user: any
 }

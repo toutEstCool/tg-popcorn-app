@@ -6,6 +6,7 @@ const initialState: AuthSchema = {
   isAuthenticated: false,
   accessToken: null,
   refreshToken: null,
+  photoUrl: null,
   isLoading: false,
   error: ''
 }
@@ -26,6 +27,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false
       state.accessToken = null
       state.refreshToken = null
+      state.photoUrl = null
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
     }
@@ -41,6 +43,7 @@ const authSlice = createSlice({
         state.isAuthenticated = true
         state.accessToken = action.payload.accessToken
         state.refreshToken = action.payload.refreshToken
+        state.photoUrl = action.payload.photoUrl
       })
       .addCase(loginWithTelegram.rejected, (state, action) => {
         state.isLoading = false
