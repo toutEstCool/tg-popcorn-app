@@ -7,7 +7,7 @@ export const $api = axios.create({
 $api.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem('accessToken')
-    if (accessToken) {
+    if (accessToken && config.headers) {
       config.headers.Authorization = `Bearer ${accessToken}`
     }
     return config
@@ -20,8 +20,9 @@ $api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
+
       try {
         const refreshToken = localStorage.getItem('refreshToken')
         if (!refreshToken) throw new Error('Refresh token not found')
@@ -32,10 +33,12 @@ $api.interceptors.response.use(
         )
 
         const { accessToken, refreshToken: newRefreshToken } = response.data
+
         localStorage.setItem('accessToken', accessToken)
         localStorage.setItem('refreshToken', newRefreshToken)
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
+
         return $api(originalRequest)
       } catch (refreshError) {
         localStorage.removeItem('accessToken')

@@ -1,11 +1,4 @@
 .headerContainer {
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  color: #fff;
-  margin-bottom: 25px; */
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +7,7 @@
   left: 0;
   right: 0;
   color: #fff;
-  background-color: #000;
-  /* margin-top: 20px; */
+  background-color: #0f0f0f;
   height: 60px;
   z-index: 1000;
 }
