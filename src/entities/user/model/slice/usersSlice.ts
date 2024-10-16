@@ -13,7 +13,11 @@ const initialState: UsersState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    resetUsersState: (state) => {
+      state.isFetched = false
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsersList.pending, (state) => {
@@ -34,3 +38,4 @@ const usersSlice = createSlice({
 })
 
 export const { reducer: usersReducer } = usersSlice
+export const { resetUsersState } = usersSlice.actions

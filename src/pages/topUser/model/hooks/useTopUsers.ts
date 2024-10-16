@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch'
 import { fetchUsersList } from '../../../../entities/user'
 import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
@@ -7,30 +7,40 @@ import {
   getUsers,
   getUsersIsLoading
 } from '../../../../entities/user/model/selectors/getUsers/getUsers'
-import { getUsersIsFetched } from '../../../../entities/user/model/selectors/getUsers/getUsersIsFetched'
+import { resetUsersState } from '../../../../entities/user/model/slice/usersSlice'
 
-export const useTopUsers = (searchTerm: string) => {
+export const useTopUsers = (debouncedSearchTerm: string) => {
   const dispatch = useAppDispatch()
 
   const users = useAppSelector(getUsers)
   const totalCount = useAppSelector(getTotalUsers)
   const isLoading = useAppSelector(getUsersIsLoading)
-  const isFetched = useAppSelector(getUsersIsFetched)
 
-  console.log(isFetched)
+  const hasFetchedInitially = useRef(false)
 
   useEffect(() => {
-    if (!isFetched) {
+    if (!hasFetchedInitially.current) {
       dispatch(
         fetchUsersList({
-          fullNameTerm: searchTerm,
-          userNameTerm: searchTerm,
+          fullNameTerm: '',
+          userNameTerm: '',
+          skip: 0,
+          take: 10
+        })
+      )
+      hasFetchedInitially.current = true
+    } else {
+      dispatch(resetUsersState())
+      dispatch(
+        fetchUsersList({
+          fullNameTerm: debouncedSearchTerm,
+          userNameTerm: debouncedSearchTerm,
           skip: 0,
           take: 10
         })
       )
     }
-  }, [dispatch, searchTerm, isFetched])
+  }, [dispatch, debouncedSearchTerm])
 
   return { users, totalCount, isLoading }
 }
