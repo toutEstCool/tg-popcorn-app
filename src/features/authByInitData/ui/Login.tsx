@@ -17,19 +17,18 @@ export const LoginComponent = () => {
   const error = useAppSelector(getLoginError)
   const auth = useAppSelector(getIsAuthenticated)
 
+  const urlParams = new URLSearchParams(window.location.search)
+  const referralCode = urlParams.get('ref') || ''
+
   useEffect(() => {
-    // dispatch(loginWithTelegram({ referralCode: 'optionalCode' }))
-    dispatch(loginWithTelegram({}))
-  }, [dispatch])
+    dispatch(loginWithTelegram({ referralCode }))
+  }, [dispatch, referralCode])
 
   useEffect(() => {
     if (auth) {
       navigate('/profile')
     }
   }, [auth, navigate])
-
-  const urlParams = new URLSearchParams(window.location.search)
-  console.log(urlParams.get('ref'))
 
   return (
     <div>
@@ -38,9 +37,7 @@ export const LoginComponent = () => {
         <Error
           btnText="Попробовать еще раз"
           errorText={error}
-          onRetry={() =>
-            dispatch(loginWithTelegram({ referralCode: 'optionalCode' }))
-          }
+          onRetry={() => dispatch(loginWithTelegram({ referralCode }))}
         />
       )}
     </div>

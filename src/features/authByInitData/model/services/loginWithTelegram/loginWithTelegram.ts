@@ -1,9 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { $api } from '../../../../../shared/api/api'
 
+interface LoginWithTelegramParams {
+  referralCode?: string
+}
+
 export const loginWithTelegram = createAsyncThunk(
   'auth/loginWithTelegram',
-  async ({ referralCode }: { referralCode?: string }, { rejectWithValue }) => {
+  async (params: LoginWithTelegramParams = {}, { rejectWithValue }) => {
     try {
       const telegramWindow = window as unknown as TelegramWindow
 
@@ -16,20 +20,7 @@ export const loginWithTelegram = createAsyncThunk(
         throw new Error('Telegram initData not found')
       }
 
-      const params = new URLSearchParams(initData)
-      const userDataString = params.get('user')
-      if (!userDataString) {
-        throw new Error('User data not found in initData')
-      }
-
-      const userData = JSON.parse(userDataString) as {
-        id: number
-        first_name: string
-        last_name?: string
-        username?: string
-        language_code?: string
-        photo_url?: string
-      }
+      const { referralCode } = params
 
       const requestBody: { initData: string; referralCode?: string } = {
         initData
@@ -51,7 +42,7 @@ export const loginWithTelegram = createAsyncThunk(
       return {
         accessToken,
         refreshToken,
-        photoUrl: userData.photo_url || null
+        photoUrl: JSON.parse(requestBody.initData).photo_url || null
       }
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || error.message)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
@@ -7,15 +7,10 @@ interface IInviteFriendButtonProps {
   className?: string
 }
 
-declare global {
-  interface Window {
-    Telegram: any
-  }
-}
-
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
+  const [shouldCopy, setShouldCopy] = useState(false)
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
@@ -27,23 +22,29 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         await dispatch(
           generateReferralCode({ userId: currentUser.id })
         ).unwrap()
-        handleCopyLink()
+        setShouldCopy(true)
       } catch (error) {
         console.error('Ошибка при генерации реферального кода:', error)
       }
     }
   }
 
-  const handleCopyLink = () => {
+  useEffect(() => {
+    if (shouldCopy && referralCode) {
+      handleCopyLink()
+    }
+  }, [shouldCopy, referralCode])
+
+  const handleCopyLink = async () => {
     if (referralCode) {
-      if (window.Telegram?.WebApp) {
-        window.Telegram.WebApp.showPopup({
-          title: 'Скопируйте реферальную ссылку',
-          message: `Вот ваша ссылка: ${inviteLink}`,
-          buttons: [{ text: 'OK', id: 'ok' }]
-        })
-        setCopied(true)
-        setTimeout(() => setCopied(false), 3000)
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(inviteLink)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } catch (error) {
+          console.error('Ошибка при копировании: ', error)
+        }
       } else {
         const tempInput = document.createElement('textarea')
         tempInput.value = inviteLink
@@ -55,12 +56,13 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
           setTimeout(() => setCopied(false), 3000)
         } catch (error) {
           console.error(
-            'Ошибка при копировании с использованием execCommand:',
+            'Ошибка при копировании с использованием execCommand: ',
             error
           )
         }
         document.body.removeChild(tempInput)
       }
+      setShouldCopy(false)
     }
   }
 
