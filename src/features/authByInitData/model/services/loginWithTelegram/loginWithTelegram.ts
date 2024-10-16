@@ -8,6 +8,7 @@ export const loginWithTelegram = createAsyncThunk(
       const telegramWindow = window as unknown as TelegramWindow
 
       const initData = telegramWindow.Telegram?.WebApp?.initData
+
       // const initData =
       //   'query_id=AAGiJElIAAAAAKIkSUi2lI1y&user=%7B%22id%22%3A1212753058%2C%22first_name%22%3A%22Apollo%20%F0%9F%A6%88%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22Apollo0%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1729060877&hash=b17d342d79ca23df15da8240b5ed8d0433a8416c8fd14c758b2c1d914448defd'
 
@@ -30,13 +31,15 @@ export const loginWithTelegram = createAsyncThunk(
         photo_url?: string
       }
 
-      const requestBody = { initData, referralCode }
+      const requestBody: { initData: string; referralCode?: string } = {
+        initData
+      }
+      if (referralCode && referralCode.trim() !== '') {
+        requestBody.referralCode = referralCode
+      }
 
       const response = await $api.post('Auth/signInTelegram', requestBody)
       const { accessToken, refreshToken } = response.data
-
-      console.log('Access Token:', accessToken)
-      console.log('Refresh Token:', refreshToken)
 
       if (!accessToken || !refreshToken) {
         throw new Error('Tokens are not received from server')

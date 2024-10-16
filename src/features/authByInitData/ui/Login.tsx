@@ -18,7 +18,8 @@ export const LoginComponent = () => {
   const auth = useAppSelector(getIsAuthenticated)
 
   useEffect(() => {
-    dispatch(loginWithTelegram({ referralCode: 'optionalCode' }))
+    // dispatch(loginWithTelegram({ referralCode: 'optionalCode' }))
+    dispatch(loginWithTelegram({}))
   }, [dispatch])
 
   useEffect(() => {
