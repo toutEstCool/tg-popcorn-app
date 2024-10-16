@@ -1,9 +1,14 @@
-import { ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import s from './UserListItem.module.css'
+import { ChevronRight } from 'lucide-react'
 
 interface IUserListItemProps {
-  user: any
+  user: {
+    id: string
+    fullName: string
+    userName: string
+    score: number
+  }
 }
 
 export const UserListItem = ({ user }: IUserListItemProps) => {

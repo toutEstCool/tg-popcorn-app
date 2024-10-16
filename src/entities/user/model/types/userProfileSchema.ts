@@ -23,3 +23,18 @@ export interface UserStateSchema {
   error: string | null
   isFetched: boolean
 }
+
+export interface User {
+  id: string
+  fullName: string
+  userName: string
+  score: number
+}
+
+export interface UsersState {
+  users: User[]
+  totalCount: number
+  isLoading: boolean
+  error: string | null
+  isFetched: boolean
+}
