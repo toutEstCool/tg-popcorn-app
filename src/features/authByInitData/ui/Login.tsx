@@ -18,10 +18,14 @@ export const LoginComponent = () => {
   const auth = useAppSelector(getIsAuthenticated)
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const referralCode = urlParams.get('ref')
+    const delay = setTimeout(() => {
+      const urlParams = new URLSearchParams(window.location.search)
+      const referralCode = urlParams.get('ref')
 
-    dispatch(loginWithTelegram({ referralCode: referralCode || undefined }))
+      dispatch(loginWithTelegram({ referralCode: referralCode || undefined }))
+    }, 200)
+
+    return () => clearTimeout(delay)
   }, [dispatch])
 
   useEffect(() => {
