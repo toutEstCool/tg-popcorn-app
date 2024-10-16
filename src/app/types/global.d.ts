@@ -1,7 +1,7 @@
 interface TelegramWebApp {
   initData: string
-  initDataUnsafe?: any // Сделали тип 'any', чтобы избежать ошибок с полем 'initDataUnsafe'
-  [key: string]: any // Позволяет использовать любые методы или поля, даже если они не объявлены
+  initDataUnsafe?: any
+  [key: string]: any
 }
 
 interface Telegram {

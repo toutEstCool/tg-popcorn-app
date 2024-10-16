@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
+import { useReadTextFromClipboard } from '@vkruglikov/react-telegram-web-app'
 
 interface IInviteFriendButtonProps {
   className?: string
@@ -15,6 +16,8 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
   const inviteLink = `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`
+
+  const readClipboardText = useReadTextFromClipboard()
 
   const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
@@ -56,17 +59,32 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }
 
+  const handleReadClipboard = async () => {
+    try {
+      const clipboardText = await readClipboardText()
+      console.log('Текст из буфера обмена:', clipboardText)
+    } catch (error) {
+      console.error('Ошибка при чтении текста из буфера обмена:', error)
+    }
+  }
+
   return (
-    <button
-      className={className}
-      onClick={handleInviteClick}
-      disabled={isLoading}
-    >
-      {isLoading
-        ? 'Генерация...'
-        : copied
-        ? 'Реферальный код скопирован'
-        : 'Пригласить друга'}
-    </button>
+    <div>
+      <button
+        className={className}
+        onClick={handleInviteClick}
+        disabled={isLoading}
+      >
+        {isLoading
+          ? 'Генерация...'
+          : copied
+          ? 'Реферальный код скопирован'
+          : 'Пригласить друга'}
+      </button>
+
+      <button onClick={handleReadClipboard}>
+        Прочитать текст из буфера обмена
+      </button>
+    </div>
   )
 }
