@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
@@ -16,7 +16,6 @@ declare global {
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
-  const [shouldCopy, setShouldCopy] = useState(false)
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
@@ -28,31 +27,25 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         await dispatch(
           generateReferralCode({ userId: currentUser.id })
         ).unwrap()
-        setShouldCopy(true)
+        setCopied(true)
+        handleCopyLink()
       } catch (error) {
         console.error('Ошибка при генерации реферального кода:', error)
       }
     }
   }
 
-  useEffect(() => {
-    if (shouldCopy && referralCode) {
-      handleCopyLink()
-    }
-  }, [shouldCopy, referralCode])
-
-  const handleCopyLink = () => {
+  const handleCopyLink = async () => {
     if (referralCode) {
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard
-          .writeText(inviteLink)
-          .then(() => {
-            showSuccessMessage()
-          })
-          .catch((error) => {
-            console.error('Ошибка при копировании через Clipboard API: ', error)
-            fallbackCopyMethod()
-          })
+        try {
+          await navigator.clipboard.writeText(inviteLink)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } catch (error) {
+          console.error('Ошибка при копировании через Clipboard API:', error)
+          fallbackCopyMethod()
+        }
       } else {
         fallbackCopyMethod()
       }
@@ -65,47 +58,22 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     document.body.appendChild(tempInput)
     tempInput.select()
     try {
-      const success = document.execCommand('copy')
-      if (success) {
-        showSuccessMessage()
+      if (document.execCommand('copy')) {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 3000)
+        if (window.Telegram?.WebApp) {
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('light')
+        }
       } else {
-        console.error(
-          'Ошибка при копировании: не удалось выполнить команду copy'
-        )
-        showManualCopyMessage()
+        console.error('Ошибка: не удалось скопировать ссылку')
       }
     } catch (error) {
       console.error(
-        'Ошибка при копировании с использованием execCommand: ',
+        'Ошибка при копировании с использованием execCommand:',
         error
       )
-      showManualCopyMessage()
     }
     document.body.removeChild(tempInput)
-  }
-
-  const showSuccessMessage = () => {
-    setCopied(true)
-    if (window.Telegram?.WebApp) {
-      // Использование Telegram WebApp для отображения сообщения
-      window.Telegram.WebApp.showPopup({
-        message: 'Ссылка скопирована в буфер обмена!',
-        buttons: [{ text: 'OK', id: 'ok' }]
-      })
-    }
-    // Сбрасываем статус после 3 секунд
-    setTimeout(() => setCopied(false), 3000)
-  }
-
-  const showManualCopyMessage = () => {
-    if (window.Telegram?.WebApp) {
-      window.Telegram.WebApp.showPopup({
-        message: `Скопируйте ссылку вручную: ${inviteLink}`,
-        buttons: [{ text: 'OK', id: 'ok' }]
-      })
-    } else {
-      alert(`Скопируйте ссылку вручную: ${inviteLink}`)
-    }
   }
 
   return (
