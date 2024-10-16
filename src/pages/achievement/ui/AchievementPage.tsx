@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import {
   fetchUserAchievements,
-  getAchievements,
-  getAchievementsIsLoading
+  getAllAchievements,
+  getAllAchievementsIsLoading
 } from '../../../entities/achievements'
 import { AchievementsList } from '../../../features/achievements'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
@@ -11,17 +11,20 @@ import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { AppLayout } from '../../../widgets/AppLayout'
 import s from './AchievemenPage.module.css'
 import { Loader } from '../../../shared/ui/Loader'
+import { getCurrentUser } from '../../../entities/user'
 
-export const AchievementPage = ({ userId }: { userId: string }) => {
+export const AchievementPage = () => {
   const dispatch = useAppDispatch()
-  const achievements = useAppSelector(getAchievements)
-  const isLoading = useAppSelector(getAchievementsIsLoading)
+  const achievements = useAppSelector(getAllAchievements)
+  const isLoading = useAppSelector(getAllAchievementsIsLoading)
+  const currentUser = useAppSelector(getCurrentUser)
+  const userId = currentUser?.id
 
   useEffect(() => {
-    if (!achievements.loaded) {
+    if (userId && !achievements.length) {
       dispatch(fetchUserAchievements({ userId, skip: 0, take: 100 }))
     }
-  }, [dispatch, userId, achievements.loaded])
+  }, [dispatch, userId, achievements.length])
 
   return (
     <AppLayout>
@@ -30,7 +33,7 @@ export const AchievementPage = ({ userId }: { userId: string }) => {
         <Loader />
       ) : (
         <AchievementsList
-          achievements={achievements.achievements}
+          achievements={achievements}
           className={s.achivement}
         />
       )}

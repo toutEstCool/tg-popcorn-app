@@ -1,4 +1,7 @@
 import { StateSchema } from '../../../../../app/providers/store/ui/MainStore'
 
-export const getAchievementsIsLoading = (state: StateSchema) =>
-  state?.achievements?.isLoading || false
+export const getOverviewAchievementsIsLoading = (state: StateSchema) =>
+  state?.achievements?.overviewLoading || false
+
+export const getAllAchievementsIsLoading = (state: StateSchema) =>
+  state?.achievements?.allLoading || false

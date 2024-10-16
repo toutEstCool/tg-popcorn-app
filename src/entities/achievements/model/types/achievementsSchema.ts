@@ -9,9 +9,11 @@ export interface Achievement {
 }
 
 export interface AchievementsState {
-  achievements: Achievement[]
-  totalCount: number
-  isLoading: boolean
+  overviewAchievements: Achievement[]
+  allAchievements: Achievement[]
+  overviewLoaded: boolean
+  allLoaded: boolean
+  overviewLoading: boolean
+  allLoading: boolean
   error: string | null
-  loaded: boolean
 }

@@ -6,10 +6,12 @@ import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
 import {
   fetchUserAchievements,
-  getAchievements,
-  getAchievementsIsLoading
+  getOverviewAchievements,
+  getOverviewAchievementsIsLoading
 } from '../../../../entities/achievements'
 import { useEffect } from 'react'
+import { Achievement } from '../../../../entities/achievements/model/types/achievementsSchema'
+import { Loader } from '../../../../shared/ui/Loader'
 
 interface IAchievementProps {
   className?: string
@@ -23,16 +25,15 @@ export const AchievementsOverview = ({
   userId
 }: IAchievementProps) => {
   const dispatch = useAppDispatch()
-  const achievementsState = useAppSelector(getAchievements)
-  const isLoading = useAppSelector(getAchievementsIsLoading)
+  const achievements = useAppSelector(getOverviewAchievements)
+  const isLoading = useAppSelector(getOverviewAchievementsIsLoading)
+  const isLoaded = achievements?.length > 0
 
   useEffect(() => {
-    if (!achievementsState.loaded) {
+    if (!isLoaded) {
       dispatch(fetchUserAchievements({ userId, skip: 0, take: 4 }))
     }
-  }, [dispatch, userId, achievementsState.loaded])
-
-  const achievements = achievementsState.achievements
+  }, [dispatch, userId, isLoaded])
 
   return (
     <div className={classNames(s.achievementsOverviewContainer, className)}>
@@ -47,9 +48,18 @@ export const AchievementsOverview = ({
       )}
       <div className={s.achievementsList}>
         {isLoading ? (
-          <p>Loading...</p>
+          <div
+            style={{
+              position: 'absolute',
+              top: '-140px',
+              right: '45%',
+              zIndex: 10000
+            }}
+          >
+            <Loader />
+          </div>
         ) : (
-          achievements?.map((achievement) => (
+          achievements?.map((achievement: Achievement) => (
             <div key={achievement.achievementId} className={s.achievementItem}>
               <img
                 className={classNames(
