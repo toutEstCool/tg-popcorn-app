@@ -35,22 +35,6 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }, [shouldCopy, referralCode])
 
-  // const handleCopyLink = async () => {
-  //   if (referralCode) {
-  //     try {
-  //       await navigator.clipboard.writeText(inviteLink)
-  //       showPopup('Ссылка скопирована в буфер обмена!')
-  //       setCopied(true)
-  //       setTimeout(() => setCopied(false), 3000)
-  //     } catch (error) {
-  //       console.error('Ошибка при копировании ссылки: ', error)
-  //     }
-  //     setShouldCopy(false)
-  //   } else {
-  //     console.error('Нет доступного referralCode.')
-  //   }
-  // }
-
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
@@ -70,6 +54,13 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
           alert(
             'Ваше устройство не поддерживает автоматическое копирование. Пожалуйста, скопируйте ссылку вручную.'
           )
+        }
+        //@ts-ignore
+        if (window.Telegram?.WebApp?.readTextFromClipboard) {
+          //@ts-ignore
+          window.Telegram.WebApp.readTextFromClipboard((clipboardText) => {
+            console.log('Текст из буфера обмена:', clipboardText)
+          })
         }
       } catch (error) {
         console.error('Ошибка при копировании ссылки: ', error)
