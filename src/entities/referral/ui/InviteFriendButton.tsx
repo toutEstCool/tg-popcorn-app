@@ -7,12 +7,6 @@ interface IInviteFriendButtonProps {
   className?: string
 }
 
-declare global {
-  interface Window {
-    Telegram: any
-  }
-}
-
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
@@ -43,34 +37,20 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
 
   const handleCopyLink = async () => {
     if (referralCode) {
-      if (window.Telegram?.WebApp) {
-        try {
-          window.Telegram.WebApp.showPopup({
-            message: 'Ссылка скопирована в буфер обмена!',
-            buttons: [{ text: 'OK', id: 'ok' }]
-          })
-          setCopied(true)
-          setTimeout(() => setCopied(false), 3000)
-        } catch (error) {
-          console.error('Ошибка при использовании Telegram API: ', error)
-        }
-      } else {
-        const tempInput = document.createElement('textarea')
-        tempInput.value = inviteLink
-        document.body.appendChild(tempInput)
-        tempInput.select()
-        try {
-          document.execCommand('copy')
-          setCopied(true)
-          setTimeout(() => setCopied(false), 3000)
-        } catch (error) {
-          console.error(
-            'Ошибка при копировании с использованием execCommand: ',
-            error
-          )
-        }
-        document.body.removeChild(tempInput)
+      const tempInput = document.createElement('textarea')
+      tempInput.value = inviteLink
+      document.body.appendChild(tempInput)
+      tempInput.select()
+
+      try {
+        document.execCommand('copy')
+        setCopied(true)
+        setTimeout(() => setCopied(false), 3000)
+      } catch (error) {
+        console.error('Ошибка при копировании: ', error)
       }
+
+      document.body.removeChild(tempInput)
       setShouldCopy(false)
     }
   }
