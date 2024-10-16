@@ -18,4 +18,5 @@
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
+  margin-bottom: 25%;
 }
