@@ -10,42 +10,61 @@ interface IInviteFriendButtonProps {
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
+  const [shouldCopy, setShouldCopy] = useState(false)
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
   const inviteLink = `https://t.me/PopcornCapitals_Bot/app?ref=${referralCode}`
 
-  const handleInviteClick = () => {
+  const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
-      dispatch(generateReferralCode({ userId: currentUser.id }))
-        .unwrap()
-        .then(() => handleCopyLink())
-        .catch((error) =>
-          console.error('Ошибка при генерации реферального кода:', error)
-        )
-    }
-  }
-
-  const handleCopyLink = () => {
-    if (referralCode) {
-      navigator.clipboard
-        .writeText(inviteLink)
-        .then(() => {
-          setCopied(true)
-        })
-        .catch((error) => console.error('Ошибка при копировании: ' + error))
+      try {
+        await dispatch(
+          generateReferralCode({ userId: currentUser.id })
+        ).unwrap()
+        setShouldCopy(true)
+      } catch (error) {
+        console.error('Ошибка при генерации реферального кода:', error)
+      }
     }
   }
 
   useEffect(() => {
-    if (copied) {
-      const timer = setTimeout(() => {
-        setCopied(false)
-      }, 3000)
-
-      return () => clearTimeout(timer)
+    if (shouldCopy && referralCode) {
+      handleCopyLink()
     }
-  }, [copied])
+  }, [shouldCopy, referralCode])
+
+  const handleCopyLink = async () => {
+    if (referralCode) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(inviteLink)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } catch (error) {
+          console.error('Ошибка при копировании: ', error)
+        }
+      } else {
+        const tempInput = document.createElement('textarea')
+        tempInput.value = inviteLink
+        document.body.appendChild(tempInput)
+        tempInput.select()
+        try {
+          document.execCommand('copy')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } catch (error) {
+          console.error(
+            'Ошибка при копировании с использованием execCommand: ',
+            error
+          )
+        }
+        document.body.removeChild(tempInput)
+      }
+      setShouldCopy(false)
+    }
+  }
 
   return (
     <button
