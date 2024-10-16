@@ -27,7 +27,6 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         await dispatch(
           generateReferralCode({ userId: currentUser.id })
         ).unwrap()
-        setCopied(true)
         handleCopyLink()
       } catch (error) {
         console.error('Ошибка при генерации реферального кода:', error)
@@ -37,43 +36,28 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
 
   const handleCopyLink = async () => {
     if (referralCode) {
-      if (navigator.clipboard && window.isSecureContext) {
-        try {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(inviteLink)
-          setCopied(true)
-          setTimeout(() => setCopied(false), 3000)
-        } catch (error) {
-          console.error('Ошибка при копировании через Clipboard API:', error)
-          fallbackCopyMethod()
+        } else {
+          const tempInput = document.createElement('textarea')
+          tempInput.value = inviteLink
+          document.body.appendChild(tempInput)
+          tempInput.select()
+          document.execCommand('copy')
+          document.body.removeChild(tempInput)
         }
-      } else {
-        fallbackCopyMethod()
-      }
-    }
-  }
-
-  const fallbackCopyMethod = () => {
-    const tempInput = document.createElement('textarea')
-    tempInput.value = inviteLink
-    document.body.appendChild(tempInput)
-    tempInput.select()
-    try {
-      if (document.execCommand('copy')) {
         setCopied(true)
         setTimeout(() => setCopied(false), 3000)
-        if (window.Telegram?.WebApp) {
+
+        // Добавляем тактильный отклик при успешном копировании
+        if (window.Telegram?.WebApp?.HapticFeedback) {
           window.Telegram.WebApp.HapticFeedback.impactOccurred('light')
         }
-      } else {
-        console.error('Ошибка: не удалось скопировать ссылку')
+      } catch (error) {
+        console.error('Ошибка при копировании:', error)
       }
-    } catch (error) {
-      console.error(
-        'Ошибка при копировании с использованием execCommand:',
-        error
-      )
     }
-    document.body.removeChild(tempInput)
   }
 
   return (
