@@ -21,6 +21,7 @@ export const LoginComponent = () => {
   const refFromUrl = urlParams.get('ref')
 
   const telegramWindow = window as unknown as TelegramWindow
+  // @ts-ignore
   const startParam =
     telegramWindow.Telegram?.WebApp?.initDataUnsafe?.tgWebAppStartParam
 
