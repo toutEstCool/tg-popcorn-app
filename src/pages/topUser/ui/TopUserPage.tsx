@@ -15,8 +15,8 @@ export const TopUserPage = () => {
 
   const debouncedSetSearchTerm = useCallback(
     debounce((value) => {
-      setDebouncedSearchTerm(value.toLowerCase())
-    }, 700), // Увеличенная задержка для уменьшения количества запросов
+      setDebouncedSearchTerm(value)
+    }, 500),
     []
   )
 
