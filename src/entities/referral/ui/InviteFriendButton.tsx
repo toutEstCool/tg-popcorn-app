@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
@@ -15,6 +15,7 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
   const inviteLink = `https://t.me/PopcornCapitals_Bot/app?ref=${referralCode}`
+  const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
   const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
@@ -35,37 +36,43 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }, [shouldCopy, referralCode])
 
-  const handleCopyLink = async () => {
-    if (referralCode) {
-      const tempInput = document.createElement('textarea')
-      tempInput.value = inviteLink
-      document.body.appendChild(tempInput)
-      tempInput.select()
-
+  const handleCopyLink = () => {
+    if (referralCode && inputRef.current) {
+      inputRef.current.select()
       try {
-        document.execCommand('copy')
-        setCopied(true)
-        setTimeout(() => setCopied(false), 3000)
+        const successful = document.execCommand('copy')
+        if (successful) {
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        }
       } catch (error) {
         console.error('Ошибка при копировании: ', error)
       }
-
-      document.body.removeChild(tempInput)
-      setShouldCopy(false)
     }
+    setShouldCopy(false)
   }
 
   return (
-    <button
-      className={className}
-      onClick={handleInviteClick}
-      disabled={isLoading}
-    >
-      {isLoading
-        ? 'Генерация...'
-        : copied
-        ? 'Реферальный код скопирован'
-        : 'Пригласить друга'}
-    </button>
+    <div>
+      <button
+        className={className}
+        onClick={handleInviteClick}
+        disabled={isLoading}
+      >
+        {isLoading
+          ? 'Генерация...'
+          : copied
+          ? 'Реферальный код скопирован'
+          : 'Пригласить друга'}
+      </button>
+      {referralCode && (
+        <textarea
+          ref={inputRef}
+          value={inviteLink}
+          readOnly
+          style={{ position: 'absolute', left: '-9999px' }}
+        />
+      )}
+    </div>
   )
 }
