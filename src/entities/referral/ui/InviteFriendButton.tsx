@@ -37,13 +37,17 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
 
   const handleCopyLink = async () => {
     if (referralCode) {
-      if (navigator.clipboard && window.isSecureContext) {
+      if (window.Telegram?.WebApp) {
         try {
-          await navigator.clipboard.writeText(inviteLink)
+          //@ts-ignore
+          window.Telegram.WebApp.showPopup({
+            message: 'Скопируйте эту ссылку: ' + inviteLink,
+            buttons: [{ text: 'OK', id: 'ok' }]
+          })
           setCopied(true)
           setTimeout(() => setCopied(false), 3000)
         } catch (error) {
-          console.error('Ошибка при копировании: ', error)
+          console.error('Ошибка при использовании Telegram API: ', error)
         }
       } else {
         const tempInput = document.createElement('textarea')

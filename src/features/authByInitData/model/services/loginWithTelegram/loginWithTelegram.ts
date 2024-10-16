@@ -34,7 +34,6 @@ export const loginWithTelegram = createAsyncThunk(
         initData
       }
 
-      // Добавляем реферальный код, если он доступен
       if (referralCode && referralCode.trim() !== '') {
         requestBody.referralCode = referralCode
       }

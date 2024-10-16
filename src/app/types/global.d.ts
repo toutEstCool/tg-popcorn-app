@@ -14,7 +14,20 @@ interface TelegramWindow extends Window {
 declare let window: TelegramWindow
 
 declare global {
+  interface TelegramWebApp {
+    initDataUnsafe?: {
+      tgWebAppStartParam?: string
+    }
+    initData: string
+    showPopup?: (params: {
+      message: string
+      buttons: { text: string; id: string }[]
+    }) => void
+  }
+
   interface Window {
-    Telegram: Telegram
+    Telegram: {
+      WebApp: TelegramWebApp
+    }
   }
 }
