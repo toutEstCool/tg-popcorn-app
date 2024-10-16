@@ -3,6 +3,13 @@ export interface UserProfileSchema {
   accountName: string
   fullName: string
   score: number
+  gradeInfo: {
+    grade: string
+    level: number
+    progressPercents: number
+    scoreFromInclusive: number
+    scoreToExclusive: number
+  }
 }
 
 export interface UserStateSchema {

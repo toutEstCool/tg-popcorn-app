@@ -14,6 +14,13 @@ interface IUserCardProps {
     fullName: string
     accountName?: string
     score: number
+    gradeInfo: {
+      grade: string
+      level: number
+      progressPercents: number
+      scoreFromInclusive: number
+      scoreToExclusive: number
+    }
   }
   isOwnProfile?: boolean
 }
@@ -48,7 +55,11 @@ export const UserCard: React.FC<IUserCardProps> = React.memo(
             )}
           </div>
         </div>
-        <UserXPBar className={s.xbBar} score={userProfile?.score} />
+        <UserXPBar
+          className={s.xbBar}
+          score={userProfile?.score}
+          gradeInfo={userProfile?.gradeInfo}
+        />
       </UiUserCard>
     )
   }

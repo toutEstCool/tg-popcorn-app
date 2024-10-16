@@ -47,13 +47,9 @@ export const ProfilePage = () => {
     )
   }
 
-  const telegramWindow = window as unknown as TelegramWindow
-  const initData = telegramWindow.Telegram?.WebApp?.initData
-
   return (
     <AppLayout>
       <div className={s.profilePageContainer}>
-        <h1 style={{ color: 'red' }}>{initData}</h1>
         {userProfile && (
           <UserCard userProfile={userProfile} isOwnProfile={true} />
         )}

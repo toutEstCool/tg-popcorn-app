@@ -5,34 +5,45 @@ import classNames from 'classnames'
 interface IUserXPBarProps {
   className?: string
   score?: number
+  gradeInfo: {
+    grade: string
+    level: number
+    progressPercents: number
+    scoreFromInclusive: number
+    scoreToExclusive: number
+  }
 }
 
-export const UserXPBar = memo(({ className, score = 0 }: IUserXPBarProps) => {
-  return (
-    <div className={classNames(s.UserXPBarWrapper, className)}>
-      <span className={s.userLvl}>LVL 1. Хомяк</span>
-      <div className={s.progressSection}>
-        <div className={s.progressCountSection}>
-          <span>{score}</span>
-          <span>popcorn coin 1000</span>
+export const UserXPBar = memo(
+  ({ className, score, gradeInfo }: IUserXPBarProps) => {
+    return (
+      <div className={classNames(s.UserXPBarWrapper, className)}>
+        <span className={s.userLvl}>
+          LVL {gradeInfo?.level}. {gradeInfo?.grade}
+        </span>
+        <div className={s.progressSection}>
+          <div className={s.progressCountSection}>
+            <span>{score}</span>
+            <span>popcorn coin {gradeInfo?.scoreToExclusive}</span>
+          </div>
         </div>
-      </div>
-      <div
-        style={{
-          background: '#FFFFFF1C',
-          height: '9px',
-          borderRadius: '28px'
-        }}
-      >
         <div
           style={{
+            background: '#FFFFFF1C',
             height: '9px',
-            background: '#DBB157',
-            width: `${score}%`,
             borderRadius: '28px'
           }}
-        ></div>
+        >
+          <div
+            style={{
+              height: '9px',
+              background: '#DBB157',
+              width: `${score}%`,
+              borderRadius: '28px'
+            }}
+          ></div>
+        </div>
       </div>
-    </div>
-  )
-})
+    )
+  }
+)
