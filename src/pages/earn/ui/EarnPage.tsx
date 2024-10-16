@@ -1,3 +1,4 @@
+import { InviteFriendButton } from '../../../entities/referral'
 import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { ReferralProgram } from '../../../shared/ui/ReferralProgram'
 import { UserXPBar } from '../../../shared/ui/UserXPBar'
@@ -39,7 +40,7 @@ export const EarnPage = () => {
           </div>
         </div>
       </section>
-      <button className={s.referralBtn}>Пригласить друга</button>
+      <InviteFriendButton className={s.referralBtn} />
     </AppLayout>
   )
 }
