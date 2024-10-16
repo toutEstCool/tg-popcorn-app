@@ -27,8 +27,10 @@ export const AchievementsOverview = ({
   const isLoading = useAppSelector(getAchievementsIsLoading)
 
   useEffect(() => {
-    dispatch(fetchUserAchievements({ userId, skip: 0, take: 4 }))
-  }, [dispatch, userId])
+    if (!achievementsState.loaded) {
+      dispatch(fetchUserAchievements({ userId, skip: 0, take: 4 }))
+    }
+  }, [dispatch, userId, achievementsState.loaded])
 
   const achievements = achievementsState.achievements
 

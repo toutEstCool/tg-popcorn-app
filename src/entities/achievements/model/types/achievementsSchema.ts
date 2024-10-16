@@ -13,4 +13,5 @@ export interface AchievementsState {
   totalCount: number
   isLoading: boolean
   error: string | null
+  loaded: boolean
 }

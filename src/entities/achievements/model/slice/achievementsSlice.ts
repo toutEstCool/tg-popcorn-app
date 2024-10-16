@@ -6,7 +6,8 @@ const initialState: AchievementsState = {
   achievements: [],
   totalCount: 0,
   isLoading: false,
-  error: null
+  error: null,
+  loaded: false
 }
 
 const achievementsSlice = createSlice({
@@ -28,6 +29,7 @@ const achievementsSlice = createSlice({
           state.isLoading = false
           state.achievements = action.payload.items
           state.totalCount = action.payload.totalCount
+          state.loaded = true
         }
       )
       .addCase(fetchUserAchievements.rejected, (state, action) => {
