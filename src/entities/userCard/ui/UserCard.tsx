@@ -14,7 +14,7 @@ interface IUserCardProps {
     fullName: string
     accountName?: string
     score: number
-    gradeInfo: {
+    gradeInfo?: {
       grade: string
       level: number
       progressPercents: number

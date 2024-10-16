@@ -3,7 +3,7 @@ export interface UserProfileSchema {
   accountName: string
   fullName: string
   score: number
-  gradeInfo: {
+  gradeInfo?: {
     grade: string
     level: number
     progressPercents: number

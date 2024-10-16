@@ -5,7 +5,7 @@ import classNames from 'classnames'
 interface IUserXPBarProps {
   className?: string
   score?: number
-  gradeInfo: {
+  gradeInfo?: {
     grade: string
     level: number
     progressPercents: number
@@ -23,7 +23,7 @@ export const UserXPBar = memo(
         </span>
         <div className={s.progressSection}>
           <div className={s.progressCountSection}>
-            <span>{score}</span>
+            <span>{score ?? gradeInfo?.scoreFromInclusive}</span>
             <span>popcorn coin {gradeInfo?.scoreToExclusive}</span>
           </div>
         </div>
@@ -38,7 +38,7 @@ export const UserXPBar = memo(
             style={{
               height: '9px',
               background: '#DBB157',
-              width: `${score}%`,
+              width: `${gradeInfo?.progressPercents || 0}%`,
               borderRadius: '28px'
             }}
           ></div>
