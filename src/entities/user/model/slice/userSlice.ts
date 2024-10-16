@@ -35,6 +35,7 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.pending, (state) => {
         state.isLoading = true
         state.error = null
+        state.isFetched = false
       })
       .addCase(
         fetchUserProfile.fulfilled,
@@ -47,6 +48,7 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload as string
+        state.isFetched = false
       })
   }
 })

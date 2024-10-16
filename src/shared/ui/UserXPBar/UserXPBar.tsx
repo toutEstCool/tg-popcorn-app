@@ -15,7 +15,7 @@ interface IUserXPBarProps {
 }
 
 export const UserXPBar = memo(
-  ({ className, score, gradeInfo }: IUserXPBarProps) => {
+  ({ className, score = 0, gradeInfo }: IUserXPBarProps) => {
     return (
       <div className={classNames(s.UserXPBarWrapper, className)}>
         <span className={s.userLvl}>
