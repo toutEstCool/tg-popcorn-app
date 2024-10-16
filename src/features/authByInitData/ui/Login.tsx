@@ -21,7 +21,11 @@ export const LoginComponent = () => {
   const referralCode = urlParams.get('ref')
 
   useEffect(() => {
-    dispatch(loginWithTelegram({ referralCode: referralCode || undefined }))
+    if (referralCode) {
+      dispatch(loginWithTelegram({ referralCode }))
+    } else {
+      dispatch(loginWithTelegram({}))
+    }
   }, [dispatch, referralCode])
 
   useEffect(() => {
