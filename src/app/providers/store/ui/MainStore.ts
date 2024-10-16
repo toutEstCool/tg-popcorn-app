@@ -2,7 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { settingsReducer } from '../../../../entities/settings'
 import { $api } from '../../../../shared/api/api'
 import { authReducer } from '../../../../features/authByInitData'
-import { userReducer, usersReducer } from '../../../../entities/user'
+import {
+  userReducer,
+  userReferralsReducer,
+  usersReducer
+} from '../../../../entities/user'
 import { achievementsReducer } from '../../../../entities/achievements'
 import { gradesReducer } from '../../../../entities/grades'
 import { referralReducer } from '../../../../entities/referral'
@@ -14,7 +18,8 @@ const mainReducer = combineReducers({
   users: usersReducer,
   grades: gradesReducer,
   achievements: achievementsReducer,
-  referral: referralReducer
+  referral: referralReducer,
+  userReferrals: userReferralsReducer
 })
 
 export const mainStore = configureStore({
@@ -36,6 +41,7 @@ export interface StateSchema {
   achievements: ReturnType<typeof achievementsReducer>
   grades: ReturnType<typeof gradesReducer>
   referral: ReturnType<typeof referralReducer>
+  userReferrals: ReturnType<typeof userReferralsReducer>
   settings: ReturnType<typeof settingsReducer>
 }
 

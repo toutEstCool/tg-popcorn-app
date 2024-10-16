@@ -1,4 +1,6 @@
 import { InviteFriendButton } from '../../../entities/referral'
+import { ReferralsList } from '../../../entities/user'
+
 import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { ReferralProgram } from '../../../shared/ui/ReferralProgram'
 import { UserXPBar } from '../../../shared/ui/UserXPBar'
@@ -17,27 +19,13 @@ export const EarnPage = () => {
           />
           <div className={s.earnTotalCoinInfo}>
             <span className={s.earnTotalCoinTitle}>всего заработано</span>
-            <span className={s.earnTotalCoinCount}>9 000.00 POPCOIN</span>
+            <span className={s.earnTotalCoinCount}>0 POPCOIN</span>
           </div>
         </div>
         <ReferralProgram />
         <div className={s.referralWrapper}>
           <UserXPBar className={s.xbBar} />
-          <div className={s.referralInfo}>
-            <div className={s.referralAvatar} />
-            <div className={s.referralUserInfoWrapper}>
-              <span className={s.referralInfoName}>@romanovd</span>
-              <span className={s.referralInfoCountCoin}>+4 500.00 POPCOIN</span>
-            </div>
-          </div>
-          {/*  */}
-          <div className={s.referralInfo}>
-            <div className={s.referralAvatar} />
-            <div className={s.referralUserInfoWrapper}>
-              <span className={s.referralInfoName}>@romanovd</span>
-              <span className={s.referralInfoCountCoin}>+4 500.00 POPCOIN</span>
-            </div>
-          </div>
+          <ReferralsList />
         </div>
       </section>
       <InviteFriendButton className={s.referralBtn} />

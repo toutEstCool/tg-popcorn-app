@@ -10,10 +10,3 @@
 .loader {
   animation: spin 1s linear infinite;
 }
-
-.loaderWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
