@@ -20,11 +20,10 @@ export const LoginComponent = () => {
   const urlParams = new URLSearchParams(window.location.search)
   const refFromUrl = urlParams.get('ref')
 
+  //@ts-ignore
   const telegramWindow = window as unknown as TelegramWindow
-  // @ts-ignore
   const startParam =
     telegramWindow.Telegram?.WebApp?.initDataUnsafe?.tgWebAppStartParam
-
   const referralCode = refFromUrl || startParam
 
   useEffect(() => {
