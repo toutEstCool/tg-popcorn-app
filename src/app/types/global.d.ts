@@ -1,5 +1,5 @@
 interface TelegramWebApp {
-  initDataUnsafe: any
+  initDataUnsafe?: any
   initData: string
 }
 
@@ -14,15 +14,7 @@ interface TelegramWindow extends Window {
 declare let window: TelegramWindow
 
 declare global {
-  interface TelegramWebApp {
-    initDataUnsafe?: {
-      tgWebAppStartParam?: string
-    }
-  }
-
   interface Window {
-    Telegram: {
-      WebApp: TelegramWebApp
-    }
+    Telegram: Telegram
   }
 }

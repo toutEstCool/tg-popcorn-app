@@ -9,6 +9,19 @@ import { Error } from '../../../shared/ui/Error'
 import { useNavigate } from 'react-router-dom'
 import { getIsAuthenticated } from '../model/selectors/getIsAuth/getIsAuth'
 
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp?: {
+        initDataUnsafe?: {
+          tgWebAppStartParam?: string
+        }
+        initData: string
+      }
+    }
+  }
+}
+
 export const LoginComponent = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -18,12 +31,13 @@ export const LoginComponent = () => {
   const auth = useAppSelector(getIsAuthenticated)
 
   const urlParams = new URLSearchParams(window.location.search)
-  const refFromUrl = urlParams.get('ref')
+  const refFromUrl = urlParams.get('startapp')
 
-  const telegramWindow = window as unknown as TelegramWindow
-  const startParam =
-    telegramWindow.Telegram?.WebApp?.initDataUnsafe?.tgWebAppStartParam
+  const startParam = window.Telegram?.WebApp?.initDataUnsafe?.tgWebAppStartParam
+
   const referralCode = refFromUrl || startParam
+
+  console.log(refFromUrl)
 
   useEffect(() => {
     dispatch(loginWithTelegram({ referralCode: referralCode || undefined }))
