@@ -1,6 +1,7 @@
 interface TelegramWebApp {
-  initDataUnsafe?: any
   initData: string
+  initDataUnsafe?: any // Сделали тип 'any', чтобы избежать ошибок с полем 'initDataUnsafe'
+  [key: string]: any // Позволяет использовать любые методы или поля, даже если они не объявлены
 }
 
 interface Telegram {
@@ -8,25 +9,14 @@ interface Telegram {
 }
 
 interface TelegramWindow extends Window {
-  Telegram: Telegram
+  Telegram?: Telegram
 }
 
 declare let window: TelegramWindow
 
 declare global {
-  interface TelegramWebApp {
-    initDataUnsafe?: {
-      tgWebAppStartParam?: string
-    }
-    initData: string
-    showPopup?: (params: {
-      message: string
-      buttons: { text: string; id: string }[]
-    }) => void
-  }
-
   interface Window {
-    Telegram: {
+    Telegram?: {
       WebApp: TelegramWebApp
     }
   }

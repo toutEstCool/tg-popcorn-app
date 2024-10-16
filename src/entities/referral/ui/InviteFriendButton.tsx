@@ -35,38 +35,24 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }, [shouldCopy, referralCode])
 
-  const handleCopyLink = async () => {
-    if (referralCode) {
-      if (window.Telegram?.WebApp) {
-        try {
-          //@ts-ignore
-          window.Telegram.WebApp.showPopup({
-            message: 'Скопируйте эту ссылку: ' + inviteLink,
-            buttons: [{ text: 'OK', id: 'ok' }]
-          })
-          setCopied(true)
-          setTimeout(() => setCopied(false), 3000)
-        } catch (error) {
-          console.error('Ошибка при использовании Telegram API: ', error)
-        }
-      } else {
-        const tempInput = document.createElement('textarea')
-        tempInput.value = inviteLink
-        document.body.appendChild(tempInput)
-        tempInput.select()
-        try {
-          document.execCommand('copy')
-          setCopied(true)
-          setTimeout(() => setCopied(false), 3000)
-        } catch (error) {
-          console.error(
-            'Ошибка при копировании с использованием execCommand: ',
-            error
-          )
-        }
-        document.body.removeChild(tempInput)
+  const handleCopyLink = () => {
+    if (referralCode && window.Telegram?.WebApp) {
+      try {
+        //@ts-ignore
+        window.Telegram.WebApp.setClipboardText(inviteLink)
+        //@ts-ignore
+        window.Telegram.WebApp.showPopup({
+          message: 'Ссылка скопирована в буфер обмена!',
+          buttons: [{ text: 'OK', type: 'close' }]
+        })
+        setCopied(true)
+        setTimeout(() => setCopied(false), 3000)
+      } catch (error) {
+        console.error('Ошибка при использовании Telegram API: ', error)
       }
       setShouldCopy(false)
+    } else {
+      console.error('Telegram WebApp не найден или нет referralCode.')
     }
   }
 
