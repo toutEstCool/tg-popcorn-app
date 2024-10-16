@@ -14,7 +14,7 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
-  const inviteLink = `https://t.me/PopcornCapitals_Bot/app?ref=${referralCode}`
+  const inviteLink = `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`
 
   const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
