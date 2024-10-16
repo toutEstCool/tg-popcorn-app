@@ -35,13 +35,42 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }, [shouldCopy, referralCode])
 
+  // const handleCopyLink = async () => {
+  //   if (referralCode) {
+  //     try {
+  //       await navigator.clipboard.writeText(inviteLink)
+  //       showPopup('Ссылка скопирована в буфер обмена!')
+  //       setCopied(true)
+  //       setTimeout(() => setCopied(false), 3000)
+  //     } catch (error) {
+  //       console.error('Ошибка при копировании ссылки: ', error)
+  //     }
+  //     setShouldCopy(false)
+  //   } else {
+  //     console.error('Нет доступного referralCode.')
+  //   }
+  // }
+
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
-        await navigator.clipboard.writeText(inviteLink)
-        showPopup('Ссылка скопирована в буфер обмена!')
-        setCopied(true)
-        setTimeout(() => setCopied(false), 3000)
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(inviteLink)
+          showPopup('Ссылка скопирована в буфер обмена!')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+          //@ts-ignore
+        } else if (window.Telegram?.WebApp?.setClipboardText) {
+          //@ts-ignore
+          window.Telegram.WebApp.setClipboardText(inviteLink)
+          showPopup('Ссылка скопирована в буфер обмена!')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } else {
+          alert(
+            'Ваше устройство не поддерживает автоматическое копирование. Пожалуйста, скопируйте ссылку вручную.'
+          )
+        }
       } catch (error) {
         console.error('Ошибка при копировании ссылки: ', error)
       }
