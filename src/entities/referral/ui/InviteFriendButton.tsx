@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
@@ -16,6 +16,7 @@ declare global {
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const dispatch = useAppDispatch()
   const [copied, setCopied] = useState(false)
+  const [shouldCopy, setShouldCopy] = useState(false)
   const currentUser = useAppSelector((state) => state.user.currentUser)
   const referralCode = useAppSelector((state) => state.referral.referralCode)
   const isLoading = useAppSelector((state) => state.referral.isLoading)
@@ -27,15 +28,18 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         await dispatch(
           generateReferralCode({ userId: currentUser.id })
         ).unwrap()
-        setCopied(false)
-        setTimeout(() => {
-          handleCopyLink()
-        }, 500)
+        setShouldCopy(true)
       } catch (error) {
         console.error('Ошибка при генерации реферального кода:', error)
       }
     }
   }
+
+  useEffect(() => {
+    if (shouldCopy && referralCode) {
+      handleCopyLink()
+    }
+  }, [shouldCopy, referralCode])
 
   const handleCopyLink = () => {
     if (referralCode) {
@@ -61,13 +65,21 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     document.body.appendChild(tempInput)
     tempInput.select()
     try {
-      document.execCommand('copy')
-      showSuccessMessage()
+      const success = document.execCommand('copy')
+      if (success) {
+        showSuccessMessage()
+      } else {
+        console.error(
+          'Ошибка при копировании: не удалось выполнить команду copy'
+        )
+        showManualCopyMessage()
+      }
     } catch (error) {
       console.error(
         'Ошибка при копировании с использованием execCommand: ',
         error
       )
+      showManualCopyMessage()
     }
     document.body.removeChild(tempInput)
   }
@@ -75,12 +87,25 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const showSuccessMessage = () => {
     setCopied(true)
     if (window.Telegram?.WebApp) {
+      // Использование Telegram WebApp для отображения сообщения
       window.Telegram.WebApp.showPopup({
         message: 'Ссылка скопирована в буфер обмена!',
         buttons: [{ text: 'OK', id: 'ok' }]
       })
     }
+    // Сбрасываем статус после 3 секунд
     setTimeout(() => setCopied(false), 3000)
+  }
+
+  const showManualCopyMessage = () => {
+    if (window.Telegram?.WebApp) {
+      window.Telegram.WebApp.showPopup({
+        message: `Скопируйте ссылку вручную: ${inviteLink}`,
+        buttons: [{ text: 'OK', id: 'ok' }]
+      })
+    } else {
+      alert(`Скопируйте ссылку вручную: ${inviteLink}`)
+    }
   }
 
   return (
