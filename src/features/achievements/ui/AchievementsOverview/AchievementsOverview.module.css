@@ -25,6 +25,7 @@
   margin-top: 0.875rem;
   display: flex;
   justify-content: space-between;
+  height: 100px;
 }
 .achievementItem {
   display: flex;
