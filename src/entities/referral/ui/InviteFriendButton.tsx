@@ -34,28 +34,32 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     }
   }
 
-  const handleCopyLink = async () => {
+  const handleCopyLink = () => {
     if (referralCode) {
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(inviteLink)
-        } else {
-          const tempInput = document.createElement('textarea')
-          tempInput.value = inviteLink
-          document.body.appendChild(tempInput)
-          tempInput.select()
-          document.execCommand('copy')
-          document.body.removeChild(tempInput)
-        }
+      if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.showPopup({
+          title: 'Скопируйте реферальную ссылку',
+          message: `Вот ваша ссылка: ${inviteLink}`,
+          buttons: [{ text: 'OK', id: 'ok' }]
+        })
         setCopied(true)
         setTimeout(() => setCopied(false), 3000)
-
-        // Добавляем тактильный отклик при успешном копировании
-        if (window.Telegram?.WebApp?.HapticFeedback) {
-          window.Telegram.WebApp.HapticFeedback.impactOccurred('light')
+      } else {
+        const tempInput = document.createElement('textarea')
+        tempInput.value = inviteLink
+        document.body.appendChild(tempInput)
+        tempInput.select()
+        try {
+          document.execCommand('copy')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } catch (error) {
+          console.error(
+            'Ошибка при копировании с использованием execCommand:',
+            error
+          )
         }
-      } catch (error) {
-        console.error('Ошибка при копировании:', error)
+        document.body.removeChild(tempInput)
       }
     }
   }
