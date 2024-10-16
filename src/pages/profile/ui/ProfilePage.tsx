@@ -14,6 +14,7 @@ import s from './ProfilePage.module.css'
 import { fetchCurrentUser } from '../../../entities/user/model/services/fetchCurrentUser/fetchCurrentUser'
 import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
 import { Loader } from '../../../shared/ui/Loader'
+import { AchievementsOverview } from '../../../features/achievements'
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
@@ -52,9 +53,11 @@ export const ProfilePage = () => {
     <AppLayout>
       <div className={s.profilePageContainer}>
         {userProfile && (
-          <UserCard userProfile={userProfile} isOwnProfile={true} />
+          <>
+            <UserCard userProfile={userProfile} isOwnProfile={true} />
+            <AchievementsOverview isOwnProfile={true} userId={userProfile.id} />
+          </>
         )}
-        {/* <AchievementsOverview isOwnProfile={true} /> */}
         <ReferralProgram />
       </div>
     </AppLayout>

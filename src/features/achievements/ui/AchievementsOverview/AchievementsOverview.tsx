@@ -32,8 +32,6 @@ export const AchievementsOverview = ({
 
   const achievements = achievementsState.achievements
 
-  console.log(achievements)
-
   return (
     <div className={classNames(s.achievementsOverviewContainer, className)}>
       {isOwnProfile && (
