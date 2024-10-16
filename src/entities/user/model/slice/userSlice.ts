@@ -7,7 +7,8 @@ const initialState: UserStateSchema = {
   currentUser: null,
   userProfile: null,
   isLoading: false,
-  error: ''
+  error: '',
+  isFetched: false
 }
 
 const userSlice = createSlice({
@@ -40,6 +41,7 @@ const userSlice = createSlice({
         (state, action: PayloadAction<UserProfileSchema>) => {
           state.isLoading = false
           state.userProfile = action.payload
+          state.isFetched = true
         }
       )
       .addCase(fetchUserProfile.rejected, (state, action) => {

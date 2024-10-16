@@ -6,7 +6,6 @@ import {
   getUserProfile
 } from '../../../entities/user'
 import { UserCard } from '../../../entities/userCard'
-import { AchievementsOverview } from '../../../features/achievements'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 import { ReferralProgram } from '../../../shared/ui/ReferralProgram'
@@ -24,14 +23,16 @@ export const ProfilePage = () => {
   const userError = useAppSelector(getUserError)
 
   useEffect(() => {
-    dispatch(fetchCurrentUser())
-  }, [dispatch])
-
-  useEffect(() => {
-    if (currentUser) {
-      dispatch(fetchUserProfile(currentUser.id))
+    if (!currentUser) {
+      dispatch(fetchCurrentUser())
     }
   }, [dispatch, currentUser])
+
+  useEffect(() => {
+    if (currentUser && !userProfile) {
+      dispatch(fetchUserProfile(currentUser.id))
+    }
+  }, [dispatch, currentUser, userProfile])
 
   if (userIsLoading) {
     return <Loader />
@@ -53,7 +54,7 @@ export const ProfilePage = () => {
         {userProfile && (
           <UserCard userProfile={userProfile} isOwnProfile={true} />
         )}
-        <AchievementsOverview isOwnProfile={true} />
+        {/* <AchievementsOverview isOwnProfile={true} /> */}
         <ReferralProgram />
       </div>
     </AppLayout>

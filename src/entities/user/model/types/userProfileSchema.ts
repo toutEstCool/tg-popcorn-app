@@ -21,4 +21,5 @@ export interface UserStateSchema {
   userProfile: UserProfileSchema | null
   isLoading: boolean
   error: string | null
+  isFetched: boolean
 }
