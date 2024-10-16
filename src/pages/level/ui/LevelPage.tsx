@@ -15,6 +15,7 @@ import {
 import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { Loader } from '../../../shared/ui/Loader'
+import { LevelsTable } from '../../../entities/grades'
 
 export const LevelPage = () => {
   const dispatch = useAppDispatch()
@@ -54,50 +55,7 @@ export const LevelPage = () => {
         ) : (
           <p>Данные не найдены...</p>
         )}
-        <section className={s.levelTable}>
-          <h3 className={s.levelTableTitle}>Таблица уровней</h3>
-          <ul className={s.levelTableWrapper}>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>1,000.00</span>
-              <span className={s.levelTableItemLevel}>LVL 1. Хомяк</span>
-            </li>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>6,000.00</span>
-              <span className={s.levelTableItemLevel}>
-                LVL 3. Крипто-энтузиаст
-              </span>
-              <span className={s.levelTableItemReward}>
-                + Скидка 10% на POPCORN PRO
-              </span>
-            </li>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>35,000.00</span>
-              <span className={s.levelTableItemLevel}>
-                LVL 7. Рыночный Спекулянт
-              </span>
-            </li>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>40,000.00</span>
-              <span className={s.levelTableItemLevel}>
-                LVL 8. Блокчейн гуру
-              </span>
-            </li>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>50,000.00</span>
-              <span className={s.levelTableItemLevel}>
-                LVL 9. Крипто-эксперт
-              </span>
-              <span className={s.levelTableItemReward}>+ 5,000.00 баллов</span>
-            </li>
-            <li className={s.levelTableItem}>
-              <span className={s.levelTableItemCoinCount}>100,000.00</span>
-              <span className={s.levelTableItemLevel}>LVL 10. Кит</span>
-              <span className={s.levelTableItemReward}>
-                + Личная консультация с Русланом
-              </span>
-            </li>
-          </ul>
-        </section>
+        <LevelsTable />
       </div>
     </AppLayout>
   )
