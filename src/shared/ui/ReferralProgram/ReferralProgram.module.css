@@ -1,0 +1,47 @@
+.referralProgramContainer {
+  background: linear-gradient(70deg, #0f0f0f, #f2bd7d);
+  padding-top: 1.438rem;
+  padding-bottom: 1.438rem;
+  padding-left: 0.625rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+.iconWrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-36%);
+  height: 101px;
+  overflow: hidden;
+}
+
+.referralIcon {
+  height: 110%;
+  object-fit: cover;
+  opacity: 0.9;
+}

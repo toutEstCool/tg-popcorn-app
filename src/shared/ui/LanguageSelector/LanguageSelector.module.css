@@ -1,0 +1,63 @@
+.languageSelectorContainer {
+  position: relative;
+}
+
+.languageSection {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.selectorButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff0a;
+  color: #ffffff;
+  padding: 0.625rem;
+  border: none;
+  border-bottom-left-radius: 0.875rem;
+  border-bottom-right-radius: 0.875rem;
+  cursor: pointer;
+}
+
+.flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff1a;
+  border-radius: 0.875rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 0.125rem;
+  padding: 0;
+  list-style: none;
+  z-index: 1000;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: #3a3a3a;
+}
+
+.label {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 18.75px;
+}

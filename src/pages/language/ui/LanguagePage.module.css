@@ -1,0 +1,29 @@
+.languageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.languageTitleWrapper {
+  border-top-left-radius: 0.875rem;
+  border-top-right-radius: 0.875rem;
+  background-color: #ffffff0a;
+  padding: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.languageTitle {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 16.41px;
+  color: #ffffff;
+}
+
+.languageSubTitle {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 16.41px;
+  color: #7c7c7c;
+}

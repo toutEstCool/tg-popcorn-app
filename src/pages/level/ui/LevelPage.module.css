@@ -1,0 +1,86 @@
+.topLevelsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.topMenuItemLink {
+  min-height: 3.813rem;
+  border-radius: 0.875rem;
+  background-color: #ffffff0a;
+  padding: 0.625rem;
+  display: flex;
+  align-items: center;
+  gap: 0.794rem;
+}
+
+.InfoLinkWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex: 1;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 18.75px;
+}
+
+.xbBar {
+  min-height: 3.813rem;
+  border-radius: 0.875rem;
+  background-color: #ffffff0a;
+  padding: 0.938rem 0.625rem;
+}
+
+.levelTable {
+  border-radius: 0.875rem;
+  background-color: #ffffff0a;
+  padding: 0.938rem 0.625rem;
+}
+
+.levelTableTitle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 28.13px;
+}
+
+.levelTableWrapper {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.938rem;
+}
+.levelTableItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+.levelTableItemCoinCount {
+  color: #dbb157;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 14.06px;
+}
+.levelTableItemLevel {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+}
+.levelTableItemReward {
+  color: #989898;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 16.41px;
+}

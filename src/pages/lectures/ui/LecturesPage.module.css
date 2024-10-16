@@ -1,0 +1,34 @@
+.lecturesWrapper {
+  margin-top: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.lectureItemLinkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+}
+
+.lectureInfoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.lectureImage {
+  width: 55px;
+  height: 55px;
+  background-color: #757575;
+  border-radius: 0.625rem;
+}
+
+.lectureTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+}

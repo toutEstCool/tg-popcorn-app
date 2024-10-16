@@ -1,0 +1,62 @@
+.UserCardWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.userInfoBlockWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userNameWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.userName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 23.44px;
+  color: #ffffff;
+}
+.userNick {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 16.41px;
+  color: #989898;
+}
+
+.settingsLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.settingsLink:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.settingsLink:active {
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+}
+
+.xbBar {
+  margin-top: 0.875rem;
+}
+
+.userPopcorn {
+  color: #dbb157;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 14.06px;
+  text-transform: uppercase;
+}

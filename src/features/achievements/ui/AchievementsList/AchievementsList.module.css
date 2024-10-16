@@ -1,0 +1,40 @@
+.title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+}
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+.achievementCard {
+  text-align: center;
+}
+
+.achievementInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.achievementName {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.06px;
+  color: #ffffff;
+}
+.achievementReward {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 11.72px;
+  color: #dbb157;
+}
+
+.achievementIcon {
+  transition: opacity 0.3s ease;
+}
+
+.notAchieved {
+  opacity: 0.4;
+  filter: grayscale(100%);
+}

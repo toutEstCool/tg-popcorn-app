@@ -1,0 +1,26 @@
+:root {
+  /* Fonts */
+  --font-family-header-redesigned: 'Roboto', sans-serif;
+
+  /* s */
+  --font-size-s: 12px;
+  --font-line-s: 20px;
+
+  /* m */
+  --font-size-m: 16px;
+  --font-line-m: 24px;
+
+  /* l */
+  --font-size-l: 24px;
+  --font-line-l: 32px;
+
+  /* xl */
+  --font-size-xl: 32px;
+  --font-line-xl: 40px;
+
+  /* Sizes */
+  --navbar-height: 3.75rem;
+  /* Colors */
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #989898;
+}

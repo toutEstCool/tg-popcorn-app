@@ -1,0 +1,16 @@
+.notUserAvatar {
+  background-color: #0f0f0f;
+  width: 5.625rem;
+  height: 5.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.625rem;
+}
+
+.avatarImage {
+  width: 5.625rem !important;
+  height: 5.625rem !important;
+  border-radius: 0.625rem;
+  object-fit: cover;
+}

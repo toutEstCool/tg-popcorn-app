@@ -1,0 +1,88 @@
+.testWrapper {
+  margin-top: 1rem;
+}
+
+.testDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.188rem;
+}
+
+.testCountTitle {
+  color: #dbb157;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 28.13px;
+}
+
+.testQuestionDescription {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.125;
+  line-height: 21.09px;
+  max-width: 65%;
+  word-wrap: break-word;
+}
+
+.testQuestionsWrapper {
+  margin-top: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.testQuestionItem {
+  display: flex;
+  align-items: center;
+}
+
+.testQuestion {
+  width: 100%;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 18.75px;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.inputRadio {
+  width: 20px;
+  height: 20px;
+}
+
+.fixedButton {
+  position: fixed;
+  bottom: 1.875rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 24.875rem;
+  padding: 0.75rem;
+  background-color: #dbb157;
+  color: #ffffff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.875rem;
+  font-weight: 600;
+  line-height: 18.75px;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.fixedButton:hover {
+  background-color: #c49c47;
+}
+
+.fixedButton:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}

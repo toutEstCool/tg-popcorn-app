@@ -1,0 +1,44 @@
+.headerContainer {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #fff;
+  margin-bottom: 25px; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  background-color: #000;
+  /* margin-top: 20px; */
+  height: 60px;
+  z-index: 1000;
+}
+.backButton {
+  position: absolute;
+  left: 0.125rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}

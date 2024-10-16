@@ -1,0 +1,100 @@
+.earnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.earnTotalCoinWrapper {
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.earnTotalCoinInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.earnTotalCoinTitle {
+  color: #dbb157;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 14.06px;
+}
+
+.earnTotalCoinCount {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 25.78px;
+}
+
+.referralWrapper {
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+}
+
+.referralInfo {
+  padding: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.625rem;
+}
+
+.referralInfo:not(:last-child) {
+  border-bottom: 1.5px solid black;
+}
+
+.referralAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.625rem;
+  background-color: #d9d9d9;
+}
+
+.referralUserInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.referralInfoName {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+}
+
+.referralInfoCountCoin {
+  text-transform: uppercase;
+  color: #dbb157;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 16.41px;
+}
+
+.referralBtn {
+  margin-top: 0.938rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+  width: 100%;
+  border-radius: 0.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #fbf1a2, #d89e4b, #d89e4b, #fdf3a5);
+}

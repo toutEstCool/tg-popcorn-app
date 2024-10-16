@@ -1,0 +1,100 @@
+.wikiBaseContainer {
+  background-color: #f2bd7d;
+  background-image: linear-gradient(50deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+    url('https://s3-alpha-sig.figma.com/img/d1f9/8476/e6e1042c334e0f54fb9f213044ddd366?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ggQ2pVPUFYbGfPgxC8uhZd2jJY66Kc0XlCfIPPxJ8BU8Plpl7UFQ~o8Z0UEGrdcPu~kqI~fcR15opjRQnh6eBK~GyYh6udTmrrqdFUJuloD~cgJGV5ZOb-71J0J4nfjkY6NzegTVn6LHWDNh2d~nvFO5gyfhsGPDEEWfkIR44xEz429ShL17SF2QboKjnL3Gn~t2MuAkw5Uq1ZPcIMFAoBvCfVRwp8yjhgc6kQeZMyY0UtJR6SOCXfEPtZZTMmrEwZScXMEW3x83S2Da4D-8C1zyc4zYGURGFFJpgEqzSu4rTKpZRPR8hT39D~d7BYYDbCiuaeK1m2hkE98Y2LMPQA__');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 1.438rem;
+  padding-bottom: 1.438rem;
+  padding-left: 0.625rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.875rem;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+.iconWrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-36%);
+  height: 123px;
+  overflow: hidden;
+}
+
+.referralIcon {
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.wikiActionWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.938rem;
+}
+
+.wikiBaseActionBtn {
+  width: 100%;
+  background-color: #dbb157;
+  outline: none;
+  border: none;
+  border-radius: 0.875rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0 0.75rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.wikiBaseActionBtn:hover {
+  background-color: #c49c47;
+}
+
+.wikiBaseActionBtn:active {
+  background-color: #b38942;
+  transform: scale(0.95);
+}
+
+.tileWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 0.625rem;
+}
+
+.tileTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 21.09px;
+}

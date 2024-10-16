@@ -1,0 +1,7 @@
+export interface AuthSchema {
+  accessToken: string | null
+  refreshToken: string | null
+  isLoading: boolean
+  error?: string
+  isAuthenticated: boolean
+}

@@ -1,0 +1,9 @@
+.tileWrapper {
+  padding: 10px 15px;
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 8.625rem;
+}

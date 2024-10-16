@@ -1,0 +1,76 @@
+.academyWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.625rem;
+}
+
+.bigTile {
+  max-height: 215px;
+  display: flex;
+  flex-direction: column;
+  gap: 4.188rem;
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 215px;
+  max-width: 398px;
+  width: 100%;
+}
+
+.bigTileInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.absoluteImg {
+  position: absolute;
+  right: -8px;
+  bottom: -52px;
+}
+
+.bitTileTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 25.78px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.bitTileActionText {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 18.75px;
+}
+
+.bitTileActionBtn {
+  background-color: #dbb157;
+  width: 201px;
+  outline: none;
+  border: none;
+  border-radius: 0.875rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0 0.75rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.bitTileActionBtn:hover {
+  background-color: #c49c47;
+}
+
+.bitTileActionBtn:active {
+  background-color: #b38942;
+  transform: scale(0.95);
+}

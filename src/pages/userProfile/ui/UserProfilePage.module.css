@@ -1,0 +1,6 @@
+.profilePageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.563rem;
+  margin-top: 0.875rem;
+}

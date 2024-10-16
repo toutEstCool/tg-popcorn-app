@@ -1,0 +1,21 @@
+.topUserWrapper {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.topUserCountTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 28.13px;
+}
+
+.topUsersList {
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}

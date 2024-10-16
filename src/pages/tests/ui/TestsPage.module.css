@@ -1,0 +1,77 @@
+.testsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.testWrapper {
+  background-color: #ffffff0a;
+  border-radius: 0.875rem;
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.previewTestImg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.testInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.testTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 25.78px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.testSubtitle {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 18.75px;
+}
+
+.testReward {
+  color: #dbb157;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 16.41px;
+  margin-bottom: 1.875rem;
+}
+
+.testActionBtn {
+  max-width: 12.563rem;
+  border-radius: 0.875rem;
+  background-color: #dbb157;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18.75px;
+}
+
+.testActionBtn:hover {
+  background-color: #c49c47;
+}
+
+.testActionBtn:active {
+  background-color: #b38942;
+  transform: scale(0.95);
+}
