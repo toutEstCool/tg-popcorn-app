@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
       { path: '/language', element: <LanguagePage /> },
       { path: '/level', element: <LevelPage /> },
       { path: '/top-user', element: <TopUserPage /> },
-      { path: '/user-profile/:userid', element: <UserProfilePage /> },
+      { path: '/user-profile/:userId', element: <UserProfilePage /> },
       { path: '/knowledge-base', element: <WikiBasePage /> },
       { path: '/lectures', element: <LecturesPage /> },
       { path: '/lecture', element: <LecturePage /> },

@@ -17,12 +17,14 @@ interface IAchievementProps {
   className?: string
   isOwnProfile?: boolean
   userId: string
+  coutRequest: number
 }
 
 export const AchievementsOverview = ({
   className,
   isOwnProfile = false,
-  userId
+  userId,
+  coutRequest = 4
 }: IAchievementProps) => {
   const dispatch = useAppDispatch()
   const achievements = useAppSelector(getOverviewAchievements)
@@ -31,7 +33,7 @@ export const AchievementsOverview = ({
 
   useEffect(() => {
     if (!isLoaded) {
-      dispatch(fetchUserAchievements({ userId, skip: 0, take: 4 }))
+      dispatch(fetchUserAchievements({ userId, skip: 0, take: coutRequest }))
     }
   }, [dispatch, userId, isLoaded])
 
@@ -39,11 +41,15 @@ export const AchievementsOverview = ({
     <div className={classNames(s.achievementsOverviewContainer, className)}>
       {isOwnProfile && (
         <div className={s.header}>
-          <h2 className={s.title}>Достижения</h2>
-          <Link to="/achievements" className={s.viewAllLink}>
-            <span>Все</span>
-            <ChevronRight />
-          </Link>
+          {isOwnProfile && (
+            <>
+              <h2 className={s.title}>Достижения</h2>
+              <Link to="/achievements" className={s.viewAllLink}>
+                <span>Все</span>
+                <ChevronRight />
+              </Link>
+            </>
+          )}
         </div>
       )}
       <div className={s.achievementsList}>
