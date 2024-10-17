@@ -2,18 +2,18 @@ import { useNavigate } from 'react-router-dom'
 import { AppLayout } from '../../../widgets/AppLayout'
 import s from './TestFinishPage.module.css'
 import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
+import { useFetchTestInfo } from '../../../entities/test'
 
 export const TestFinishPage = () => {
   const navigate = useNavigate()
+  const { title } = useFetchTestInfo()
+
   const navigateOnTest = () => {
     navigate('/tests')
   }
   return (
     <AppLayout>
-      <HeaderWithBackButton
-        title={'Тест на тип личности'}
-        titleColor="#DBB157"
-      />
+      <HeaderWithBackButton title={title} titleColor="#DBB157" />
       <div className={s.mainImgWrapper}>
         <img
           className={s.mainImg}

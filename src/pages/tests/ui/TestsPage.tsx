@@ -4,6 +4,7 @@ import { AppLayout } from '../../../widgets/AppLayout'
 import s from './TestsPage.module.css'
 import { useFetchTestsList } from '../../../entities/test'
 import { Loader } from '../../../shared/ui/Loader'
+import { RewardDisplay } from '../../../shared/ui/RewardDisplay'
 
 export const TestsPage = () => {
   const navigate = useNavigate()
@@ -43,7 +44,7 @@ export const TestsPage = () => {
                 <span className={s.testTitle}>{test.title}</span>
                 <span className={s.testSubtitle}>{test.description}</span>
                 <span className={s.testReward}>
-                  +{test.scoreForAttempt} POPCOIN
+                  +<RewardDisplay reward={test.scoreForAttempt} /> POPCOIN
                 </span>
               </div>
               <button
