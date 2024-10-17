@@ -1,3 +1,6 @@
+.earnScroll {
+  padding-bottom: 80px;
+}
 .earnWrapper {
   display: flex;
   flex-direction: column;
@@ -97,4 +100,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
   background: linear-gradient(90deg, #fbf1a2, #d89e4b, #d89e4b, #fdf3a5);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

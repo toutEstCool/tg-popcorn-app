@@ -16,3 +16,5 @@ export { fetchUserReferrals } from './model/services/fetchUsersReferrals/fetchUs
 export { useFetchUserReferrals } from './hooks/useFetchUserReferrals/useFetchUserReferrals'
 
 export { ReferralsList } from './ui/ReferralsList/ReferralsList'
+
+export { getUserReferralsCount } from './model/selectors/getUserReferrals/getUserReferrals'

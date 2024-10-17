@@ -3,7 +3,7 @@ import { fetchUserReferrals } from '../services/fetchUsersReferrals/fetchUserRef
 import { Referral, UserReferralsState } from '../types/userReferralsSchema'
 
 const initialState: UserReferralsState = {
-  referrals: [],
+  items: [],
   isLoading: false,
   error: null,
   totalCount: 0
@@ -21,9 +21,13 @@ const userReferralsSlice = createSlice({
       })
       .addCase(
         fetchUserReferrals.fulfilled,
-        (state, action: PayloadAction<Referral[]>) => {
+        (
+          state,
+          action: PayloadAction<{ items: Referral[]; totalCount: number }>
+        ) => {
           state.isLoading = false
-          state.referrals = action.payload
+          state.items = action.payload.items
+          state.totalCount = action.payload.totalCount
         }
       )
       .addCase(fetchUserReferrals.rejected, (state, action) => {

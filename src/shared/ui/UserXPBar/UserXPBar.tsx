@@ -5,6 +5,7 @@ import classNames from 'classnames'
 interface IUserXPBarProps {
   className?: string
   score?: number
+  end?: number
   gradeInfo?: {
     grade: string
     level: number
@@ -15,7 +16,7 @@ interface IUserXPBarProps {
 }
 
 export const UserXPBar = memo(
-  ({ className, score = 0, gradeInfo }: IUserXPBarProps) => {
+  ({ className, score = 0, gradeInfo, end }: IUserXPBarProps) => {
     return (
       <div className={classNames(s.UserXPBarWrapper, className)}>
         <span className={s.userLvl}>
@@ -24,7 +25,11 @@ export const UserXPBar = memo(
         <div className={s.progressSection}>
           <div className={s.progressCountSection}>
             <span>{score ?? gradeInfo?.scoreFromInclusive}</span>
-            <span>popcorn coin {gradeInfo?.scoreToExclusive}</span>
+            {gradeInfo ? (
+              <span>popcorn coin {gradeInfo?.scoreToExclusive}</span>
+            ) : (
+              <span>{end}</span>
+            )}
           </div>
         </div>
         <div
@@ -38,7 +43,7 @@ export const UserXPBar = memo(
             style={{
               height: '9px',
               background: '#DBB157',
-              width: `${gradeInfo?.progressPercents || 0}%`,
+              width: `${gradeInfo?.progressPercents || score * 10}%`,
               borderRadius: '28px'
             }}
           ></div>
