@@ -43,7 +43,10 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
     if (referralCode) {
       try {
         clipboard.copy();
-
+        navigator.share({
+          title: "PopcornCapitals_Bot",
+          url: inviteLink,
+        });
         // if (
         //   navigator?.clipboard?.writeText &&
         //   //@ts-ignore
