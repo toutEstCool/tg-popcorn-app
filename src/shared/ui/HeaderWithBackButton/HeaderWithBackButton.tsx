@@ -4,7 +4,7 @@ import s from './HeaderWithBackButton.module.css'
 import { ChevronLeft } from 'lucide-react'
 
 type HeaderWithBackButtonProps = {
-  title: string
+  title?: string
   onClick?: () => void
 }
 
