@@ -18,7 +18,6 @@ export const UserProfilePage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const userProfile = useAppSelector(getUserProfile)
   const userIsLoading = useAppSelector(getUserIsLoading)
-  // const userError = useAppSelector(getUserError)
 
   useEffect(() => {
     if (userId) {
@@ -33,8 +32,6 @@ export const UserProfilePage = () => {
       </div>
     )
   }
-
-  console.log(userProfile)
 
   return (
     <AppLayout>

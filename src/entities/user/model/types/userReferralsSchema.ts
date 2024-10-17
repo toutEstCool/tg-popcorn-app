@@ -5,7 +5,7 @@ export interface Referral {
 }
 
 export interface UserReferralsState {
-  referrals: Referral[]
+  items: Referral[]
   isLoading: boolean
   error: string | null
   totalCount: number
