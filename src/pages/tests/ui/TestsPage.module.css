@@ -75,3 +75,9 @@
   background-color: #b38942;
   transform: scale(0.95);
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
