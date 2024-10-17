@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../shared/hooks/useAppDispatch";
 import { useAppSelector } from "../../../shared/hooks/useAppSelector";
 import { generateReferralCode } from "../model/services/generateReferralCode/generateReferralCode";
+import { useClipboard } from "use-clipboard-copy";
+
 import s from "./InviteFriendButton.module.css";
 
 interface IInviteFriendButtonProps {
@@ -16,6 +18,7 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const referralCode = useAppSelector((state) => state.referral.referralCode);
   const isLoading = useAppSelector((state) => state.referral.isLoading);
   const inviteLink = `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`;
+  const clipboard = useClipboard();
 
   const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
@@ -39,16 +42,18 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
-        if (
-          navigator?.clipboard?.writeText &&
-          //@ts-ignore
-          !window.Telegram?.WebApp?.clipboardTextReceived
-        ) {
-          await navigator.clipboard.writeText(inviteLink);
-          // showPopup("Ссылка скопирована в буфер обмена!");
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }
+        clipboard.copy();
+
+        // if (
+        //   navigator?.clipboard?.writeText &&
+        //   //@ts-ignore
+        //   !window.Telegram?.WebApp?.clipboardTextReceived
+        // ) {
+        //   await navigator.clipboard.writeText(inviteLink);
+        //   // showPopup("Ссылка скопирована в буфер обмена!");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+        // }
         //@ts-ignore
         if (window.Telegram?.WebApp?.clipboardTextReceived) {
           //@ts-ignore
@@ -110,7 +115,13 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
       </button>
       <br />
       {referralCode && (
-        <code className={s.inviteLink}>{inviteLink}</code>
+        <input
+          defaultValue={inviteLink}
+          ref={clipboard.target}
+          className={s.inviteLink}
+          readOnly
+        />
+        // <code className={s.inviteLink}>{inviteLink}</code>
         // <textarea className={s.inviteLink} defaultValue={inviteLink} />
       )}
     </div>
