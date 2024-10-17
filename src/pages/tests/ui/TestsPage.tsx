@@ -1,36 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { AppLayout } from '../../../widgets/AppLayout'
-import TestPreviewManPng from '../../../shared/assets/images/group-man.png'
-import TestPreviewGirlPng from '../../../shared/assets/images/group-girl.png'
 import s from './TestsPage.module.css'
-
-interface TestSchema {
-  id: string
-  title: string
-  description: string
-  reward: string
-  img: string
-}
+import { useFetchTestsList } from '../../../entities/test'
+import { Loader } from '../../../shared/ui/Loader'
 
 export const TestsPage = () => {
-  const testList: TestSchema[] = [
-    {
-      id: 'personality',
-      title: 'Определи свой тип личности в трейдинге и инвестициях.',
-      description: 'Кто ты: Баффет, Грачёв, Аксельрод или Белфорт?',
-      reward: '+4 500.00 POPCOIN',
-      img: TestPreviewManPng
-    },
-    {
-      id: 'compatibility',
-      title: 'Тест на совместимость с финансовым рынком.',
-      description: 'Рынок для тебя это любовница, подруга или супруга?',
-      reward: '+4 500.00 POPCOIN',
-      img: TestPreviewGirlPng
-    }
-  ]
   const navigate = useNavigate()
+  const { testList, testError, testIsLoading } = useFetchTestsList({
+    skip: 0,
+    take: 10
+  })
 
   const handleTestButtonClick = (testId: string) => {
     navigate(`/test-first-step/${testId}`)
@@ -40,27 +20,41 @@ export const TestsPage = () => {
     <AppLayout>
       <HeaderWithBackButton title="Тесты" />
       <section className={s.testsWrapper}>
-        {testList?.map((test: TestSchema) => (
-          <div key={test?.id} className={s.testWrapper}>
-            <img
-              className={s.previewTestImg}
-              width={150}
-              src={test?.img}
-              alt="Тест аватар"
-            />
-            <div className={s.testInfoWrapper}>
-              <span className={s.testTitle}>{test?.title}</span>
-              <span className={s.testSubtitle}>{test?.description}</span>
-              <span className={s.testReward}>{test?.reward}</span>
-            </div>
-            <button
-              className={s.testActionBtn}
-              onClick={() => handleTestButtonClick(test.id)}
-            >
-              Пройти тест
-            </button>
+        {testIsLoading ? (
+          <div className={s.loader}>
+            <Loader />
           </div>
-        ))}
+        ) : testError ? (
+          <div>Ошибка: {testError}</div>
+        ) : testList.length === 0 ? (
+          <div>Тесты не найдены</div>
+        ) : (
+          testList.map((test) => (
+            <div key={test.testId} className={s.testWrapper}>
+              {test?.previewImageUrl && (
+                <img
+                  className={s.previewTestImg}
+                  width={150}
+                  src={test.previewImageUrl}
+                  alt="Тест превью"
+                />
+              )}
+              <div className={s.testInfoWrapper}>
+                <span className={s.testTitle}>{test.title}</span>
+                <span className={s.testSubtitle}>{test.description}</span>
+                <span className={s.testReward}>
+                  +{test.scoreForAttempt} POPCOIN
+                </span>
+              </div>
+              <button
+                className={s.testActionBtn}
+                onClick={() => handleTestButtonClick(test.testId)}
+              >
+                Пройти тест
+              </button>
+            </div>
+          ))
+        )}
       </section>
     </AppLayout>
   )

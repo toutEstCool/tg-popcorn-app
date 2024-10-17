@@ -29,22 +29,23 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+  width: 100%;
 }
 
 .ImgWrapper {
   margin-top: 200px;
   display: flex;
   justify-content: center;
-  /* max-width: 340px; */
   width: 100%;
   position: relative;
 }
 
 .characterImage {
   position: absolute;
-  right: 21px;
-  bottom: 0;
   width: 100%;
+  bottom: 0;
+  height: auto;
+  object-fit: cover;
 }
 
 .titleAndDescriptionWrapper {

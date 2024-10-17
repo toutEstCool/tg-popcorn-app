@@ -2,18 +2,18 @@ import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 import { AppLayout } from '../../../widgets/AppLayout'
 import s from './TestFirstPage.module.css'
 import { Button } from '../../../shared/ui/Button'
-import { useParams } from 'react-router-dom'
-import GroupMansImg from '../../../shared/assets/images/group-man.png'
+import { useNavigate, useParams } from 'react-router-dom'
+import GroupMansImg from '../../../shared/assets/images/group-ma-big.png'
 import GroupGirlsImg from '../../../shared/assets/images/group-girl.png'
 
 const testDetails = {
-  personality: {
+  '1': {
     title: 'Кто ты?',
     subTitle: 'Определи свой тип личности в трейдинге и инвестициях.',
     description: 'Баффет, Грачёв, Аксельрод или Белфорт?',
     img: GroupMansImg
   },
-  compatibility: {
+  '2': {
     title: 'Узнай в тесте',
     subTitle: 'Тест на совместимость с финансовым рынком.',
     description: 'Рынок для тебя это любовница, подруга или супруга?',
@@ -22,9 +22,13 @@ const testDetails = {
 }
 
 export const TestFirstPage = () => {
+  const navigate = useNavigate()
   const { testId } = useParams<{ testId: string }>()
 
   const testData = testDetails[testId as keyof typeof testDetails]
+  const startQuest = () => {
+    navigate('/test')
+  }
 
   return (
     <AppLayout>
@@ -48,7 +52,7 @@ export const TestFirstPage = () => {
               <Button
                 className={s.btn}
                 text="Приступить"
-                onClick={() => console.log()}
+                onClick={startQuest}
               />
             </div>
           </div>
