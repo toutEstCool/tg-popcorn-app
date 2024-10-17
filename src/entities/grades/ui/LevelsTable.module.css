@@ -43,3 +43,10 @@
   font-size: 0.875rem;
   line-height: 16.41px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}

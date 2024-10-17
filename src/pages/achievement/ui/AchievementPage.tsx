@@ -30,7 +30,9 @@ export const AchievementPage = () => {
     <AppLayout>
       <HeaderWithBackButton title="Достижения" />
       {isLoading ? (
-        <Loader />
+        <div className={s.loader}>
+          <Loader />
+        </div>
       ) : (
         <AchievementsList
           achievements={achievements}

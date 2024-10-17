@@ -34,7 +34,9 @@ export const TopUserPage = () => {
         <span className={s.topUserCountTitle}>{totalCount}</span>
         <SearchInput value={searchTerm} onChange={handleSearchChange} />
         {isLoading ? (
-          <Loader />
+          <div className={s.loader}>
+            <Loader />
+          </div>
         ) : (
           <div
             className={classNames(users?.length > 0 ? s.topUsersList : null)}

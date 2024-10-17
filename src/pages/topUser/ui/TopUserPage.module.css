@@ -20,3 +20,9 @@
   gap: 0.125rem;
   margin-bottom: 25%;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

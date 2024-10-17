@@ -8,6 +8,7 @@ import { Loader } from '../../../shared/ui/Loader'
 import { Error } from '../../../shared/ui/Error'
 import { useNavigate } from 'react-router-dom'
 import { getIsAuthenticated } from '../model/selectors/getIsAuth/getIsAuth'
+import s from './Login.module.css'
 
 declare global {
   interface Window {
@@ -37,8 +38,6 @@ export const LoginComponent = () => {
 
   const referralCode = refFromUrl || startParam
 
-  console.log(refFromUrl)
-
   useEffect(() => {
     dispatch(loginWithTelegram({ referralCode: referralCode || undefined }))
   }, [dispatch, referralCode])
@@ -50,8 +49,8 @@ export const LoginComponent = () => {
   }, [auth, navigate])
 
   return (
-    <div>
-      {isLoading && <Loader />}
+    <div style={{ position: 'relative' }}>
+      {isLoading && <Loader className={s.loader} />}
       {error && (
         <Error
           btnText="Попробовать еще раз"

@@ -15,6 +15,7 @@ import { fetchCurrentUser } from '../../../entities/user/model/services/fetchCur
 import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
 import { Loader } from '../../../shared/ui/Loader'
 import { AchievementsOverview } from '../../../features/achievements'
+import { Link } from 'react-router-dom'
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
@@ -36,7 +37,11 @@ export const ProfilePage = () => {
   }, [dispatch, currentUser, userProfile])
 
   if (userIsLoading) {
-    return <Loader />
+    return (
+      <div style={{ position: 'relative' }}>
+        <Loader className={s.loader} />
+      </div>
+    )
   }
 
   if (userError) {
@@ -58,7 +63,9 @@ export const ProfilePage = () => {
             <AchievementsOverview isOwnProfile={true} userId={userProfile.id} />
           </>
         )}
-        <ReferralProgram />
+        <Link to={'/earn'}>
+          <ReferralProgram />
+        </Link>
       </div>
     </AppLayout>
   )

@@ -39,3 +39,9 @@
   background-color: #ffffff0a;
   padding: 0.938rem 0.625rem;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
