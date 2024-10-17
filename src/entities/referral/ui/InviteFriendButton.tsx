@@ -39,7 +39,11 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
-        if (navigator?.clipboard?.writeText) {
+        if (
+          navigator?.clipboard?.writeText &&
+          //@ts-ignore
+          !window.Telegram?.WebApp?.setClipboardText
+        ) {
           await navigator.clipboard.writeText(inviteLink);
           // showPopup("Ссылка скопирована в буфер обмена!");
           setCopied(true);
@@ -105,7 +109,9 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
           : "Пригласить друга"}
       </button>
       <br />
-      {referralCode && <textarea className={s.inviteLink} value={inviteLink} />}
+      {referralCode && (
+        <textarea className={s.inviteLink} defaultValue={inviteLink} />
+      )}
     </div>
   );
 };
