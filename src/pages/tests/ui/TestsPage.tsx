@@ -5,57 +5,62 @@ import TestPreviewManPng from '../../../shared/assets/images/group-man.png'
 import TestPreviewGirlPng from '../../../shared/assets/images/group-girl.png'
 import s from './TestsPage.module.css'
 
+interface TestSchema {
+  id: string
+  title: string
+  description: string
+  reward: string
+  img: string
+}
+
 export const TestsPage = () => {
+  const testList: TestSchema[] = [
+    {
+      id: 'personality',
+      title: 'Определи свой тип личности в трейдинге и инвестициях.',
+      description: 'Кто ты: Баффет, Грачёв, Аксельрод или Белфорт?',
+      reward: '+4 500.00 POPCOIN',
+      img: TestPreviewManPng
+    },
+    {
+      id: 'compatibility',
+      title: 'Тест на совместимость с финансовым рынком.',
+      description: 'Рынок для тебя это любовница, подруга или супруга?',
+      reward: '+4 500.00 POPCOIN',
+      img: TestPreviewGirlPng
+    }
+  ]
   const navigate = useNavigate()
 
-  const navigateOnTest = () => {
-    navigate('/test')
+  const handleTestButtonClick = (testId: string) => {
+    navigate(`/test-first-step/${testId}`)
   }
+
   return (
     <AppLayout>
       <HeaderWithBackButton title="Тесты" />
       <section className={s.testsWrapper}>
-        <div className={s.testWrapper}>
-          <img
-            className={s.previewTestImg}
-            width={150}
-            src={TestPreviewManPng}
-            alt="Тест аватар"
-          />
-          <div className={s.testInfoWrapper}>
-            <span className={s.testTitle}>
-              Определи свой тип личности в трейдинге и инвестициях.
-            </span>
-            <span className={s.testSubtitle}>
-              Кто ты: Баффет, Грачёв, Аксельрод или Белфорт?
-            </span>
-            <span className={s.testReward}>+4 500.00 POPCOIN</span>
+        {testList?.map((test: TestSchema) => (
+          <div key={test?.id} className={s.testWrapper}>
+            <img
+              className={s.previewTestImg}
+              width={150}
+              src={test?.img}
+              alt="Тест аватар"
+            />
+            <div className={s.testInfoWrapper}>
+              <span className={s.testTitle}>{test?.title}</span>
+              <span className={s.testSubtitle}>{test?.description}</span>
+              <span className={s.testReward}>{test?.reward}</span>
+            </div>
+            <button
+              className={s.testActionBtn}
+              onClick={() => handleTestButtonClick(test.id)}
+            >
+              Пройти тест
+            </button>
           </div>
-          <button className={s.testActionBtn} onClick={navigateOnTest}>
-            Пройти тест
-          </button>
-        </div>
-        {/*  */}
-        <div className={s.testWrapper}>
-          <img
-            className={s.previewTestImg}
-            width={150}
-            src={TestPreviewGirlPng}
-            alt="Тест аватар"
-          />
-          <div className={s.testInfoWrapper}>
-            <span className={s.testTitle}>
-              Тест на совместимость с финансовым рынком.
-            </span>
-            <span className={s.testSubtitle}>
-              Рынок для тебя это любовница, подруга или супруга?
-            </span>
-            <span className={s.testReward}>+4 500.00 POPCOIN</span>
-          </div>
-          <button className={s.testActionBtn} onClick={navigateOnTest}>
-            Пройти тест
-          </button>
-        </div>
+        ))}
       </section>
     </AppLayout>
   )

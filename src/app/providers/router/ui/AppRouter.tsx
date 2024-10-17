@@ -17,6 +17,7 @@ import { TestsPage } from '../../../../pages/tests'
 import { TestPage } from '../../../../pages/test'
 import { TestFinishPage } from '../../../../pages/testFinish'
 import { LoginPage } from '../../../../pages/login'
+import { TestFirstPage } from '../../../../pages/testFirstStep'
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: '/lectures', element: <LecturesPage /> },
       { path: '/lecture', element: <LecturePage /> },
       { path: '/tests', element: <TestsPage /> },
+      { path: '/test-first-step/:testId', element: <TestFirstPage /> },
       { path: '/test', element: <TestPage /> },
       { path: '/test-finish', element: <TestFinishPage /> }
     ]
