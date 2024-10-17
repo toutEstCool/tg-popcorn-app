@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       { path: '/lecture', element: <LecturePage /> },
       { path: '/tests', element: <TestsPage /> },
       { path: '/test-first-step/:testId', element: <TestFirstPage /> },
-      { path: '/test', element: <TestPage /> },
+      { path: '/test-process/:testId', element: <TestPage /> },
       { path: '/test-finish', element: <TestFinishPage /> }
     ]
   }

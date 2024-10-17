@@ -1,3 +1,7 @@
 export { fetchTestsList } from './model/services/fetchTestsList/fetchTestsList'
-export { testReducer } from './model/slice/testsSlice'
+
+export { testsReducer } from './model/slice/testsSlice'
+export { testReducer } from './model/slice/testSlice'
+
 export { useFetchTestsList } from './hooks/useFetchTestsList'
+export { useFetchTestInfo } from './hooks/useFetchTestInfo'

@@ -86,3 +86,10 @@
   background-color: #b0b0b0;
   cursor: not-allowed;
 }
+
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

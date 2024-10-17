@@ -10,7 +10,7 @@ import {
 import { achievementsReducer } from '../../../../entities/achievements'
 import { gradesReducer } from '../../../../entities/grades'
 import { referralReducer } from '../../../../entities/referral'
-import { testReducer } from '../../../../entities/test'
+import { testReducer, testsReducer } from '../../../../entities/test'
 
 const mainReducer = combineReducers({
   settings: settingsReducer,
@@ -20,6 +20,7 @@ const mainReducer = combineReducers({
   grades: gradesReducer,
   achievements: achievementsReducer,
   referral: referralReducer,
+  tests: testsReducer,
   test: testReducer,
   userReferrals: userReferralsReducer
 })
@@ -44,6 +45,7 @@ export interface StateSchema {
   grades: ReturnType<typeof gradesReducer>
   referral: ReturnType<typeof referralReducer>
   userReferrals: ReturnType<typeof userReferralsReducer>
+  tests: ReturnType<typeof testsReducer>
   test: ReturnType<typeof testReducer>
   settings: ReturnType<typeof settingsReducer>
 }
