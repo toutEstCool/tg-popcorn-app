@@ -60,7 +60,11 @@ export const ProfilePage = () => {
         {userProfile && (
           <>
             <UserCard userProfile={userProfile} isOwnProfile={true} />
-            <AchievementsOverview isOwnProfile={true} userId={userProfile.id} />
+            <AchievementsOverview
+              isOwnProfile={true}
+              userId={userProfile.id}
+              coutRequest={4}
+            />
           </>
         )}
         <Link to={'/earn'}>
