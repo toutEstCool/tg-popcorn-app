@@ -93,3 +93,38 @@
   justify-content: center;
   align-items: center;
 }
+
+.customRadio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.customRadio input[type='radio'] {
+  display: none;
+}
+
+.customRadioCircle {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #dbb157;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 10px;
+}
+
+.customRadio input[type='radio']:checked + .customRadioCircle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #c19a5f;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.questionDescription {
+  color: #ffffff;
+}

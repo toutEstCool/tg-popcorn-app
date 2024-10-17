@@ -109,16 +109,18 @@ export const TestPage = () => {
         <ul className={s.testQuestionsWrapper}>
           {currentQuestion?.testCases?.map((testCase, index) => (
             <li key={index} className={s.testQuestionItem}>
-              <label className={s.testQuestion}>
+              <label className={s.customRadio}>
                 <input
-                  className={s.inputRadio}
                   type="radio"
                   name="option"
                   value={index}
                   checked={selectedOption === index}
                   onChange={() => handleOptionChange(index)}
                 />
-                <span>{testCase.description}</span>
+                <span className={s.customRadioCircle}></span>
+                <span className={s.questionDescription}>
+                  {testCase.description}
+                </span>
               </label>
             </li>
           ))}
@@ -136,3 +138,15 @@ export const TestPage = () => {
     </AppLayout>
   )
 }
+
+//  <label className={s.testQuestion}>
+//                 <input
+//                   className={s.inputRadio}
+//                   type="radio"
+//                   name="option"
+//                   value={index}
+//                   checked={selectedOption === index}
+//                   onChange={() => handleOptionChange(index)}
+//                 />
+//                 <span>{testCase.description}</span>
+//               </label>

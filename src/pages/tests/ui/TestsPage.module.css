@@ -1,7 +1,10 @@
 .testsWrapper {
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.625rem;
 }
 
 .testWrapper {
