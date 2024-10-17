@@ -44,5 +44,5 @@ const testsSlice = createSlice({
   }
 })
 
-export const { reducer: testActions } = testsSlice
-export const { reducer: testReducer } = testsSlice
+export const { reducer: testsActions } = testsSlice
+export const { reducer: testsReducer } = testsSlice

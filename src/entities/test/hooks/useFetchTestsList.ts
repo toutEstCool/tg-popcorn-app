@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { fetchTestsList } from '../model/services/fetchTestsList/fetchTestsList'
 import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
 import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import { getTestError } from '../model/selectors/getTestError/getTestError'
-import { getTestList } from '../model/selectors/getTestList/getTestList'
-import { getTestIsLoading } from '../model/selectors/getTestIsLoading/getTestIsLoading'
+import { getTestsError } from '../model/selectors/getTestList/getTestsError/getTestsError'
+import { getTestList } from '../model/selectors/getTestList/getTestsList/getTestList'
+import { getTestsIsLoading } from '../model/selectors/getTestList/getTestsIsLoading/getTestIsLoading'
 
 interface UseFetchTestsListParams {
   skip?: number
@@ -17,8 +17,8 @@ export const useFetchTestsList = ({
 }: UseFetchTestsListParams) => {
   const dispatch = useAppDispatch()
 
-  const testIsLoading = useAppSelector(getTestIsLoading)
-  const testError = useAppSelector(getTestError)
+  const testIsLoading = useAppSelector(getTestsIsLoading)
+  const testError = useAppSelector(getTestsError)
   const testList = useAppSelector(getTestList)
 
   useEffect(() => {

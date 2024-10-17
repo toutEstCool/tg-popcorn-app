@@ -26,8 +26,9 @@ export const TestFirstPage = () => {
   const { testId } = useParams<{ testId: string }>()
 
   const testData = testDetails[testId as keyof typeof testDetails]
+
   const startQuest = () => {
-    navigate('/test')
+    navigate(`/test-process/${testId}`)
   }
 
   return (
