@@ -5,3 +5,4 @@ export { testReducer } from './model/slice/testSlice'
 
 export { useFetchTestsList } from './hooks/useFetchTestsList'
 export { useFetchTestInfo } from './hooks/useFetchTestInfo'
+export { submitTest } from './model/services/submitTest/submitTest'

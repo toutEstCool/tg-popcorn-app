@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { AppLayout } from '../../../widgets/AppLayout'
 import s from './TestFinishPage.module.css'
+import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
 
 export const TestFinishPage = () => {
   const navigate = useNavigate()
@@ -9,20 +10,22 @@ export const TestFinishPage = () => {
   }
   return (
     <AppLayout>
+      <HeaderWithBackButton
+        title={'Тест на тип личности'}
+        titleColor="#DBB157"
+      />
+      <div className={s.mainImgWrapper}>
+        <img
+          className={s.mainImg}
+          width={150}
+          height={150}
+          src="https://s3-alpha-sig.figma.com/img/60b9/f905/d6bdda7b8d3d22f88e4255417047b422?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Yo~JKTnxgrxX7l-l~0egNnNIAWOpxgw6DjiYdBo7SxIDwZ3Y9oqOUKmj0aYZS~6HKx0N0Az-whdqdzwuC56boNnImGUqL85LiUcdrQ4W0XtgNEXEYF4jj2dhF5J70yZye~iA6MA~Na97pbQuXy6roMkaByn4I2gWlpFODWR7btC0uBdkJH~MGzecHddo0Vfgpoxl-lSlc-PH4Y-c3x-NM0yXXhMq8mrHpFnawGzzssA56r-4vhDlvRKqlDDR-6BOO1XgyGjYdlbUbeTLuz69hPTieDRFSg~epg8yMHgGYwkx0sUbAou6cXS5k20Ek5pTCv49hZGNjbekbBVA-wn5SQ__"
+          alt=""
+        />
+      </div>
       <section className={s.finishWrapper}>
-        <h2 className={s.finishTitle}>Грачёв</h2>
-        <div className={s.finishResultWrapper}>
-          <img
-            width={149}
-            src="https://s3-alpha-sig.figma.com/img/ba21/a7ed/4835a44bbe3d767e64343e19223ab702?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kGlTO0Fs~jtk9ZJ9hxfPGE43PgzciY-iO7O6RSuNLjZL5fJ~9KcZX4CtKUurkMbtwrotL4f53ELMAXOqaYjHRCFgpRim6rNo9kYgzTJa3q2cenK0tpbS0SFSMRearPr8olfqOnnht3Kbean97txczHhIJzd5rdjsXzgszvtMdVIkyhhURJFweFjVMw3SJRvrmv6YU76D2zgiakItzey6qBHKu6MMa7ihjyqWr8esx0CwkQQfngj7wf-m0fl-L6E4J~D0ru6hxdtnAPfuR3xkQEBBo-E17e~pMqWppW40BwAtWkOcDEaZhHIfv9Ib1u44lItqOQzFYjsbhKKyqmPU9A__"
-          />
-          <div className={s.finishResultDescriptionWrapper}>
-            <span className={s.finishResultAchievements}>Название ачивкии</span>
-            <span className={s.finishResultCouns}>+2,400 popcorn coin</span>
-          </div>
-        </div>
         <div className={s.finishBottomWrapper}>
-          <span className={s.finishPercent}>Маркетмейкер (26-50%)</span>
+          <span className={s.finishPercent}>Маркетмейкер</span>
           <p className={s.finishDescription}>
             Твоя стратегия сбалансированная, словно у маркетмейкера, который
             должен поддерживать ордербук и уравновешивать цену актива. Благодаря

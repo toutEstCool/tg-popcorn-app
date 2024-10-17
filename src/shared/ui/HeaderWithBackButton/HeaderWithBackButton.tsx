@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import s from './HeaderWithBackButton.module.css'
 import { ChevronLeft } from 'lucide-react'
@@ -6,12 +5,14 @@ import { ChevronLeft } from 'lucide-react'
 type HeaderWithBackButtonProps = {
   title?: string
   onClick?: () => void
+  titleColor?: string
 }
 
-export const HeaderWithBackButton: React.FC<HeaderWithBackButtonProps> = ({
+export const HeaderWithBackButton = ({
   title,
-  onClick
-}) => {
+  onClick,
+  titleColor
+}: HeaderWithBackButtonProps) => {
   const navigate = useNavigate()
 
   const handleBackClick = () => {
@@ -31,7 +32,9 @@ export const HeaderWithBackButton: React.FC<HeaderWithBackButtonProps> = ({
       >
         <ChevronLeft width={33} height={33} color="white" />
       </button>
-      <h1 className={s.title}>{title}</h1>
+      <h1 style={{ color: titleColor }} className={s.title}>
+        {title}
+      </h1>
     </header>
   )
 }

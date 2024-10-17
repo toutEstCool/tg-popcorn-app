@@ -1,108 +1,88 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../../shared/hooks/useAppDispatch";
-import { useAppSelector } from "../../../shared/hooks/useAppSelector";
-import { generateReferralCode } from "../model/services/generateReferralCode/generateReferralCode";
-import { useClipboard } from "use-clipboard-copy";
-
-import s from "./InviteFriendButton.module.css";
+import { useEffect, useState } from 'react'
+import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
+import { generateReferralCode } from '../model/services/generateReferralCode/generateReferralCode'
 
 interface IInviteFriendButtonProps {
-  className?: string;
+  className?: string
 }
 
 export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
-  const dispatch = useAppDispatch();
-  const [copied, setCopied] = useState(false);
-  const [shouldCopy, setShouldCopy] = useState(false);
-  const currentUser = useAppSelector((state) => state.user.currentUser);
-  const referralCode = useAppSelector((state) => state.referral.referralCode);
-  const isLoading = useAppSelector((state) => state.referral.isLoading);
-  const inviteLink = `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`;
-  const clipboard = useClipboard();
+  const dispatch = useAppDispatch()
+  const [copied, setCopied] = useState(false)
+  const [shouldCopy, setShouldCopy] = useState(false)
+  const currentUser = useAppSelector((state) => state.user.currentUser)
+  const referralCode = useAppSelector((state) => state.referral.referralCode)
+  const isLoading = useAppSelector((state) => state.referral.isLoading)
+  const inviteLink = `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`
 
   const handleInviteClick = async () => {
     if (currentUser && !isLoading) {
       try {
         await dispatch(
           generateReferralCode({ userId: currentUser.id })
-        ).unwrap();
-        setShouldCopy(true);
+        ).unwrap()
+        setShouldCopy(true)
       } catch (error) {
-        console.error("Ошибка при генерации реферального кода:", error);
+        console.error('Ошибка при генерации реферального кода:', error)
       }
     }
-  };
+  }
 
   useEffect(() => {
     if (shouldCopy && referralCode) {
-      handleCopyLink();
+      handleCopyLink()
     }
-  }, [shouldCopy, referralCode]);
+  }, [shouldCopy, referralCode])
 
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
-        clipboard.copy();
-        navigator.share({
-          title: "PopcornCapitals_Bot",
-          url: inviteLink,
-        });
-        // if (
-        //   navigator?.clipboard?.writeText &&
-        //   //@ts-ignore
-        //   !window.Telegram?.WebApp?.clipboardTextReceived
-        // ) {
-        //   await navigator.clipboard.writeText(inviteLink);
-        //   // showPopup("Ссылка скопирована в буфер обмена!");
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
-        // }
-        //@ts-ignore
-        if (window.Telegram?.WebApp?.clipboardTextReceived) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(inviteLink)
+          showPopup('Ссылка скопирована в буфер обмена!')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
           //@ts-ignore
-          window.Telegram.WebApp.clipboardTextReceived(inviteLink);
-          // showPopup("Ссылка скопирована в буфер обмена!");
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }
-        if (
+        } else if (window.Telegram?.WebApp?.setClipboardText) {
           //@ts-ignore
-          !window.Telegram?.WebApp?.setClipboardText &&
-          !navigator?.clipboard?.writeText
-        ) {
+          window.Telegram.WebApp.setClipboardText(inviteLink)
+          showPopup('Ссылка скопирована в буфер обмена!')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 3000)
+        } else {
           alert(
-            "Ваше устройство не поддерживает автоматическое копирование. Пожалуйста, скопируйте ссылку вручную."
-          );
+            'Ваше устройство не поддерживает автоматическое копирование. Пожалуйста, скопируйте ссылку вручную.'
+          )
         }
-        // //@ts-ignore
-        // if (window.Telegram?.WebApp?.readTextFromClipboard) {
-        //   //@ts-ignore
-        //   window.Telegram.WebApp.readTextFromClipboard((clipboardText) => {
-        //     console.log("Текст из буфера обмена:", clipboardText);
-        //   });
-        // }
+        //@ts-ignore
+        if (window.Telegram?.WebApp?.readTextFromClipboard) {
+          //@ts-ignore
+          window.Telegram.WebApp.readTextFromClipboard((clipboardText) => {
+            console.log('Текст из буфера обмена:', clipboardText)
+          })
+        }
       } catch (error) {
-        console.error("Ошибка при копировании ссылки: ", error);
+        console.error('Ошибка при копировании ссылки: ', error)
       }
-      setShouldCopy(false);
+      setShouldCopy(false)
     } else {
-      console.error("Нет доступного referralCode.");
+      console.error('Нет доступного referralCode.')
     }
-  };
+  }
 
-  // const showPopup = (message: string) => {
-  //   if (window.Telegram?.WebApp) {
-  //     //@ts-ignore
-  //     window.Telegram.WebApp.showPopup({
-  //       message: message,
-  //       buttons: [{ text: "OK", type: "close" }],
-  //     });
-  //   } else {
-  //     alert(message);
-  //   }
-  // };
+  const showPopup = (message: string) => {
+    if (window.Telegram?.WebApp) {
+      //@ts-ignore
+      window.Telegram.WebApp.showPopup({
+        message: message,
+        buttons: [{ text: 'OK', type: 'close' }]
+      })
+    } else {
+      alert(message)
+    }
+  }
 
-  console.log(copied);
   return (
     <div>
       <button
@@ -111,22 +91,11 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         disabled={isLoading}
       >
         {isLoading
-          ? "Генерация..."
+          ? 'Генерация...'
           : copied
-          ? "Реферальный код скопирован"
-          : "Пригласить друга"}
+          ? 'Реферальный код скопирован'
+          : 'Пригласить друга'}
       </button>
-      <br />
-      {referralCode && (
-        <input
-          defaultValue={inviteLink}
-          ref={clipboard.target}
-          className={s.inviteLink}
-          readOnly
-        />
-        // <code className={s.inviteLink}>{inviteLink}</code>
-        // <textarea className={s.inviteLink} defaultValue={inviteLink} />
-      )}
     </div>
-  );
-};
+  )
+}
