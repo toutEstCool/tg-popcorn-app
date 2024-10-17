@@ -8,6 +8,7 @@ import { getTestInfoError } from '../model/selectors/getTestInfo/getTestInfoErro
 import { getTestInfoTitle } from '../model/selectors/getTestInfo/getTestTitle/getTestTitle'
 import { getTestInfoDescription } from '../model/selectors/getTestInfo/getTestInfoDescription/getTestInfoDescription'
 import { getTestInfoQuestions } from '../model/selectors/getTestInfo/getTestInfoQuestions/getTestInfoQuestions'
+import { getTestInfoPreviewImage } from '../model/selectors/getTestInfo/getTestInfoPreviewImage/getTestInfoPreviewImage'
 
 export const useFetchTestInfo = () => {
   const dispatch = useAppDispatch()
@@ -24,10 +25,12 @@ export const useFetchTestInfo = () => {
   const title = useAppSelector(getTestInfoTitle)
   const description = useAppSelector(getTestInfoDescription)
   const questions = useAppSelector(getTestInfoQuestions)
+  const testPreviewImage = useAppSelector(getTestInfoPreviewImage)
 
   return {
     title,
     description,
+    testPreviewImage,
     questions,
     isLoading,
     error
