@@ -48,14 +48,7 @@ export const AchievementsOverview = ({
       )}
       <div className={s.achievementsList}>
         {isLoading ? (
-          <div
-            style={{
-              position: 'absolute',
-              top: '-140px',
-              right: '45%',
-              zIndex: 10000
-            }}
-          >
+          <div className={s.loader}>
             <Loader />
           </div>
         ) : (

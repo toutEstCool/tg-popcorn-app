@@ -16,7 +16,11 @@ export const LevelsTable = () => {
   }, [dispatch])
 
   if (isLoading) {
-    return <Loader />
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    )
   }
 
   if (error) {

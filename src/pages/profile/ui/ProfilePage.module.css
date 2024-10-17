@@ -4,3 +4,9 @@
   gap: 1.563rem;
   margin-top: 0.875rem;
 }
+
+.loader {
+  position: absolute;
+  right: 45%;
+  top: 400px;
+}

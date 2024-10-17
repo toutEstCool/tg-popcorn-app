@@ -45,7 +45,9 @@ export const LevelPage = () => {
           <ChevronRight color="#7C7C7C" />
         </Link>
         {isLoading ? (
-          <Loader />
+          <div className={s.loader}>
+            <Loader />
+          </div>
         ) : userProfile ? (
           <UserXPBar
             gradeInfo={userProfile.gradeInfo}
