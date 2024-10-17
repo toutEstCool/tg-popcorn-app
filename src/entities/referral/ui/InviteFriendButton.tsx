@@ -110,7 +110,8 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
       </button>
       <br />
       {referralCode && (
-        <textarea className={s.inviteLink} defaultValue={inviteLink} />
+        <code className={s.inviteLink}>{inviteLink}</code>
+        // <textarea className={s.inviteLink} defaultValue={inviteLink} />
       )}
     </div>
   );
