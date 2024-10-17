@@ -39,16 +39,16 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
   const handleCopyLink = async () => {
     if (referralCode) {
       try {
-        if (
-          navigator?.clipboard?.writeText &&
-          //@ts-ignore
-          !window.Telegram?.WebApp?.setClipboardText
-        ) {
-          await navigator.clipboard.writeText(inviteLink);
-          // showPopup("Ссылка скопирована в буфер обмена!");
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }
+        // if (
+        //   navigator?.clipboard?.writeText &&
+        //   //@ts-ignore
+        //   !window.Telegram?.WebApp?.setClipboardText
+        // ) {
+        //   await navigator.clipboard.writeText(inviteLink);
+        //   // showPopup("Ссылка скопирована в буфер обмена!");
+        //   setCopied(true);
+        //   setTimeout(() => setCopied(false), 3000);
+        // }
         //@ts-ignore
         if (window.Telegram?.WebApp?.setClipboardText) {
           //@ts-ignore
