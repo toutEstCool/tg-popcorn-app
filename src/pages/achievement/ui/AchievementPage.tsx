@@ -34,10 +34,12 @@ export const AchievementPage = () => {
           <Loader />
         </div>
       ) : (
-        <AchievementsList
-          achievements={achievements}
-          className={s.achivement}
-        />
+        <div className={s.achievementsScrollWrapper}>
+          <AchievementsList
+            achievements={achievements}
+            className={s.achivement}
+          />
+        </div>
       )}
     </AppLayout>
   )
