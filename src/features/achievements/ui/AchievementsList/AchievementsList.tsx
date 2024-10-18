@@ -79,7 +79,7 @@ export const AchievementsList = ({
             <div className={s.achievementInfo}>
               <span className={s.achievementName}>{achievement.nameRu}</span>
               <span className={s.achievementReward}>
-                +{achievement.scoreForAchievement} POPCOIN
+                +{achievement.scoreForAchievement} corncoin
               </span>
             </div>
           </div>

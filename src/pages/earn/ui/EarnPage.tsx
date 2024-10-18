@@ -42,7 +42,7 @@ export const EarnPage = () => {
             <div className={s.earnTotalCoinInfo}>
               <span className={s.earnTotalCoinTitle}>всего заработано</span>
               <span className={s.earnTotalCoinCount}>
-                {userProfile?.score} POPCOIN
+                {userProfile?.score} corncoin
               </span>
             </div>
           </div>
