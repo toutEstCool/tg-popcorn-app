@@ -15,5 +15,24 @@ export interface AchievementsState {
   allLoaded: boolean
   overviewLoading: boolean
   allLoading: boolean
+  selectedAchievement: AchievementDetails | null
+  selectedLoading: boolean
+  selectedLoaded: boolean
   error: string | null
+}
+
+export interface AchievementDetails {
+  achievementId: number
+  nameRu: string
+  nameEn: string
+  descriptionRu: string
+  descriptionEn: string
+  requiredActionRu: string
+  requiredActionEn: string
+  imageUrl: string
+  scoreForAchievement: number
+  currentProgress: number
+  requiredProgress: number
+  achieved: boolean
+  achievedOn: string | null
 }
