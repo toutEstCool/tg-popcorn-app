@@ -18,6 +18,18 @@ import { AchievementsOverview } from '../../../features/achievements'
 import { Link } from 'react-router-dom'
 
 export const ProfilePage = () => {
+  const telegramWindow = window as TelegramWindow
+
+  if (telegramWindow.Telegram?.WebApp) {
+    const user = telegramWindow.Telegram.WebApp.initDataUnsafe.user
+
+    if (user?.photo_url) {
+      const avatarUrl = user.photo_url
+      console.log('User Avatar URL:', avatarUrl)
+    } else {
+      console.log('Аватарка не найдена')
+    }
+  }
   const dispatch = useAppDispatch()
   const currentUser = useAppSelector(getCurrentUser)
   const userProfile = useAppSelector(getUserProfile)

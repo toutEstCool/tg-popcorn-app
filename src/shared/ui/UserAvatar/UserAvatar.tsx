@@ -29,6 +29,7 @@ export const UserAvatar = ({ src, size, alt }: IAvatarProps) => {
 
   return (
     <AppImage
+      width={size}
       fallback={fallback}
       errorFallback={errorFallback}
       src={src}
