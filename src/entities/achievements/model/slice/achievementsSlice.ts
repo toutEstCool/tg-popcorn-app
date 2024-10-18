@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchUserAchievements } from '../services/fetchUserAchievements/fetchUserAchievements'
+
 import { AchievementsState } from '../types/achievementsSchema'
+import { fetchAchievementDetails } from '../services/fetchAchievementDetails/fetchAchievementDetailsю'
 
 const initialState: AchievementsState = {
   overviewAchievements: [],
@@ -9,6 +11,9 @@ const initialState: AchievementsState = {
   allLoaded: false,
   overviewLoading: false,
   allLoading: false,
+  selectedAchievement: null,
+  selectedLoading: false,
+  selectedLoaded: false,
   error: null
 }
 
@@ -46,6 +51,20 @@ const achievementsSlice = createSlice({
         } else {
           state.allLoading = false
         }
+        state.error = action.payload as string
+      })
+      .addCase(fetchAchievementDetails.pending, (state) => {
+        state.selectedLoading = true
+        state.selectedLoaded = false
+        state.error = null
+      })
+      .addCase(fetchAchievementDetails.fulfilled, (state, action) => {
+        state.selectedLoading = false
+        state.selectedLoaded = true
+        state.selectedAchievement = action.payload
+      })
+      .addCase(fetchAchievementDetails.rejected, (state, action) => {
+        state.selectedLoading = false
         state.error = action.payload as string
       })
   }
