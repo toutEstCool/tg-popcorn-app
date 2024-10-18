@@ -26,7 +26,7 @@ export const UserXPBar = memo(
           <div className={s.progressCountSection}>
             <span>{score ?? gradeInfo?.scoreFromInclusive}</span>
             {gradeInfo ? (
-              <span>popcorn coin {gradeInfo?.scoreToExclusive}</span>
+              <span>corncoin {gradeInfo?.scoreToExclusive}</span>
             ) : (
               <span>{end}</span>
             )}
