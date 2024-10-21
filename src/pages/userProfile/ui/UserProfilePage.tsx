@@ -37,6 +37,7 @@ export const UserProfilePage = () => {
             <AchievementsList
               className={s.achievementsContainer}
               achievements={achievementsList}
+              userId={profile?.id}
             />
           </>
         )}

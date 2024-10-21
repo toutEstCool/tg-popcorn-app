@@ -5,7 +5,6 @@
   left: 0;
   right: 0;
   height: 0;
-  /* background-color: rgba(0, 0, 0, 0.5); */
   transition: height 0.3s ease;
   display: flex;
   align-items: flex-end;
@@ -14,7 +13,7 @@
 }
 
 .open {
-  height: 40%;
+  height: 70%;
 }
 
 .sheetContent {
@@ -55,7 +54,7 @@
 
 .inviteButton {
   padding: 12px 20px;
-  background-color: #dbb157;
+  background-color: #dbb157 !important;
   border: none;
   border-radius: 8px;
   cursor: pointer;
