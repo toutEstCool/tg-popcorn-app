@@ -57,6 +57,14 @@
 
 .iconWrapper {
   margin-bottom: 20px;
+  max-width: 137px;
+  height: 137px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  width: 100%;
 }
 
 .inviteTextWrapper {
@@ -68,6 +76,7 @@
 .inviteButton {
   width: 100%;
   max-width: 398px;
+  margin-bottom: 20px;
   background-color: #dbb157 !important;
 }
 
