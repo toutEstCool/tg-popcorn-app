@@ -34,7 +34,9 @@ export const UserProfilePage = () => {
         {profile && (
           <>
             <UserCard profile={profile} isOwnProfile={false} />
-            <AchievementsList achievements={achievementsList} />
+            <div className={s.achievementsContainer}>
+              <AchievementsList achievements={achievementsList} />
+            </div>
           </>
         )}
       </div>

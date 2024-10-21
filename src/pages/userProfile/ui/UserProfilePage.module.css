@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 1.563rem;
+  height: 100vh;
+}
+
+.achievementsContainer {
+  margin-bottom: 20px;
+  height: 100vh;
 }
 
 .loader {
