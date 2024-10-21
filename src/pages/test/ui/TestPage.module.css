@@ -39,6 +39,8 @@
 .testQuestionItem {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .testQuestion {
@@ -99,7 +101,8 @@
 .customRadio {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  gap: 10px;
+  width: 100%;
 }
 
 .customRadio input[type="radio"] {
@@ -113,6 +116,7 @@
   border-radius: 50%;
   position: relative;
   margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .customRadio input[type="radio"]:checked + .customRadioCircle::before {
@@ -129,4 +133,6 @@
 
 .questionDescription {
   color: #ffffff;
+  flex-grow: 1;
+  word-wrap: break-word;
 }
