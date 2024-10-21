@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 25.78px;
+}
+
+.viewAllLink {
+  color: #dbb157;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 18.75px;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}

@@ -1,53 +1,43 @@
-import { useDispatch } from 'react-redux'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './UserProfilePage.module.css'
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./UserProfilePage.module.css";
 
-import { AppDispatch } from '../../../app/providers/store/ui/MainStore'
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import { getUserIsLoading, getUserProfile } from '../../../entities/user'
-import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
-import { Loader } from '../../../shared/ui/Loader'
-import { UserCard } from '../../../entities/userCard'
-import { AchievementsOverview } from '../../../features/achievements'
+import { useParams } from "react-router-dom";
+
+import { Loader } from "../../../shared/ui/Loader";
+import { useProfile } from "../../../features/user-v2/model/useProfile";
+import { UserCard } from "../../../entities/userCard";
+import { AchievementsList } from "../../../features/achievements";
+import { useAchievementsList } from "../../../features/achievements/hooks/useAchievementsList";
 
 export const UserProfilePage = () => {
-  const { userId } = useParams<{ userId: string }>()
-  const dispatch = useDispatch<AppDispatch>()
-  const userProfile = useAppSelector(getUserProfile)
-  const userIsLoading = useAppSelector(getUserIsLoading)
+  const { userId } = useParams<{ userId: string }>();
+  const { profile, isLoading } = useProfile(userId);
+  const { achievementsList, isLoadingAchievementsList } = useAchievementsList({
+    userId,
+    take: 100,
+    skip: 0,
+  });
 
-  useEffect(() => {
-    if (userId) {
-      dispatch(fetchUserProfile(userId))
-    }
-  }, [dispatch, userId])
-
-  if (userIsLoading) {
+  if (isLoading || isLoadingAchievementsList) {
     return (
       <div className={s.loader}>
         <Loader />
       </div>
-    )
+    );
   }
 
   return (
     <AppLayout>
-      <HeaderWithBackButton title={''} />
+      <HeaderWithBackButton title={""} />
       <div className={s.profilePageContainer}>
-        {userProfile && (
+        {profile && (
           <>
-            <UserCard userProfile={userProfile} isOwnProfile={false} />
-            <AchievementsOverview
-              coutRequest={10}
-              isOwnProfile={false}
-              userId={userProfile.id}
-            />
+            <UserCard profile={profile} isOwnProfile={false} />
+            <AchievementsList achievements={achievementsList} />
           </>
         )}
       </div>
     </AppLayout>
-  )
-}
+  );
+};

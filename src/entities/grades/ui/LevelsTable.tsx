@@ -1,31 +1,8 @@
-import { useEffect } from 'react'
-import s from './LevelsTable.module.css'
-import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
-import { Loader } from '../../../shared/ui/Loader'
-import { fetchGradesLevels } from '../model/selectors/fetchGradesLevels/fetchGradesLevels'
+import { useGradesList } from "../model/hooks/useGrades";
+import s from "./LevelsTable.module.css";
 
 export const LevelsTable = () => {
-  const dispatch = useAppDispatch()
-  const grades = useAppSelector((state) => state.grades.grades)
-  const isLoading = useAppSelector((state) => state.grades.isLoading)
-  const error = useAppSelector((state) => state.grades.error)
-
-  useEffect(() => {
-    dispatch(fetchGradesLevels())
-  }, [dispatch])
-
-  if (isLoading) {
-    return (
-      <div className={s.loader}>
-        <Loader />
-      </div>
-    )
-  }
-
-  if (error) {
-    return <p>Ошибка загрузки данных: {error}</p>
-  }
+  const { grades } = useGradesList();
 
   return (
     <section className={s.levelTable}>
@@ -34,7 +11,7 @@ export const LevelsTable = () => {
         {grades.map((grade) => (
           <li key={grade.level} className={s.levelTableItem}>
             <span className={s.levelTableItemCoinCount}>
-              {grade.scoreToExclusive.toLocaleString('ru-RU')}.00
+              {grade.scoreToExclusive.toLocaleString("ru-RU")}.00
             </span>
             <span className={s.levelTableItemLevel}>
               LVL {grade.level}. {grade.grade}
@@ -43,5 +20,5 @@ export const LevelsTable = () => {
         ))}
       </ul>
     </section>
-  )
-}
+  );
+};

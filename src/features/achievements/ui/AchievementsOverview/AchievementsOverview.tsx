@@ -1,79 +1,53 @@
-import { Link } from 'react-router-dom'
-import s from './AchievementsOverview.module.css'
-import classNames from 'classnames'
-import { ChevronRight } from 'lucide-react'
-import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch'
-import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
-import {
-  fetchUserAchievements,
-  getOverviewAchievements,
-  getOverviewAchievementsIsLoading
-} from '../../../../entities/achievements'
-import { useEffect } from 'react'
-import { Achievement } from '../../../../entities/achievements/model/types/achievementsSchema'
-import { Loader } from '../../../../shared/ui/Loader'
+import s from "./AchievementsOverview.module.css";
+import classNames from "classnames";
+import { UserAchievementsListItem } from "../../../../shared/api/generated";
+import { Loader } from "../../../../shared/ui/Loader";
+import { AppImage } from "../../../../shared/ui/AppImg/AppImage";
+import { memo } from "react";
+import { AchievementsHeader } from "../../../../shared/ui/AchievementsHeader";
 
 interface IAchievementProps {
-  className?: string
-  isOwnProfile?: boolean
-  userId: string
-  coutRequest: number
+  className?: string;
+  isOwnProfile?: boolean;
+  isLoadingAchievementsList: boolean;
+  achievementsList: UserAchievementsListItem[];
 }
 
-export const AchievementsOverview = ({
-  className,
-  isOwnProfile = false,
-  userId,
-  coutRequest = 4
-}: IAchievementProps) => {
-  const dispatch = useAppDispatch()
-  const achievements = useAppSelector(getOverviewAchievements)
-  const isLoading = useAppSelector(getOverviewAchievementsIsLoading)
-  const isLoaded = achievements?.length > 0
-
-  useEffect(() => {
-    if (!isLoaded) {
-      dispatch(fetchUserAchievements({ userId, skip: 0, take: coutRequest }))
-    }
-  }, [dispatch, userId, isLoaded])
-
-  return (
-    <div className={classNames(s.achievementsOverviewContainer, className)}>
-      {isOwnProfile && (
-        <div className={s.header}>
-          {isOwnProfile && (
-            <>
-              <h2 className={s.title}>Достижения</h2>
-              <Link to="/achievements" className={s.viewAllLink}>
-                <span>Все</span>
-                <ChevronRight />
-              </Link>
-            </>
-          )}
+export const AchievementsOverview = memo(
+  ({
+    className,
+    isOwnProfile = false,
+    isLoadingAchievementsList,
+    achievementsList,
+  }: IAchievementProps) => {
+    if (isLoadingAchievementsList) {
+      return (
+        <div className={s.loader}>
+          <Loader />
         </div>
-      )}
-      <div className={s.achievementsList}>
-        {isLoading ? (
-          <div className={s.loader}>
-            <Loader />
-          </div>
-        ) : (
-          achievements?.map((achievement: Achievement) => (
+      );
+    }
+
+    return (
+      <div className={classNames(s.achievementsOverviewContainer, className)}>
+        {isOwnProfile && <AchievementsHeader />}
+        <div className={s.achievementsList}>
+          {achievementsList?.map((achievement: UserAchievementsListItem) => (
             <div key={achievement.achievementId} className={s.achievementItem}>
-              <img
+              <AppImage
                 className={classNames(
                   s.achievementIcon,
-                  !achievement.achieved && s.notAchieved
+                  !achievement.achieved && s.notAchieved,
                 )}
-                src={achievement.imageUrl}
-                alt={achievement.nameEn}
+                src={achievement.imageUrl ?? undefined}
+                alt={achievement.nameEn ?? undefined}
                 width={94}
                 height={100}
               />
             </div>
-          ))
-        )}
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
+    );
+  },
+);

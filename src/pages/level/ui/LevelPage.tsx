@@ -1,33 +1,25 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import { TopUserIcon } from '../../../widgets/IconsComponents'
-import { ChevronRight } from 'lucide-react'
-import s from './LevelPage.module.css'
-import { UserXPBar } from '../../../shared/ui/UserXPBar'
-import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import {
-  getCurrentUser,
-  getUserProfile,
-  getUserIsLoading
-} from '../../../entities/user'
-import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
-import { Loader } from '../../../shared/ui/Loader'
-import { LevelsTable } from '../../../entities/grades'
+import { Link } from "react-router-dom";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import { TopUserIcon } from "../../../widgets/IconsComponents";
+import { ChevronRight } from "lucide-react";
+import s from "./LevelPage.module.css";
+import { UserXPBar } from "../../../shared/ui/UserXPBar";
+
+import { LevelsTable } from "../../../entities/grades";
+import { useProfile } from "../../../features/user-v2/model/useProfile";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const LevelPage = () => {
-  const dispatch = useAppDispatch()
-  const userProfile = useAppSelector(getUserProfile)
-  const currentUser = useAppSelector(getCurrentUser)
-  const isLoading = useAppSelector(getUserIsLoading)
+  const { profile, isLoading } = useProfile();
 
-  useEffect(() => {
-    if (currentUser) {
-      dispatch(fetchUserProfile(currentUser.id))
-    }
-  }, [dispatch, currentUser])
+  if (isLoading) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <AppLayout>
@@ -35,7 +27,7 @@ export const LevelPage = () => {
       <div className={s.topLevelsContainer}>
         <Link
           className={s.topMenuItemLink}
-          to={'/top-user'}
+          to={"/top-user"}
           aria-label="Топ пользователей "
         >
           <TopUserIcon />
@@ -44,21 +36,17 @@ export const LevelPage = () => {
           </div>
           <ChevronRight color="#7C7C7C" />
         </Link>
-        {isLoading ? (
-          <div className={s.loader}>
-            <Loader />
-          </div>
-        ) : userProfile ? (
-          <UserXPBar
-            gradeInfo={userProfile.gradeInfo}
-            className={s.xbBar}
-            score={userProfile.score}
-          />
-        ) : (
-          <p>Данные не найдены...</p>
+        {profile && (
+          <>
+            <UserXPBar
+              gradeInfo={profile?.gradeInfo}
+              className={s.xbBar}
+              score={profile?.score}
+            />
+            <LevelsTable />
+          </>
         )}
-        <LevelsTable />
       </div>
     </AppLayout>
-  )
-}
+  );
+};

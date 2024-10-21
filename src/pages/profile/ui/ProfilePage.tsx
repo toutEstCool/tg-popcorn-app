@@ -1,76 +1,47 @@
-import { useEffect } from 'react'
-import {
-  getCurrentUser,
-  getUserError,
-  getUserIsLoading,
-  getUserProfile
-} from '../../../entities/user'
-import { UserCard } from '../../../entities/userCard'
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
-import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import { ReferralProgram } from '../../../shared/ui/ReferralProgram'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './ProfilePage.module.css'
-import { fetchCurrentUser } from '../../../entities/user/model/services/fetchCurrentUser/fetchCurrentUser'
-import { fetchUserProfile } from '../../../entities/user/model/services/fetchUserProfile/fetchUserProfile'
-import { Loader } from '../../../shared/ui/Loader'
-import { AchievementsOverview } from '../../../features/achievements'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { UserCard } from "../../../entities/userCard";
+import { AchievementsOverview } from "../../../features/achievements";
+import { ReferralProgram } from "../../../shared/ui/ReferralProgram";
+import { AppLayout } from "../../../widgets/AppLayout";
+import { useProfile } from "../../../features/user-v2/model/useProfile";
+import s from "./ProfilePage.module.css";
+import { Loader } from "../../../shared/ui/Loader";
+import { useAchievementsList } from "../../../features/achievements/hooks/useAchievementsList";
 
 export const ProfilePage = () => {
-  const dispatch = useAppDispatch()
-  const currentUser = useAppSelector(getCurrentUser)
-  const userProfile = useAppSelector(getUserProfile)
-  const userIsLoading = useAppSelector(getUserIsLoading)
-  const userError = useAppSelector(getUserError)
+  const { profile, isLoading } = useProfile();
 
-  useEffect(() => {
-    if (!currentUser) {
-      dispatch(fetchCurrentUser())
-    }
-  }, [dispatch, currentUser])
+  const { achievementsList, isLoadingAchievementsList } = useAchievementsList({
+    userId: profile?.id,
+    take: 4,
+    skip: 0,
+  });
 
-  useEffect(() => {
-    if (currentUser && !userProfile) {
-      dispatch(fetchUserProfile(currentUser.id))
-    }
-  }, [dispatch, currentUser, userProfile])
-
-  if (userIsLoading) {
+  if (isLoading) {
     return (
-      <div style={{ position: 'relative' }}>
-        <Loader className={s.loader} />
+      <div className={s.loader}>
+        <Loader />
       </div>
-    )
-  }
-
-  if (userError) {
-    return (
-      <AppLayout>
-        <div className={s.profilePageContainer}>
-          <p style={{ color: 'red' }}>Ошибка: {userError}</p>
-        </div>
-      </AppLayout>
-    )
+    );
   }
 
   return (
     <AppLayout>
       <div className={s.profilePageContainer}>
-        {userProfile && (
+        {profile && (
           <>
-            <UserCard userProfile={userProfile} isOwnProfile={true} />
+            <UserCard profile={profile} isOwnProfile={true} />
             <AchievementsOverview
               isOwnProfile={true}
-              userId={userProfile.id}
-              coutRequest={4}
+              isLoadingAchievementsList={isLoadingAchievementsList}
+              achievementsList={achievementsList}
             />
+            <Link to="/earn" className={s.earnLink}>
+              <ReferralProgram />
+            </Link>
           </>
         )}
-        <Link to={'/earn'}>
-          <ReferralProgram />
-        </Link>
       </div>
     </AppLayout>
-  )
-}
+  );
+};

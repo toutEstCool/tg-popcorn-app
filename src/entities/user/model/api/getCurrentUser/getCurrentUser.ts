@@ -1,12 +1,14 @@
-import { $api } from '../../../../../shared/api/api'
+import { $api } from "../../../../../shared/api/api";
 
 interface GetCurrentUserResponse {
-  id: string
-  name: string
-  roles: string[]
+  id: string;
+  name: string;
+  roles: string[];
 }
 
 export const getCurrentUser = async (): Promise<GetCurrentUserResponse> => {
-  const response = await $api.get<GetCurrentUserResponse>('Auth/getCurrentUser')
-  return response.data
-}
+  const response = await $api.get<GetCurrentUserResponse>(
+    "/api/Auth/getCurrentUser",
+  );
+  return response.data;
+};

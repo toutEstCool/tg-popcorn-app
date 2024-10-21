@@ -1,19 +1,26 @@
-import { useNavigate } from 'react-router-dom'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './TestFinishPage.module.css'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { useFetchTestInfo } from '../../../entities/test'
+import { useNavigate, useLocation } from "react-router-dom";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./TestFinishPage.module.css";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { useTestInfo } from "../../../features/test-v2/hooks/useTestInfo";
 
 export const TestFinishPage = () => {
-  const navigate = useNavigate()
-  const { title } = useFetchTestInfo()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const testId = location.state?.testId;
+
+  const { testInfo } = useTestInfo({ id: testId });
 
   const navigateOnTest = () => {
-    navigate('/tests')
-  }
+    navigate("/tests");
+  };
+
   return (
     <AppLayout>
-      <HeaderWithBackButton title={title} titleColor="#DBB157" />
+      <HeaderWithBackButton
+        title={testInfo?.title ?? "Тест завершен"}
+        titleColor="#DBB157"
+      />
       <div className={s.mainImgWrapper}>
         <img
           className={s.mainImg}
@@ -42,5 +49,5 @@ export const TestFinishPage = () => {
         </button>
       </div>
     </AppLayout>
-  )
-}
+  );
+};
