@@ -1,7 +1,7 @@
 .wikiBaseContainer {
   background-color: #f2bd7d;
   background-image: linear-gradient(50deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
-    url('https://s3-alpha-sig.figma.com/img/d1f9/8476/e6e1042c334e0f54fb9f213044ddd366?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ggQ2pVPUFYbGfPgxC8uhZd2jJY66Kc0XlCfIPPxJ8BU8Plpl7UFQ~o8Z0UEGrdcPu~kqI~fcR15opjRQnh6eBK~GyYh6udTmrrqdFUJuloD~cgJGV5ZOb-71J0J4nfjkY6NzegTVn6LHWDNh2d~nvFO5gyfhsGPDEEWfkIR44xEz429ShL17SF2QboKjnL3Gn~t2MuAkw5Uq1ZPcIMFAoBvCfVRwp8yjhgc6kQeZMyY0UtJR6SOCXfEPtZZTMmrEwZScXMEW3x83S2Da4D-8C1zyc4zYGURGFFJpgEqzSu4rTKpZRPR8hT39D~d7BYYDbCiuaeK1m2hkE98Y2LMPQA__');
+    url("https://s3-alpha-sig.figma.com/img/d1f9/8476/e6e1042c334e0f54fb9f213044ddd366?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ggQ2pVPUFYbGfPgxC8uhZd2jJY66Kc0XlCfIPPxJ8BU8Plpl7UFQ~o8Z0UEGrdcPu~kqI~fcR15opjRQnh6eBK~GyYh6udTmrrqdFUJuloD~cgJGV5ZOb-71J0J4nfjkY6NzegTVn6LHWDNh2d~nvFO5gyfhsGPDEEWfkIR44xEz429ShL17SF2QboKjnL3Gn~t2MuAkw5Uq1ZPcIMFAoBvCfVRwp8yjhgc6kQeZMyY0UtJR6SOCXfEPtZZTMmrEwZScXMEW3x83S2Da4D-8C1zyc4zYGURGFFJpgEqzSu4rTKpZRPR8hT39D~d7BYYDbCiuaeK1m2hkE98Y2LMPQA__");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,9 +47,10 @@
 }
 
 .referralIcon {
-  height: 100%;
+  height: auto;
   object-fit: cover;
   opacity: 0.9;
+  z-index: 500;
 }
 
 .wikiActionWrapper {
@@ -74,7 +75,9 @@
   font-weight: 600;
   font-size: 1rem;
   line-height: 18.75px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 .wikiBaseActionBtn:hover {
