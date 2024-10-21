@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { useTestInfo } from "../../../features/test-v2/hooks/useTestInfo";
 import { useSubmitTestMutation } from "../../../features/test-v2/hooks/useSubmitTest";
 import { Loader } from "../../../shared/ui/Loader";
+import { useQueryClient } from "@tanstack/react-query";
 
 type SelectedAnswers = {
   [key: number]: number | null;
@@ -22,6 +23,8 @@ export const TestPage = () => {
     isLoadingTestInfo: true,
   };
   const submitTestMutation = useSubmitTestMutation();
+
+  const queryClient = useQueryClient();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
@@ -105,6 +108,9 @@ export const TestPage = () => {
       { testId: parsedTestId, answers },
       {
         onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ["user-achievements"],
+          });
           navigate("/test-finish", {
             state: { testId: parsedTestId },
           });

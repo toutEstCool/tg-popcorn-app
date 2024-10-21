@@ -1,20 +1,22 @@
-import { useGetUsersListQuery } from "../../../../entities/user-v2/queries";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { postApiUsersGetUsersList } from "../../../../shared/api/generated";
 
-export const useTopUsers = (debouncedSearchTerm: string, take?: number) => {
-  const { data, isLoading, isError } = useGetUsersListQuery({
-    fullNameTerm: debouncedSearchTerm,
-    userNameTerm: debouncedSearchTerm,
-    skip: 0,
-    take: take,
+export const useTopUsers = (debouncedSearchTerm: string, take: number = 10) => {
+  return useInfiniteQuery({
+    queryKey: ["top-users", debouncedSearchTerm],
+    queryFn: ({ pageParam = 0 }) =>
+      postApiUsersGetUsersList({
+        fullNameTerm: debouncedSearchTerm,
+        userNameTerm: debouncedSearchTerm,
+        take,
+        skip: pageParam,
+      }),
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage.items || lastPage.items.length < take) {
+        return undefined;
+      }
+      return allPages.length * take;
+    },
+    initialPageParam: 0,
   });
-
-  const users = data?.items || [];
-  const totalCount = data?.totalCount || 0;
-
-  return {
-    users,
-    totalCount,
-    isLoading,
-    isError,
-  };
 };
