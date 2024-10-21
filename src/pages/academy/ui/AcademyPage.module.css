@@ -27,8 +27,8 @@
 
 .absoluteImg {
   position: absolute;
-  right: -8px;
-  bottom: -52px;
+  right: 0;
+  bottom: 0;
 }
 
 .bitTileTitle {
@@ -62,7 +62,9 @@
   font-weight: 600;
   font-size: 1rem;
   line-height: 18.75px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 .bitTileActionBtn:hover {

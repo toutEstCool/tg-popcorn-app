@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import s from "./UserListItem.module.css";
-import { Referral } from "../../model/types/userReferralsSchema";
-import { UserListItem as UserListType } from "../../../../shared/api/generated";
+import {
+  UserListItem as UserListType,
+  UserReferralDto,
+} from "../../../../shared/api/generated";
 
 export interface IUserListItemProps {
   user?: UserListType;
-  userReferrals?: Referral;
+  userReferrals?: UserReferralDto;
   topUsers?: boolean;
 }
 

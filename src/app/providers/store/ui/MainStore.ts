@@ -2,18 +2,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { settingsReducer } from "../../../../entities/settings";
 import { $api } from "../../../../shared/api/api";
 import { authReducer } from "../../../../features/authByInitData";
-import {
-  userReducer,
-  userReferralsReducer,
-  usersReducer,
-} from "../../../../entities/user";
 
 const mainReducer = combineReducers({
   settings: settingsReducer,
   auth: authReducer,
-  user: userReducer,
-  users: usersReducer,
-  userReferrals: userReferralsReducer,
 });
 
 export const mainStore = configureStore({
@@ -30,9 +22,6 @@ export const mainStore = configureStore({
 
 export interface StateSchema {
   auth: ReturnType<typeof authReducer>;
-  user: ReturnType<typeof userReducer>;
-  users: ReturnType<typeof usersReducer>;
-  userReferrals: ReturnType<typeof userReferralsReducer>;
   settings: ReturnType<typeof settingsReducer>;
 }
 
