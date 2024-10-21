@@ -7,6 +7,7 @@ import PsihologyPng from "../../../shared/assets/images/psihology.png";
 import TechAnalysisPng from "../../../shared/assets/images/tech-analysis.png";
 import BestBooksPng from "../../../shared/assets/images/best-books.png";
 import s from "./WikiBasePage.module.css";
+import { AppImage } from "../../../shared/ui/AppImg/AppImage";
 
 export const WikiBasePage = () => {
   return (
@@ -18,7 +19,7 @@ export const WikiBasePage = () => {
           <p className={s.subtitle}>Максимально полезная информация</p>
         </div>
         <div className={s.iconWrapper}>
-          <img className={s.referralIcon} src={BooksPng} alt="Wiki Base" />
+          <AppImage className={s.referralIcon} src={BooksPng} alt="Wiki Base" />
         </div>
       </div>
       <div className={s.wikiActionWrapper}>
@@ -27,15 +28,15 @@ export const WikiBasePage = () => {
         <section className={s.tileWrapper}>
           <Tile>
             <span className={s.tileTitle}>Психология</span>
-            <img width={92} src={PsihologyPng} />
+            <AppImage width={92} src={PsihologyPng} />
           </Tile>
           <Tile>
             <span className={s.tileTitle}>Тех.анализ</span>
-            <img width={92} src={TechAnalysisPng} />
+            <AppImage width={92} src={TechAnalysisPng} />
           </Tile>
           <Tile>
             <span className={s.tileTitle}>ТОП книг</span>
-            <img width={92} src={BestBooksPng} />
+            <AppImage width={92} src={BestBooksPng} />
           </Tile>
         </section>
       </div>
