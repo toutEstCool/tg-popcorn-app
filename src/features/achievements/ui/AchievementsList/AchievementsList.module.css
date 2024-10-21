@@ -9,10 +9,11 @@
   gap: 1rem;
 }
 .achievementCard {
+  width: 126px;
+  height: 159px;
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
@@ -28,18 +29,21 @@
   color: #ffffff;
 }
 .achievementReward {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 10px;
   font-weight: 500;
   line-height: 11.72px;
-  color: #dbb157;
+  color: #989898;
   text-transform: uppercase;
 }
 
 .achievementIcon {
-  transition: opacity 0.3s ease;
+  transition: opacity 1s ease;
 }
 
 .notAchieved {
-  opacity: 1;
+  opacity: 0.5;
   filter: grayscale(100%);
 }

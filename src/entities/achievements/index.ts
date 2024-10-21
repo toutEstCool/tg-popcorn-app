@@ -1,6 +1,0 @@
-export { achievementsReducer } from './model/slice/achievementsSlice'
-export { getOverviewAchievements } from './model/selectors/getAchievements/getAchievements'
-export { getAllAchievements } from './model/selectors/getAchievements/getAchievements'
-export { fetchUserAchievements } from './model/services/fetchUserAchievements/fetchUserAchievements'
-export { getOverviewAchievementsIsLoading } from './model/selectors/getAchievementsLoading/getAchievementsLoading'
-export { getAllAchievementsIsLoading } from './model/selectors/getAchievementsLoading/getAchievementsLoading'

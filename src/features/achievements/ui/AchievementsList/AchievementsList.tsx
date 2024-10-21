@@ -1,62 +1,58 @@
-import { BottomDrawer } from '../../../../shared/ui/BottomDrawer'
-import { useAchievementDetails } from '../../hooks/useAchievementDetails'
-import s from './AchievementsList.module.css'
-import classNames from 'classnames'
-import { useState } from 'react'
-import { getCurrentUser } from '../../../../entities/user'
-import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
+import { BottomDrawer } from "../../../../shared/ui/BottomDrawer";
+import s from "./AchievementsList.module.css";
+import classNames from "classnames";
+import { useState } from "react";
+import { UserAchievementsListItem } from "../../../../shared/api/generated";
+import { AppImage } from "../../../../shared/ui/AppImg/AppImage";
+import { useAchievementsDetails } from "../../hooks/useAchievementsDetails";
 
 interface IAchievementsListProps {
-  className?: string
-  achievements: Achievement[]
-}
-
-interface Achievement {
-  achievementId: number
-  nameRu: string
-  nameEn: string
-  imageUrl: string
-  scoreForAchievement: number
-  achieved: boolean
-  achievedOn: string | null
+  className?: string;
+  achievements: UserAchievementsListItem[];
+  userId?: string;
 }
 
 export const AchievementsList = ({
   className,
-  achievements
+  userId,
+  achievements,
 }: IAchievementsListProps) => {
-  const currentUser = useAppSelector(getCurrentUser)
   const [selectedAchievementId, setSelectedAchievementId] = useState<
     number | null
-  >(null)
+  >(null);
+  const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
-  const { achievementDetails, loading, error } = useAchievementDetails(
-    currentUser ? currentUser.id : '',
-    selectedAchievementId || 0
-  )
-
-  const [isBottomSheetOpen, setBottomSheetOpen] = useState(false)
+  const {
+    achievementDetails,
+    isLoadingAchievementDetails: loading,
+    isErrorAchievementDetails: error,
+  } = useAchievementsDetails({
+    userId,
+    achievementId: selectedAchievementId || undefined,
+    enabled: isBottomSheetOpen && selectedAchievementId !== null,
+  });
 
   const handleAchievementClick = (achievementId: number) => {
-    setSelectedAchievementId(achievementId)
-    setBottomSheetOpen(true)
-  }
+    setSelectedAchievementId(achievementId);
+    setBottomSheetOpen(true);
+  };
 
   const handleCloseSheet = () => {
-    setBottomSheetOpen(false)
-    setSelectedAchievementId(null)
-  }
+    setBottomSheetOpen(false);
+    setSelectedAchievementId(null);
+  };
 
   return (
     <div className={className}>
       <div>
         <BottomDrawer
           isLoading={loading}
-          error={error}
+          error={error?.message}
           isOpen={isBottomSheetOpen}
           onClose={handleCloseSheet}
           title={achievementDetails?.descriptionRu}
-          icon={achievementDetails?.imageUrl}
+          icon={achievementDetails?.imageUrl ?? undefined}
+          btnText="Пропустить"
         />
       </div>
       <div className={s.achievementsGrid}>
@@ -66,25 +62,25 @@ export const AchievementsList = ({
             key={achievement.achievementId}
             className={s.achievementCard}
           >
-            <img
+            <AppImage
               className={classNames(
                 s.achievementIcon,
-                !achievement.achieved && s.notAchieved
+                !achievement.achieved && s.notAchieved,
               )}
-              src={achievement.imageUrl}
-              alt={achievement.nameEn}
+              src={achievement.imageUrl ?? undefined}
+              alt={achievement.nameEn ?? undefined}
               width={94}
               height={100}
             />
             <div className={s.achievementInfo}>
               <span className={s.achievementName}>{achievement.nameRu}</span>
               <span className={s.achievementReward}>
-                +{achievement.scoreForAchievement} corncoin
+                + {achievement.scoreForAchievement} $corncoin
               </span>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

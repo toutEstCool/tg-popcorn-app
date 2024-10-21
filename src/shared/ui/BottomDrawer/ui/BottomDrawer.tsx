@@ -1,15 +1,16 @@
-import classNames from 'classnames'
-import s from './BottomDrawer.module.css'
-import { Button } from '../../Button'
-import { Loader } from '../../Loader'
+import classNames from "classnames";
+import s from "./BottomDrawer.module.css";
+import { Button } from "../../Button";
+import { Loader } from "../../Loader";
 
 interface IBottomDrawerProps {
-  isOpen: boolean
-  onClose: () => void
-  icon?: string
-  title: string | undefined
-  isLoading?: boolean
-  error?: string | null
+  isOpen: boolean;
+  onClose: () => void;
+  icon?: string;
+  title: string | undefined;
+  isLoading?: boolean;
+  error?: string | null;
+  btnText: string;
 }
 
 export const BottomDrawer = ({
@@ -17,7 +18,8 @@ export const BottomDrawer = ({
   onClose,
   icon,
   title,
-  isLoading
+  isLoading,
+  btnText,
 }: IBottomDrawerProps) => {
   return (
     <div className={classNames(s.overlay, { [s.open]: isOpen })}>
@@ -38,11 +40,11 @@ export const BottomDrawer = ({
             <Button
               className={s.inviteButton}
               onClick={onClose}
-              text="Пригласить друзей"
+              text={btnText}
             />
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};

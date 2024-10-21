@@ -1,26 +1,26 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { $api } from '../../../../../shared/api/api'
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { $api } from "../../../../../shared/api/api";
 
 export const fetchUserReferrals = createAsyncThunk(
-  'user/fetchUserReferrals',
+  "user/fetchUserReferrals",
   async (
     {
       userId,
       skip = 0,
-      take = 10
+      take = 10,
     }: { userId: string; skip?: number; take?: number },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
-      const response = await $api.post('Users/getUserReferrals', {
+      const response = await $api.post("api/Users/getUserReferrals", {
         userId,
         skip,
-        take
-      })
+        take,
+      });
 
-      return response.data
+      return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || error.message)
+      return rejectWithValue(error.response?.data?.message || error.message);
     }
-  }
-)
+  },
+);

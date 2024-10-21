@@ -1,46 +1,41 @@
-import { useEffect } from 'react'
-import {
-  fetchUserAchievements,
-  getAllAchievements,
-  getAllAchievementsIsLoading
-} from '../../../entities/achievements'
-import { AchievementsList } from '../../../features/achievements'
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch'
-import { useAppSelector } from '../../../shared/hooks/useAppSelector'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './AchievemenPage.module.css'
-import { Loader } from '../../../shared/ui/Loader'
-import { getCurrentUser } from '../../../entities/user'
+import { AchievementsList } from "../../../features/achievements";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./AchievemenPage.module.css";
+import { Loader } from "../../../shared/ui/Loader";
+import { useAchievementsList } from "../../../features/achievements/hooks/useAchievementsList";
+import { useProfile } from "../../../features/user-v2/model/useProfile";
 
 export const AchievementPage = () => {
-  const dispatch = useAppDispatch()
-  const achievements = useAppSelector(getAllAchievements)
-  const isLoading = useAppSelector(getAllAchievementsIsLoading)
-  const currentUser = useAppSelector(getCurrentUser)
-  const userId = currentUser?.id
+  const { profile } = useProfile();
+  const userId = profile?.id;
 
-  useEffect(() => {
-    if (userId && !achievements.length) {
-      dispatch(fetchUserAchievements({ userId, skip: 0, take: 100 }))
-    }
-  }, [dispatch, userId, achievements.length])
+  const { achievementsList, isLoadingAchievementsList } = useAchievementsList({
+    userId,
+    take: 100,
+    skip: 0,
+  });
+
+  if (isLoadingAchievementsList) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <AppLayout>
       <HeaderWithBackButton title="Достижения" />
-      {isLoading ? (
-        <div className={s.loader}>
-          <Loader />
-        </div>
-      ) : (
-        <div className={s.achievementsScrollWrapper}>
+      <div className={s.achievementsScrollWrapper}>
+        {achievementsList && (
           <AchievementsList
-            achievements={achievements}
+            userId={String(userId)}
+            achievements={achievementsList}
             className={s.achivement}
           />
-        </div>
-      )}
+        )}
+      </div>
     </AppLayout>
-  )
-}
+  );
+};

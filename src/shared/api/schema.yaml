@@ -1,0 +1,2456 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DI.TapTap.Backend",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Achievements/getUserAchievementsList": {
+      "post": {
+        "tags": [
+          "Achievements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementsListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementsListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementsListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementsListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementsListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementsListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Achievements/getAchievementsStatisticList": {
+      "post": {
+        "tags": [
+          "Achievements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAchievementsStatisticListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAchievementsStatisticListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAchievementsStatisticListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAchievementsStatisticListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAchievementsStatisticListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAchievementsStatisticListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Achievements/getUserAchievementInfo": {
+      "post": {
+        "tags": [
+          "Achievements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementInfoQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementInfoQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserAchievementInfoQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementInfoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserAchievementInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/signIn": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/signInTelegram": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInTelegramCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInTelegramCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInTelegramCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/getCurrentUser": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentUserResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentUserResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentUserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/refreshToken": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Games/startGame": {
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartGameCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartGameCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartGameCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartGameResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartGameResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartGameResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Games/getCurrentGame": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentGameResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentGameResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentGameResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Games/getGameExchangeRate": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGameExchangeRateResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGameExchangeRateResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGameExchangeRateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Games/getGamesList": {
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGamesListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGamesListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGamesListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGamesListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGamesListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGamesListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Games/testSchedule": {
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Games/finishGame": {
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishGameCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishGameCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishGameCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Grades/getGradesLevels": {
+      "post": {
+        "tags": [
+          "Grades"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGradesLevelsResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGradesLevelsResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGradesLevelsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Import/importTest": {
+      "post": {
+        "tags": [
+          "Import"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportTestCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportTestCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportTestCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Lectures/getLecturesList": {
+      "post": {
+        "tags": [
+          "Lectures"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLecturesListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLecturesListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLecturesListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLecturesListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLecturesListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLecturesListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Lectures/getLectureInfo": {
+      "post": {
+        "tags": [
+          "Lectures"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLectureInfoQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLectureInfoQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLectureInfoQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLectureInfoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLectureInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLectureInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tests/getTestsList": {
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestsListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestsListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestsListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestsListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestsListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestsListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tests/getTestInfo": {
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestInfoQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestInfoQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTestInfoQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestInfoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tests/submitTest": {
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitTestCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitTestCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitTestCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitTestResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitTestResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitTestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/getUserInfo": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserInfoQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserInfoQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserInfoQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserInfoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/getUserProfile": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserProfileQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserProfileQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserProfileQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserProfileResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserProfileResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserProfileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/generateAndGetReferralCode": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateAndGetReferralCodeCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateAndGetReferralCodeCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateAndGetReferralCodeCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateAndGetReferralCodeResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateAndGetReferralCodeResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateAndGetReferralCodeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/getUserReferrals": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserReferralsQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserReferralsQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserReferralsQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserReferralsResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserReferralsResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserReferralsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/getUsersList": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersListQuery"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersListQuery"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersListQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersListResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AchievementsStatisticListItem": {
+        "required": [
+          "achievementId",
+          "descriptionEn",
+          "descriptionRu",
+          "imageUrl",
+          "nameEn",
+          "nameRu",
+          "scoreForAchievement",
+          "usersAchieved",
+          "usersPartiallyAchieved"
+        ],
+        "type": "object",
+        "properties": {
+          "achievementId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nameRu": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionRu": {
+            "type": "string"
+          },
+          "descriptionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "scoreForAchievement": {
+            "type": "number",
+            "format": "double"
+          },
+          "usersAchieved": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usersPartiallyAchieved": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BetType": {
+        "enum": [
+          "long",
+          "short"
+        ],
+        "type": "string"
+      },
+      "FinishGameCommand": {
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GameInfo": {
+        "required": [
+          "betType",
+          "currencyFrom",
+          "currencyTo",
+          "endedOn",
+          "id",
+          "rateEnd",
+          "rateStart",
+          "startedOn"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currencyFrom": {
+            "type": "string"
+          },
+          "currencyTo": {
+            "type": "string"
+          },
+          "rateStart": {
+            "type": "number",
+            "format": "double"
+          },
+          "rateEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "betType": {
+            "$ref": "#/components/schemas/BetType"
+          },
+          "startedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GamesListItem": {
+        "required": [
+          "betType",
+          "currencyFrom",
+          "currencyTo",
+          "endedOn",
+          "gameId",
+          "isWin"
+        ],
+        "type": "object",
+        "properties": {
+          "gameId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currencyFrom": {
+            "type": "string"
+          },
+          "currencyTo": {
+            "type": "string"
+          },
+          "betType": {
+            "$ref": "#/components/schemas/BetType"
+          },
+          "isWin": {
+            "type": "boolean"
+          },
+          "endedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GenerateAndGetReferralCodeCommand": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GenerateAndGetReferralCodeResponse": {
+        "required": [
+          "referralCode"
+        ],
+        "type": "object",
+        "properties": {
+          "referralCode": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAchievementsStatisticListQuery": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAchievementsStatisticListResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AchievementsStatisticListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCurrentGameResponse": {
+        "type": "object",
+        "properties": {
+          "isStarted": {
+            "type": "boolean"
+          },
+          "game": {
+            "$ref": "#/components/schemas/GameInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCurrentUserResponse": {
+        "required": [
+          "id",
+          "name",
+          "roles"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleType"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetGameExchangeRateResponse": {
+        "type": "object",
+        "properties": {
+          "currencyFrom": {
+            "type": "string"
+          },
+          "currencyTo": {
+            "type": "string"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetGamesListQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetGamesListResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GamesListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetGradesLevelsResponse": {
+        "required": [
+          "grades"
+        ],
+        "type": "object",
+        "properties": {
+          "grades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GradeLevelInfoDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLectureInfoQuery": {
+        "type": "object",
+        "properties": {
+          "lectureId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLectureInfoResponse": {
+        "required": [
+          "author",
+          "createdOn",
+          "id",
+          "testId",
+          "text",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLecturesListQuery": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLecturesListResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LectureListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTestInfoQuery": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTestInfoResponse": {
+        "required": [
+          "alreadyParticipated",
+          "description",
+          "lectureId",
+          "previewImageUrl",
+          "questions",
+          "scoreForAttempt",
+          "testId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lectureId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "scoreForAttempt": {
+            "type": "number",
+            "format": "double"
+          },
+          "previewImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "alreadyParticipated": {
+            "type": "boolean"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestQuestionDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTestsListQuery": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTestsListResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserAchievementInfoQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "achievementId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserAchievementInfoResponse": {
+        "required": [
+          "achieved",
+          "achievedOn",
+          "achievementId",
+          "currentProgress",
+          "descriptionEn",
+          "descriptionRu",
+          "imageUrl",
+          "nameEn",
+          "nameRu",
+          "requiredActionEn",
+          "requiredActionRu",
+          "requiredProgress",
+          "scoreForAchievement"
+        ],
+        "type": "object",
+        "properties": {
+          "achievementId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nameRu": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionRu": {
+            "type": "string"
+          },
+          "descriptionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiredActionRu": {
+            "type": "string"
+          },
+          "requiredActionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "scoreForAchievement": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentProgress": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requiredProgress": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "achieved": {
+            "type": "boolean"
+          },
+          "achievedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserAchievementsListQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserAchievementsListResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserAchievementsListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserInfoQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserInfoResponse": {
+        "required": [
+          "accountName",
+          "birthDate",
+          "fullName",
+          "id",
+          "referrerId",
+          "registeredOn",
+          "roles"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "registeredOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDto"
+            }
+          },
+          "referrerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserProfileQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserProfileResponse": {
+        "required": [
+          "accountName",
+          "fullName",
+          "gradeInfo",
+          "id",
+          "score"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "gradeInfo": {
+            "$ref": "#/components/schemas/GradeInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserReferralsQuery": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserReferralsResponse": {
+        "required": [
+          "items",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserReferralDto"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUsersListQuery": {
+        "type": "object",
+        "properties": {
+          "fullNameTerm": {
+            "type": "string",
+            "nullable": true
+          },
+          "userNameTerm": {
+            "type": "string",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUsersListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserListItem"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GradeInfo": {
+        "required": [
+          "grade",
+          "level",
+          "progressPercents",
+          "scoreFromInclusive",
+          "scoreToExclusive"
+        ],
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "grade": {
+            "type": "string"
+          },
+          "scoreFromInclusive": {
+            "type": "number",
+            "format": "double"
+          },
+          "scoreToExclusive": {
+            "type": "number",
+            "format": "double"
+          },
+          "progressPercents": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GradeInfoShort": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "grade": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GradeLevelInfoDto": {
+        "required": [
+          "grade",
+          "level",
+          "scoreFromInclusive",
+          "scoreToExclusive"
+        ],
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scoreFromInclusive": {
+            "type": "number",
+            "format": "double"
+          },
+          "scoreToExclusive": {
+            "type": "number",
+            "format": "double"
+          },
+          "grade": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImportTestCommand": {
+        "type": "object",
+        "properties": {
+          "test": {
+            "$ref": "#/components/schemas/TestModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LectureListItem": {
+        "required": [
+          "author",
+          "id",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshTokenCommand": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RoleType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleType": {
+        "enum": [
+          "undefined",
+          "user",
+          "admin"
+        ],
+        "type": "string"
+      },
+      "SignInCommand": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SignInTelegramCommand": {
+        "type": "object",
+        "properties": {
+          "initData": {
+            "type": "string"
+          },
+          "referralCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StartGameCommand": {
+        "type": "object",
+        "properties": {
+          "betType": {
+            "$ref": "#/components/schemas/BetType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StartGameResponse": {
+        "required": [
+          "betType",
+          "currencyFrom",
+          "currencyTo",
+          "endedOn",
+          "id",
+          "rateEnd",
+          "rateStart",
+          "startedOn"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currencyFrom": {
+            "type": "string"
+          },
+          "currencyTo": {
+            "type": "string"
+          },
+          "rateStart": {
+            "type": "number",
+            "format": "double"
+          },
+          "rateEnd": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "betType": {
+            "$ref": "#/components/schemas/BetType"
+          },
+          "startedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitTestCommand": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestAnswerDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitTestResponse": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "achievementReceivedId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestAnswerDto": {
+        "required": [
+          "selectedCasesNumbers",
+          "testQuestionNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "testQuestionNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "selectedCasesNumbers": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestCaseDto": {
+        "required": [
+          "caseNumber",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "caseNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestCaseModel": {
+        "required": [
+          "caseNumber",
+          "description",
+          "testCaseScore"
+        ],
+        "type": "object",
+        "properties": {
+          "caseNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "testCaseScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestListItem": {
+        "required": [
+          "alreadyParticipated",
+          "description",
+          "lectureId",
+          "previewImageUrl",
+          "scoreForAttempt",
+          "testId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "scoreForAttempt": {
+            "type": "number",
+            "format": "double"
+          },
+          "previewImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "lectureId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "alreadyParticipated": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestModel": {
+        "type": "object",
+        "properties": {
+          "lectureId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "previewImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "scoreForAttempt": {
+            "type": "number",
+            "format": "double"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestQuestionModel"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestQuestionDto": {
+        "required": [
+          "allowMultipleAnswers",
+          "imagesUrls",
+          "isRequired",
+          "question",
+          "testCases"
+        ],
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "imagesUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCaseDto"
+            }
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "allowMultipleAnswers": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestQuestionModel": {
+        "required": [
+          "allowMultipleAnswers",
+          "allowPartialCorrectCasesSelection",
+          "correctCasesNumbers",
+          "isRequired",
+          "number",
+          "question",
+          "testCases"
+        ],
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "question": {
+            "type": "string"
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCaseModel"
+            }
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "allowMultipleAnswers": {
+            "type": "boolean"
+          },
+          "allowPartialCorrectCasesSelection": {
+            "type": "boolean"
+          },
+          "correctCasesNumbers": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "imagesUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserAchievementsListItem": {
+        "required": [
+          "achievedOn",
+          "achievementId",
+          "imageUrl",
+          "nameEn",
+          "nameRu",
+          "scoreForAchievement"
+        ],
+        "type": "object",
+        "properties": {
+          "achievementId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nameRu": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "scoreForAchievement": {
+            "type": "number",
+            "format": "double"
+          },
+          "achievedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "achieved": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListItem": {
+        "required": [
+          "fullName",
+          "gradeInfo",
+          "id",
+          "score",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "gradeInfo": {
+            "$ref": "#/components/schemas/GradeInfoShort"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserReferralDto": {
+        "required": [
+          "fullName",
+          "userId",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Specify the authorization token.",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
