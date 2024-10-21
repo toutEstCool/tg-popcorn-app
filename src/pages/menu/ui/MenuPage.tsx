@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './MenuPage.module.css'
-import { ChevronRight } from 'lucide-react'
+import { Link } from "react-router-dom";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./MenuPage.module.css";
+import { ChevronRight } from "lucide-react";
 import {
   Levelcon,
   TelegramSupportIcon,
-  WikiIcon
-} from '../../../widgets/IconsComponents'
+  WikiIcon,
+} from "../../../widgets/IconsComponents";
 
 export const MenuPage = () => {
   return (
@@ -15,7 +15,7 @@ export const MenuPage = () => {
       <HeaderWithBackButton title="Меню" />
       <ul className={s.topSettingsContainer}>
         <li className={s.topSettingsItem}>
-          <Link className={s.topMenuItemLink} to={'/level'} aria-label="Уровни">
+          <Link className={s.topMenuItemLink} to={"/level"} aria-label="Уровни">
             <Levelcon />
             <div className={s.infoTitle}>
               <span className={s.title}>Уровни</span>
@@ -26,7 +26,7 @@ export const MenuPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.topMenuItemLink}
-            to={'/knowledge-base'}
+            to={"/knowledge-base"}
             aria-label="База знаний"
           >
             <WikiIcon />
@@ -39,17 +39,25 @@ export const MenuPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.topMenuItemLink}
-            to={'#'}
+            to={"#"}
             aria-label="тг поддержка"
           >
             <TelegramSupportIcon />
             <div className={s.infoTitle}>
-              <span className={s.title}>тг поддержка</span>
+              <a
+                className={s.bottomSettingsItemLink}
+                href="https://t.me/@RiskProfit"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="тг поддержка"
+              >
+                <span className={s.title}>22</span>
+              </a>
             </div>
             <ChevronRight color="#7C7C7C" />
           </Link>
         </li>
       </ul>
     </AppLayout>
-  )
-}
+  );
+};
