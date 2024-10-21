@@ -33,15 +33,15 @@
 
 .iconWrapper {
   position: absolute;
-  right: -14px;
+  right: -30px;
   top: 50%;
-  transform: translateY(-36%);
-  height: 80px;
+  transform: translateY(-60%);
+  height: 80%;
   overflow: hidden;
 }
 
 .referralIcon {
-  height: 110%;
+  height: 100%;
   object-fit: cover;
   opacity: 0.9;
 }
