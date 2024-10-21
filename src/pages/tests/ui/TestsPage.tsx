@@ -36,7 +36,6 @@ export const TestsPage = () => {
                 src={test.previewImageUrl ?? undefined}
                 alt="Тест превью"
               />
-              )
               <div className={s.testInfoWrapper}>
                 <span className={s.testTitle}>{test.title}</span>
                 <span className={s.testSubtitle}>{test.description}</span>
