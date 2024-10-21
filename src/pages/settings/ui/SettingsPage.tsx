@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './SettingsPage.module.css'
-import { ChevronRight } from 'lucide-react'
+import { Link } from "react-router-dom";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./SettingsPage.module.css";
+import { ChevronRight } from "lucide-react";
 import {
   ContactsIcon,
   EmailIcon,
   LanguageIcon,
   MenualIcon,
-  TelegramSupportIcon
-} from '../../../widgets/IconsComponents'
+  TelegramSupportIcon,
+} from "../../../widgets/IconsComponents";
 
 export const SettingsPage = () => {
   return (
@@ -19,7 +19,7 @@ export const SettingsPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.topSettingsItemLink}
-            to={'/language'}
+            to={"/language"}
             aria-label="Язык"
           >
             <LanguageIcon />
@@ -33,7 +33,7 @@ export const SettingsPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.topSettingsItemLink}
-            to={'#'}
+            to={"#"}
             aria-label="Инструкция"
           >
             <MenualIcon />
@@ -46,16 +46,13 @@ export const SettingsPage = () => {
       </ul>
       {/*  */}
       <ul className={s.bottomSettingsContainer}>
-        <li>
-          <span>Контакты</span>
-        </li>
         <li className={s.topSettingsItem}>
           <span className={s.titleBottomSection}>Контакты</span>
         </li>
         <li className={s.topSettingsItem}>
           <Link
             className={s.bottomSettingsItemLink}
-            to={'#'}
+            to={"#"}
             aria-label="Контакты"
           >
             <ContactsIcon />
@@ -66,9 +63,11 @@ export const SettingsPage = () => {
           </Link>
         </li>
         <li className={s.topSettingsItem}>
-          <Link
+          <a
             className={s.bottomSettingsItemLink}
-            to={'#'}
+            href="https://t.me/@RiskProfit"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="тг поддержка"
           >
             <TelegramSupportIcon />
@@ -76,12 +75,12 @@ export const SettingsPage = () => {
               <span className={s.title}>тг поддержка</span>
             </div>
             <ChevronRight color="#7C7C7C" />
-          </Link>
+          </a>
         </li>
         <li className={s.topSettingsItem}>
           <Link
             className={s.bottomSettingsItemLink}
-            to={'#'}
+            to={"#"}
             aria-label="Электронная почта"
           >
             <EmailIcon />
@@ -94,7 +93,7 @@ export const SettingsPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.bottomSettingsItemLink}
-            to={'#'}
+            to={"#"}
             aria-label="канал в тг"
           >
             <TelegramSupportIcon />
@@ -106,5 +105,5 @@ export const SettingsPage = () => {
         </li>
       </ul>
     </AppLayout>
-  )
-}
+  );
+};
