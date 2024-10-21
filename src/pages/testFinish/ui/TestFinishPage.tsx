@@ -2,43 +2,65 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./TestFinishPage.module.css";
 import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
-import { useTestInfo } from "../../../features/test-v2/hooks/useTestInfo";
+import { useAchievementsDetails } from "../../../features/achievements/hooks/useAchievementsDetails";
+import { AppImage } from "../../../shared/ui/AppImg/AppImage";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const TestFinishPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const testId = location.state?.testId;
+  const { achievementId } = location.state || {};
 
-  const { testInfo } = useTestInfo({ id: testId });
+  const { achievementDetails, isLoadingAchievementDetails } =
+    useAchievementsDetails({ achievementId });
 
   const navigateOnTest = () => {
     navigate("/tests");
   };
 
+  if (isLoadingAchievementDetails) {
+    return (
+      <div className={s.loader}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!achievementId) {
+    return (
+      <AppLayout>
+        <HeaderWithBackButton
+          title={"Тест на тип личности"}
+          titleColor="#DBB157"
+        />
+        <div className={s.finishWrapper}>
+          <p>Достижение не найдено</p>
+        </div>
+      </AppLayout>
+    );
+  }
+
   return (
     <AppLayout>
       <HeaderWithBackButton
-        title={testInfo?.title ?? "Тест завершен"}
+        title={"Тест на тип личности"}
         titleColor="#DBB157"
       />
       <div className={s.mainImgWrapper}>
-        <img
+        <AppImage
           className={s.mainImg}
           width={150}
           height={150}
-          src="https://s3-alpha-sig.figma.com/img/60b9/f905/d6bdda7b8d3d22f88e4255417047b422?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Yo~JKTnxgrxX7l-l~0egNnNIAWOpxgw6DjiYdBo7SxIDwZ3Y9oqOUKmj0aYZS~6HKx0N0Az-whdqdzwuC56boNnImGUqL85LiUcdrQ4W0XtgNEXEYF4jj2dhF5J70yZye~iA6MA~Na97pbQuXy6roMkaByn4I2gWlpFODWR7btC0uBdkJH~MGzecHddo0Vfgpoxl-lSlc-PH4Y-c3x-NM0yXXhMq8mrHpFnawGzzssA56r-4vhDlvRKqlDDR-6BOO1XgyGjYdlbUbeTLuz69hPTieDRFSg~epg8yMHgGYwkx0sUbAou6cXS5k20Ek5pTCv49hZGNjbekbBVA-wn5SQ__"
+          src={achievementDetails?.imageUrl ?? undefined}
           alt=""
         />
       </div>
       <section className={s.finishWrapper}>
         <div className={s.finishBottomWrapper}>
-          <span className={s.finishPercent}>Маркетмейкер</span>
+          <span className={s.resultInfo}>На рынке ты работаешь в стиле</span>
+          <span className={s.finishPercent}>{achievementDetails?.nameRu}</span>
           <p className={s.finishDescription}>
-            Твоя стратегия сбалансированная, словно у маркетмейкера, который
-            должен поддерживать ордербук и уравновешивать цену актива. Благодаря
-            балансу между рисков и консервативностью ты способен зарабатывать на
-            рынке дольше, чем большинство участников рынка. (Андрей Грачёв/ DWF
-            Labs)
+            {achievementDetails?.descriptionRu}
           </p>
         </div>
       </section>

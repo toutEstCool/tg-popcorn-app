@@ -23,7 +23,6 @@ export const TestPage = () => {
     isLoadingTestInfo: true,
   };
   const submitTestMutation = useSubmitTestMutation();
-
   const queryClient = useQueryClient();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -107,13 +106,21 @@ export const TestPage = () => {
     submitTestMutation.mutate(
       { testId: parsedTestId, answers },
       {
-        onSuccess: () => {
+        onSuccess: (data) => {
           queryClient.invalidateQueries({
             queryKey: ["user-achievements"],
           });
-          navigate("/test-finish", {
-            state: { testId: parsedTestId },
-          });
+
+          const achievementReceivedId = data?.achievementReceivedId;
+
+          if (achievementReceivedId) {
+            navigate("/test-finish", {
+              state: { achievementId: achievementReceivedId },
+            });
+          } else {
+            console.error("Achievement ID отсутствует в ответе");
+            navigate("/profile");
+          }
         },
         onError: (error) => {
           console.error("Ошибка при отправке данных теста", error);
