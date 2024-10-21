@@ -2,7 +2,7 @@ import { useGetAchievementsDetailsQuery } from "../../../entities/achievements-v
 import { GetUserAchievementInfoQuery } from "../../../shared/api/generated";
 
 interface UseAchievementsDetailsProps extends GetUserAchievementInfoQuery {
-  enabled: boolean;
+  enabled?: boolean;
 }
 
 export const useAchievementsDetails = ({
