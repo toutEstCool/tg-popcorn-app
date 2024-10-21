@@ -45,15 +45,17 @@ export const AchievementsList = ({
   return (
     <div className={className}>
       <div>
-        <BottomDrawer
-          isLoading={loading}
-          error={error?.message}
-          isOpen={isBottomSheetOpen}
-          onClose={handleCloseSheet}
-          title={achievementDetails?.descriptionRu}
-          icon={achievementDetails?.imageUrl ?? undefined}
-          btnText="Пропустить"
-        />
+        {isBottomSheetOpen && (
+          <BottomDrawer
+            isLoading={loading}
+            error={error?.message}
+            isOpen={isBottomSheetOpen}
+            onClose={handleCloseSheet}
+            title={achievementDetails?.descriptionRu}
+            icon={achievementDetails?.imageUrl ?? undefined}
+            btnText="Пропустить"
+          />
+        )}
       </div>
       <div className={s.achievementsGrid}>
         {achievements.map((achievement) => (
