@@ -33,7 +33,7 @@
 
 .iconWrapper {
   position: absolute;
-  right: 0;
+  right: -14px;
   top: 50%;
   transform: translateY(-36%);
   height: 101px;
