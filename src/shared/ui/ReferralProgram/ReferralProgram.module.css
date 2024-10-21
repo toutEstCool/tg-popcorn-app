@@ -33,9 +33,9 @@
 
 .iconWrapper {
   position: absolute;
-  right: -30px;
+  right: -40px;
   top: 50%;
-  transform: translateY(-60%);
+  transform: translateY(-40%);
   height: 80%;
   overflow: hidden;
 }
