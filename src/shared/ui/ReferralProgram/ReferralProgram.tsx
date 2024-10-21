@@ -1,4 +1,6 @@
 import s from "./ReferralProgram.module.css";
+import ReferralPng from "../../../shared/assets/images/referral.png";
+import { AppImage } from "../AppImg/AppImage";
 
 export const ReferralProgram = () => {
   return (
@@ -8,11 +10,9 @@ export const ReferralProgram = () => {
         <p className={s.subtitle}>Приглашай друзей - зарабатывай $CORNCOIN</p>
       </div>
       <div className={s.iconWrapper}>
-        <img
+        <AppImage
           className={s.referralIcon}
-          src={
-            "https://s3-alpha-sig.figma.com/img/f2be/1e01/a52d7c1c6036209c89830b7f6054e816?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YwXJUDccfgEsXCqr4YW3u8V~96VN~wyTIQHvUfeHCxwm-dVBT6E4W~DUrKvO~5tnfdAL-yNRF9ns0YE~BHRZCPL16seSNqk60dcUrn9MuR~GAwHTDXNARN-CGNdUypY9frv22VFAdLIyeysqsJgtG~M5Khjxe6elODb2V411U6J-INHAjt~8ziz4aozxyvALENBmYd8bGGOhfLrr5SfMgbJF6gI4~DJLDGVralIL3SW5Y8tS56Jejap0gRGD8HQUQCZMKkoMVHTprG70viAKNwDgnbhn3QeGQG3~esNmz9Ll1GCQdIDgzjv1yW1CYERwqVYMcUiTddP1p90Il3PnBA__"
-          }
+          src={ReferralPng}
           alt="Referral Icon"
         />
       </div>

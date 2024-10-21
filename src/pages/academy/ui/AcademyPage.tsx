@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom'
-import { HeaderWithBackButton } from '../../../shared/ui/HeaderWithBackButton'
-import { AppLayout } from '../../../widgets/AppLayout'
-import s from './AcademyPage.module.css'
+import { useNavigate } from "react-router-dom";
+import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
+import { AppLayout } from "../../../widgets/AppLayout";
+import s from "./AcademyPage.module.css";
 
 export const AcademyPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const navigateOnTest = () => {
-    navigate('/tests')
-  }
+    navigate("/tests");
+  };
 
   return (
     <AppLayout>
@@ -35,5 +35,5 @@ export const AcademyPage = () => {
         </section>
       </div>
     </AppLayout>
-  )
-}
+  );
+};
