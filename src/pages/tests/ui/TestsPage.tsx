@@ -41,7 +41,7 @@ export const TestsPage = () => {
                 <span className={s.testTitle}>{test.title}</span>
                 <span className={s.testSubtitle}>{test.description}</span>
                 <span className={s.testReward}>
-                  +<RewardDisplay reward={test.scoreForAttempt} /> corncoin
+                  +<RewardDisplay reward={test.scoreForAttempt} /> $corncoin
                 </span>
               </div>
               <button

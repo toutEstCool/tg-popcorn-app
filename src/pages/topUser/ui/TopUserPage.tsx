@@ -43,7 +43,7 @@ export const TopUserPage = () => {
             className={classNames(users?.length > 0 ? s.topUsersList : null)}
           >
             {users?.map((user: UserListType) => (
-              <UserListItem key={user.id} user={user} />
+              <UserListItem key={user.id} user={user} topUsers />
             ))}
           </div>
         )}
