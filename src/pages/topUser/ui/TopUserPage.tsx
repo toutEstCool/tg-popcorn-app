@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./TopUserPage.module.css";
@@ -13,6 +13,7 @@ import { UserListItem as UserListType } from "../../../shared/api/generated";
 export const TopUserPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const debouncedSetSearchTerm = useCallback(
     debounce((value) => {
@@ -26,7 +27,36 @@ export const TopUserPage = () => {
     debouncedSetSearchTerm(value);
   };
 
-  const { users, totalCount, isLoading } = useTopUsers(debouncedSearchTerm, 50);
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useTopUsers(debouncedSearchTerm, 15);
+
+  const users = data?.pages.flatMap((page) => page.items ?? []) ?? [];
+  const totalCount = data?.pages?.[0]?.totalCount ?? 0;
+
+  useEffect(() => {
+    const loadMoreObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.5,
+      },
+    );
+
+    if (loadMoreRef.current) {
+      loadMoreObserver.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        loadMoreObserver.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   return (
     <AppLayout>
@@ -34,7 +64,7 @@ export const TopUserPage = () => {
       <div className={s.topUserWrapper}>
         <span className={s.topUserCountTitle}>{totalCount}</span>
         <SearchInput value={searchTerm} onChange={handleSearchChange} />
-        {isLoading ? (
+        {isLoading && !isFetchingNextPage ? (
           <div className={s.loader}>
             <Loader />
           </div>
@@ -45,6 +75,12 @@ export const TopUserPage = () => {
             {users?.map((user: UserListType) => (
               <UserListItem key={user.id} user={user} topUsers />
             ))}
+            {isFetchingNextPage && (
+              <div className={s.loader}>
+                <Loader />
+              </div>
+            )}
+            <div ref={loadMoreRef} className={s.loadMoreTrigger}></div>
           </div>
         )}
       </div>
