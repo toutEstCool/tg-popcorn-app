@@ -26,7 +26,7 @@ export const TopUserPage = () => {
     debouncedSetSearchTerm(value);
   };
 
-  const { users, totalCount, isLoading } = useTopUsers(debouncedSearchTerm);
+  const { users, totalCount, isLoading } = useTopUsers(debouncedSearchTerm, 50);
 
   return (
     <AppLayout>
