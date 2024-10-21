@@ -45,13 +45,15 @@ export function useGetUserReferralsQuery(
   >,
 ) {
   return useQuery<GetUserReferralsResponse, Error>({
-    queryKey: userReferralsKey.concat([{ userId }]),
+    queryKey: userReferralsKey.concat([{ userId, skip, take }]),
     queryFn: () => postApiUsersGetUserReferrals({ userId, skip, take }),
     enabled: !!userId,
+    staleTime: 5000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
     ...options,
   });
 }
-
 export function useGetUsersListQuery(
   { fullNameTerm, userNameTerm, take, skip }: GetUsersListQuery,
   options?: Omit<
