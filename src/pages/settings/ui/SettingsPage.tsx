@@ -65,7 +65,7 @@ export const SettingsPage = () => {
         <li className={s.topSettingsItem}>
           <a
             className={s.bottomSettingsItemLink}
-            href="https://t.me/@RiskProfit"
+            href="https://t.me/RiskProfit"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="тг поддержка"

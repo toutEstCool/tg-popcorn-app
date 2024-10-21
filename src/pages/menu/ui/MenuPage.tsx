@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./MenuPage.module.css";
@@ -8,6 +7,7 @@ import {
   TelegramSupportIcon,
   WikiIcon,
 } from "../../../widgets/IconsComponents";
+import { Link } from "react-router-dom";
 
 export const MenuPage = () => {
   return (
@@ -37,25 +37,19 @@ export const MenuPage = () => {
           </Link>
         </li>
         <li className={s.topSettingsItem}>
-          <Link
+          <a
             className={s.topMenuItemLink}
-            to={"#"}
+            href="https://t.me/RiskProfit"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="тг поддержка"
           >
             <TelegramSupportIcon />
             <div className={s.infoTitle}>
-              <a
-                className={s.bottomSettingsItemLink}
-                href="https://t.me/@RiskProfit"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="тг поддержка"
-              >
-                <span className={s.title}>22</span>
-              </a>
+              <span className={s.title}>тг поддержка</span>
             </div>
             <ChevronRight color="#7C7C7C" />
-          </Link>
+          </a>
         </li>
       </ul>
     </AppLayout>
