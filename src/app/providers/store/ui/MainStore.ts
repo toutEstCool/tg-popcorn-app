@@ -7,14 +7,12 @@ import {
   userReferralsReducer,
   usersReducer,
 } from "../../../../entities/user";
-import { referralReducer } from "../../../../entities/referral";
 
 const mainReducer = combineReducers({
   settings: settingsReducer,
   auth: authReducer,
   user: userReducer,
   users: usersReducer,
-  referral: referralReducer,
   userReferrals: userReferralsReducer,
 });
 
@@ -34,7 +32,6 @@ export interface StateSchema {
   auth: ReturnType<typeof authReducer>;
   user: ReturnType<typeof userReducer>;
   users: ReturnType<typeof usersReducer>;
-  referral: ReturnType<typeof referralReducer>;
   userReferrals: ReturnType<typeof userReferralsReducer>;
   settings: ReturnType<typeof settingsReducer>;
 }
