@@ -23,17 +23,21 @@ export const BottomDrawer = ({
 }: IBottomDrawerProps) => {
   return (
     <div className={classNames(s.overlay, { [s.open]: isOpen })}>
-      <div className={s.sheetContent}>
-        <button className={s.closeButton} onClick={onClose}>
-          &times;
-        </button>
-        {isLoading ? (
-          <Loader className={s.loader} />
-        ) : (
+      {isLoading ? (
+        <div className={s.loader}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={s.sheetContent}>
+          <button className={s.closeButton} onClick={onClose}>
+            &times;
+          </button>
           <div className={s.contentWrapper}>
-            <div className={s.iconWrapper}>
-              <img className={s.icon} src={icon} alt="Invite Friends" />
-            </div>
+            {icon && (
+              <div className={s.iconWrapper}>
+                <img className={s.icon} src={icon} alt="Invite Friends" />
+              </div>
+            )}
             <div className={s.inviteTextWrapper}>
               <p className={s.inviteText}>{title}</p>
             </div>
@@ -43,8 +47,8 @@ export const BottomDrawer = ({
               text={btnText}
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
