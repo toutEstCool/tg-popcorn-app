@@ -42,7 +42,10 @@ export const WikiBasePage = () => {
         />
         <section className={s.tileWrapper}>
           {categories.map((category) => (
-            <div onClick={() => handleCategoryClick(category.id)}>
+            <div
+              key={category.id}
+              onClick={() => handleCategoryClick(category.id)}
+            >
               <Tile>
                 <span className={s.tileTitle}>{category.title}</span>
                 <AppImage width={92} src={category.icon} />

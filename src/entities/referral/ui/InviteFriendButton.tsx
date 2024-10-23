@@ -20,6 +20,7 @@ export const InviteFriendButton = ({
   const [referralCode, setReferralCode] = useState<string | null>(null);
 
   const clipboard = useClipboard();
+  // https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}
 
   const inviteLink = referralCode
     ? `https://t.me/PopcornCapitals_Bot/app?startapp=${referralCode}`
@@ -51,7 +52,7 @@ export const InviteFriendButton = ({
   const handleCopyLink = () => {
     if (referralCode) {
       try {
-        clipboard.copy();
+        clipboard.copy(inviteLink);
         navigator.share?.({
           title: "PopcornCapitals_Bot",
           url: inviteLink,
