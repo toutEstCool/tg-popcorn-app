@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 10px;
   width: 100%;
   z-index: 30;
   transition: 0.4s;
@@ -28,7 +29,8 @@
 @media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
-    bottom: 0.388rem;
+    bottom: 0.888rem;
+    margin-bottom: 5px;
     left: 0.531rem;
     right: 0.531rem;
     background-color: #1f1f1f;
