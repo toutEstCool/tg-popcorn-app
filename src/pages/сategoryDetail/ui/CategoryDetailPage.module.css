@@ -10,15 +10,14 @@
   font-size: 1.313rem;
   font-weight: 600;
   line-height: 28.13px;
-  text-align: center;
-  text-align: center;
+  text-align: left;
 }
 
 .mainContentWrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 .categorySubtitle {
