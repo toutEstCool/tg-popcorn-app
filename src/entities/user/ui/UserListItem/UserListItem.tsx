@@ -47,7 +47,7 @@ export const UserListItem = ({
               <>
                 <span className={s.userInfoLvl}>{userReferrals.userName}</span>
                 <span className={s.userInfoNickName}>
-                  (пока данных нет) $CORNCOIN
+                  {userReferrals?.scoreForReferral} $CORNCOIN
                 </span>
               </>
             ) : (
@@ -86,7 +86,7 @@ export const UserListItem = ({
             <>
               <span className={s.userInfoLvl}>{userReferrals.userName}</span>
               <span className={s.userInfoNickName}>
-                (пока данных нет) $CORNCOIN
+                {userReferrals?.scoreForReferral} $CORNCOIN
               </span>
             </>
           ) : (

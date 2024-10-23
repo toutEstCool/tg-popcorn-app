@@ -8,6 +8,7 @@ import { createInstance } from "./api";
 import type { BodyType } from "./api";
 export interface UserReferralDto {
   fullName: string;
+  scoreForReferral: number;
   userId: string;
   userName: string;
 }
@@ -96,9 +97,25 @@ export interface TestAnswerDto {
   testQuestionNumber: number;
 }
 
-export interface SubmitTestResponse {
+export interface TestAchievementResultDto {
   /** @nullable */
+  descriptionEn: string | null;
+  descriptionRu: string;
+  /** @nullable */
+  imageUrl: string | null;
+  scoreForResult: number;
+  /** @nullable */
+  titleEn: string | null;
+  titleRu: string;
+}
+
+export interface SubmitTestResponse {
+  /**
+   * @deprecated
+   * @nullable
+   */
   achievementReceivedId?: number | null;
+  achievementResult?: TestAchievementResultDto;
   isSuccess?: boolean;
 }
 
@@ -152,6 +169,30 @@ export interface RoleDto {
 export interface RefreshTokenCommand {
   accessToken?: string;
   refreshToken?: string;
+}
+
+export interface LinkAchievementWithTestCommand {
+  achievementId?: number;
+  /** @nullable */
+  descriptionEn?: string | null;
+  descriptionRu?: string;
+  /** @nullable */
+  imageClaimedUrl?: string | null;
+  /** @nullable */
+  imageResultUrl?: string | null;
+  /** @nullable */
+  imageUnclaimedUrl?: string | null;
+  isTestScoreFromInclusive?: boolean;
+  isTestScoreToInclusive?: boolean;
+  /** @nullable */
+  nameEn?: string | null;
+  nameRu?: string;
+  /** @nullable */
+  requiredActionEn?: string | null;
+  requiredActionRu?: string;
+  testId?: number;
+  testScoreFrom?: number;
+  testScoreTo?: number;
 }
 
 export interface LectureListItem {
@@ -482,6 +523,21 @@ export const postApiAchievementsGetUserAchievementInfo = (
   );
 };
 
+export const postApiAchievementsLinkWithTest = (
+  linkAchievementWithTestCommand: BodyType<LinkAchievementWithTestCommand>,
+  options?: SecondParameter<typeof createInstance>,
+) => {
+  return createInstance<void>(
+    {
+      url: `/api/Achievements/linkWithTest`,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      data: linkAchievementWithTestCommand,
+    },
+    options,
+  );
+};
+
 export const postApiAuthSignIn = (
   signInCommand: BodyType<SignInCommand>,
   options?: SecondParameter<typeof createInstance>,
@@ -796,6 +852,9 @@ export type PostApiAchievementsGetAchievementsStatisticListResult = NonNullable<
 >;
 export type PostApiAchievementsGetUserAchievementInfoResult = NonNullable<
   Awaited<ReturnType<typeof postApiAchievementsGetUserAchievementInfo>>
+>;
+export type PostApiAchievementsLinkWithTestResult = NonNullable<
+  Awaited<ReturnType<typeof postApiAchievementsLinkWithTest>>
 >;
 export type PostApiAuthSignInResult = NonNullable<
   Awaited<ReturnType<typeof postApiAuthSignIn>>

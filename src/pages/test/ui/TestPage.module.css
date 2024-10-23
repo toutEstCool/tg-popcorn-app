@@ -10,6 +10,10 @@
   gap: 2.188rem;
 }
 
+.headerTitle {
+  color: #dbb157;
+}
+
 .testCountTitle {
   color: #dbb157;
   text-align: center;
@@ -24,8 +28,6 @@
   font-weight: 600;
   font-size: 1.125;
   line-height: 21.09px;
-  max-width: 65%;
-  word-wrap: break-word;
 }
 
 .testQuestionsWrapper {
