@@ -20,6 +20,7 @@ import { LoginPage } from "../../../../pages/login";
 import { TestFirstPage } from "../../../../pages/testFirstStep";
 import { FaqPage } from "../../../../pages/faq";
 import { CategoryDetailPage } from "../../../../pages/сategoryDetail";
+import { InvitePage } from "../../../../pages/Invite";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
       { path: "/test-first-step/:testId", element: <TestFirstPage /> },
       { path: "/test-process/:testId", element: <TestPage /> },
       { path: "/test-finish", element: <TestFinishPage /> },
+      { path: "/invite/:referralCode", element: <InvitePage /> },
     ],
   },
 ]);
