@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import { UserAchievementsListItem } from "../../../../shared/api/generated";
 import { AppImage } from "../../../../shared/ui/AppImg/AppImage";
-import { useAchievementsDetails } from "../../hooks/useAchievementsDetails";
+import { useAchievementsDetails } from "../../model/hooks/useAchievementsDetails";
 
 interface IAchievementsListProps {
   className?: string;
@@ -53,7 +53,7 @@ export const AchievementsList = ({
             onClose={handleCloseSheet}
             title={achievementDetails?.descriptionRu}
             icon={achievementDetails?.imageUrl ?? undefined}
-            btnText="Пропустить"
+            btnText="Приступить"
           />
         )}
       </div>

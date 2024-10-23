@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AppLayout } from "../../../../widgets/AppLayout";
 import { HeaderWithBackButton } from "../../../../shared/ui/HeaderWithBackButton";
 import { Button } from "../../../../shared/ui/Button";
-import { useTestInfo } from "../../../../features/test-v2/hooks/useTestInfo";
 import { Loader } from "../../../../shared/ui/Loader";
+import { useTestInfo } from "../../../../features/test/model/hooks/useTestInfo";
 
 const testDetails = {
   "1": {

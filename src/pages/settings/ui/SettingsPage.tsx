@@ -4,8 +4,6 @@ import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./SettingsPage.module.css";
 import { ChevronRight } from "lucide-react";
 import {
-  ContactsIcon,
-  EmailIcon,
   LanguageIcon,
   MenualIcon,
   TelegramSupportIcon,
@@ -33,12 +31,12 @@ export const SettingsPage = () => {
         <li className={s.topSettingsItem}>
           <Link
             className={s.topSettingsItemLink}
-            to={"#"}
+            to={"/faq"}
             aria-label="Инструкция"
           >
             <MenualIcon />
             <div className={s.infoTitle}>
-              <span className={s.title}>Инструкция</span>
+              <span className={s.title}>FAQ</span>
             </div>
             <ChevronRight color="#7C7C7C" />
           </Link>
@@ -50,19 +48,6 @@ export const SettingsPage = () => {
           <span className={s.titleBottomSection}>Контакты</span>
         </li>
         <li className={s.topSettingsItem}>
-          <Link
-            className={s.bottomSettingsItemLink}
-            to={"#"}
-            aria-label="Контакты"
-          >
-            <ContactsIcon />
-            <div className={s.infoTitle}>
-              <span className={s.title}>Контакты</span>
-            </div>
-            <ChevronRight color="#7C7C7C" />
-          </Link>
-        </li>
-        <li className={s.topSettingsItem}>
           <a
             className={s.bottomSettingsItemLink}
             href="https://t.me/RiskProfit"
@@ -72,23 +57,10 @@ export const SettingsPage = () => {
           >
             <TelegramSupportIcon />
             <div className={s.infoTitle}>
-              <span className={s.title}>тг поддержка</span>
+              <span className={s.title}>Поддержка</span>
             </div>
             <ChevronRight color="#7C7C7C" />
           </a>
-        </li>
-        <li className={s.topSettingsItem}>
-          <Link
-            className={s.bottomSettingsItemLink}
-            to={"#"}
-            aria-label="Электронная почта"
-          >
-            <EmailIcon />
-            <div className={s.infoTitle}>
-              <span className={s.title}>Электронная почта</span>
-            </div>
-            <ChevronRight color="#7C7C7C" />
-          </Link>
         </li>
         <li className={s.topSettingsItem}>
           <Link
@@ -98,7 +70,7 @@ export const SettingsPage = () => {
           >
             <TelegramSupportIcon />
             <div className={s.infoTitle}>
-              <span className={s.title}>канал в тг</span>
+              <span className={s.title}>Официальный канал</span>
             </div>
             <ChevronRight color="#7C7C7C" />
           </Link>

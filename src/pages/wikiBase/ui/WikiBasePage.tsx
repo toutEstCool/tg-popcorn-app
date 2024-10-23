@@ -1,4 +1,3 @@
-import { CustomInput } from "../../../shared/ui/CustomInput";
 import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { Tile } from "../../../shared/ui/Tile";
 import { AppLayout } from "../../../widgets/AppLayout";
@@ -8,8 +7,22 @@ import TechAnalysisPng from "../../../shared/assets/images/tech-analysis.png";
 import BestBooksPng from "../../../shared/assets/images/best-books.png";
 import s from "./WikiBasePage.module.css";
 import { AppImage } from "../../../shared/ui/AppImg/AppImage";
+import { InviteFriendButton } from "../../../entities/referral";
+import { useNavigate } from "react-router-dom";
+
+const categories = [
+  { id: "1", title: "Психология", icon: PsihologyPng },
+  { id: "2", title: "Тех.анализ", icon: TechAnalysisPng },
+  { id: "3", title: "ТОП книг", icon: BestBooksPng },
+];
 
 export const WikiBasePage = () => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryId: string) => {
+    navigate(`/knowledge-base/${categoryId}`);
+  };
+
   return (
     <AppLayout>
       <HeaderWithBackButton title="База знаний" />
@@ -23,21 +36,19 @@ export const WikiBasePage = () => {
         </div>
       </div>
       <div className={s.wikiActionWrapper}>
-        <CustomInput />
-        <button className={s.wikiBaseActionBtn}>Отправить ссылку</button>
+        <InviteFriendButton
+          className={s.wikiBaseActionBtn}
+          btnText="Отправить ссылку"
+        />
         <section className={s.tileWrapper}>
-          <Tile>
-            <span className={s.tileTitle}>Психология</span>
-            <AppImage width={92} src={PsihologyPng} />
-          </Tile>
-          <Tile>
-            <span className={s.tileTitle}>Тех.анализ</span>
-            <AppImage width={92} src={TechAnalysisPng} />
-          </Tile>
-          <Tile>
-            <span className={s.tileTitle}>ТОП книг</span>
-            <AppImage width={92} src={BestBooksPng} />
-          </Tile>
+          {categories.map((category) => (
+            <div onClick={() => handleCategoryClick(category.id)}>
+              <Tile>
+                <span className={s.tileTitle}>{category.title}</span>
+                <AppImage width={92} src={category.icon} />
+              </Tile>
+            </div>
+          ))}
         </section>
       </div>
     </AppLayout>

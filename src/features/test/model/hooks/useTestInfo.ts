@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetTestInfoQuery } from "../../../entities/test-v2/queries";
+import { useGetTestInfoQuery } from "../../../../entities/test/queries";
 
 interface UseTestInfoProps {
   id?: number;

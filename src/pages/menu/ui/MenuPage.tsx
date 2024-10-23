@@ -46,7 +46,7 @@ export const MenuPage = () => {
           >
             <TelegramSupportIcon />
             <div className={s.infoTitle}>
-              <span className={s.title}>тг поддержка</span>
+              <span className={s.title}>Поддержка</span>
             </div>
             <ChevronRight color="#7C7C7C" />
           </a>

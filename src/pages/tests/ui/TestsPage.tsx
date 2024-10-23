@@ -4,8 +4,8 @@ import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./TestsPage.module.css";
 import { Loader } from "../../../shared/ui/Loader";
 import { RewardDisplay } from "../../../shared/ui/RewardDisplay";
-import { useTestList } from "../../../features/test-v2/hooks/useTestsList";
 import { AppImage } from "../../../shared/ui/AppImg/AppImage";
+import { useTestList } from "../../../features/test/model/hooks/useTestsList";
 
 export const TestsPage = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export const TestsPage = () => {
                 <span className={s.testTitle}>{test.title}</span>
                 <span className={s.testSubtitle}>{test.description}</span>
                 <span className={s.testReward}>
-                  +<RewardDisplay reward={test.scoreForAttempt} /> $corncoin
+                  + <RewardDisplay reward={test.scoreForAttempt} /> $corncoin
                 </span>
               </div>
               <button

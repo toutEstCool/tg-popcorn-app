@@ -1,5 +1,5 @@
-import { useGetAchievementsDetailsQuery } from "../../../entities/achievements-v2/queries";
-import { GetUserAchievementInfoQuery } from "../../../shared/api/generated";
+import { useGetAchievementsDetailsQuery } from "../../../../entities/achievements/queries";
+import { GetUserAchievementInfoQuery } from "../../../../shared/api/generated";
 
 interface UseAchievementsDetailsProps extends GetUserAchievementInfoQuery {
   enabled?: boolean;
