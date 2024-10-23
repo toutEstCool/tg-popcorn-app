@@ -7,8 +7,8 @@ import s from "./LevelPage.module.css";
 import { UserXPBar } from "../../../shared/ui/UserXPBar";
 
 import { LevelsTable } from "../../../entities/grades";
-import { useProfile } from "../../../features/user-v2/model/useProfile";
 import { Loader } from "../../../shared/ui/Loader";
+import { useProfile } from "../../../features/user/model/hooks/useProfile";
 
 export const LevelPage = () => {
   const { profile, isLoading } = useProfile();

@@ -1,5 +1,5 @@
-import { useGetTestsListQuery } from "../../../entities/test-v2/queries";
-import { GetTestsListQuery } from "../../../shared/api/generated";
+import { useGetTestsListQuery } from "../../../../entities/test/queries";
+import { GetTestsListQuery } from "../../../../shared/api/generated";
 
 export const useTestList = ({ skip = 0, take = 11 }: GetTestsListQuery) => {
   const {

@@ -7,7 +7,7 @@ import {
   postApiTestsSubmitTest,
   SubmitTestCommand,
   SubmitTestResponse,
-} from "../../../shared/api/generated";
+} from "../../../../shared/api/generated";
 
 export function useSubmitTestMutation(
   options?: UseMutationOptions<SubmitTestResponse, Error, SubmitTestCommand>,

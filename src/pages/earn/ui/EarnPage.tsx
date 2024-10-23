@@ -1,7 +1,8 @@
 import { InviteFriendButton } from "../../../entities/referral";
 import { ReferralsList } from "../../../entities/user";
-import { useProfile } from "../../../features/user-v2/model/useProfile";
-import { useReferrals } from "../../../features/user-v2/model/useReferrals";
+import { useProfile } from "../../../features/user/model/hooks/useProfile";
+import { useReferrals } from "../../../features/user/model/hooks/useReferrals";
+
 import PrizePng from "../../../shared/assets/images/prize.png";
 import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { Loader } from "../../../shared/ui/Loader";

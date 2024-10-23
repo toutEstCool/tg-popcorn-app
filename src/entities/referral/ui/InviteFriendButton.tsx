@@ -3,14 +3,17 @@ import { useClipboard } from "use-clipboard-copy";
 import { useGenerateReferralCodeMutation } from "../queries/queriest";
 
 import s from "./InviteFriendButton.module.css";
-
-import { useGetCurrentUser } from "../../user-v2/queries";
+import { useGetCurrentUser } from "../../user/queries";
 
 interface IInviteFriendButtonProps {
   className?: string;
+  btnText?: string;
 }
 
-export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
+export const InviteFriendButton = ({
+  className,
+  btnText,
+}: IInviteFriendButtonProps) => {
   const { data: currentUserData } = useGetCurrentUser();
   const [copied, setCopied] = useState(false);
   const [shouldCopy, setShouldCopy] = useState(false);
@@ -90,11 +93,13 @@ export const InviteFriendButton = ({ className }: IInviteFriendButtonProps) => {
         onClick={handleInviteClick}
         disabled={isLoading}
       >
-        {isLoading
-          ? "Генерация..."
-          : copied
-            ? "Реферальный код скопирован"
-            : "Пригласить друга"}
+        {btnText
+          ? btnText
+          : isLoading
+            ? "Генерация..."
+            : copied
+              ? "Реферальный код скопирован"
+              : "Пригласить друга"}
       </button>
       <br />
       {referralCode && (

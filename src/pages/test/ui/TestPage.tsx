@@ -4,10 +4,10 @@ import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./TestPage.module.css";
 import classNames from "classnames";
-import { useTestInfo } from "../../../features/test-v2/hooks/useTestInfo";
-import { useSubmitTestMutation } from "../../../features/test-v2/hooks/useSubmitTest";
 import { Loader } from "../../../shared/ui/Loader";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTestInfo } from "../../../features/test/model/hooks/useTestInfo";
+import { useSubmitTestMutation } from "../../../features/test/model/hooks/useSubmitTest";
 
 type SelectedAnswers = {
   [key: number]: number | null;

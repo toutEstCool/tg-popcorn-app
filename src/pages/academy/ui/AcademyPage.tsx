@@ -14,7 +14,7 @@ export const AcademyPage = () => {
 
   return (
     <AppLayout>
-      <HeaderWithBackButton title="Обучение" />
+      <HeaderWithBackButton title="Академия" />
       <div className={s.academyWrapper}>
         <section className={s.bigTile}>
           <div className={s.bigTileInfoWrapper}>

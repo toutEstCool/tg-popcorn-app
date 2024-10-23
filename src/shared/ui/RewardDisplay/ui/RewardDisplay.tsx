@@ -4,10 +4,7 @@ interface IRewardDisplayProps {
 }
 
 export const RewardDisplay = ({ className, reward }: IRewardDisplayProps) => {
-  const formattedReward = `${reward.toLocaleString("ru-RU", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`.replace(",", ".");
+  const formattedReward = reward.toLocaleString("ru-RU");
 
   return <span className={className}>{formattedReward}</span>;
 };

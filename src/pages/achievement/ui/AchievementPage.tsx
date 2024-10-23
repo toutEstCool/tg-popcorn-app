@@ -3,8 +3,8 @@ import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./AchievemenPage.module.css";
 import { Loader } from "../../../shared/ui/Loader";
-import { useAchievementsList } from "../../../features/achievements/hooks/useAchievementsList";
-import { useProfile } from "../../../features/user-v2/model/useProfile";
+import { useAchievementsList } from "../../../features/achievements/model/hooks/useAchievementsList";
+import { useProfile } from "../../../features/user/model/hooks/useProfile";
 
 export const AchievementPage = () => {
   const { profile } = useProfile();

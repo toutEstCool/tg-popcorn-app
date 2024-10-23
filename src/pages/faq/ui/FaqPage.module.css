@@ -1,0 +1,31 @@
+.faqWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin-top: 10px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-bottom: 30%;
+}
+
+.faqText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faqTitle {
+  color: #dbb157;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.faqDescription {
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+}

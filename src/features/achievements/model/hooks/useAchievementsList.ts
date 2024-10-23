@@ -1,5 +1,5 @@
-import { useGetAchievementsQuery } from "../../../entities/achievements-v2/queries";
-import { GetUserAchievementsListQuery } from "../../../shared/api/generated";
+import { useGetAchievementsQuery } from "../../../../entities/achievements/queries";
+import { GetUserAchievementsListQuery } from "../../../../shared/api/generated";
 
 export const useAchievementsList = ({
   userId,

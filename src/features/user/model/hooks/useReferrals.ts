@@ -1,8 +1,8 @@
 import {
   useGetCurrentUser,
   useGetUserReferralsQuery,
-} from "../../../entities/user-v2/queries";
-import { GetUserReferralsQuery } from "../../../shared/api/generated";
+} from "../../../../entities/user/queries";
+import { GetUserReferralsQuery } from "../../../../shared/api/generated";
 
 export const useReferrals = ({ skip = 0, take = 5 }: GetUserReferralsQuery) => {
   const { data: currentUserData, isLoading: isLoadingCurrentUser } =

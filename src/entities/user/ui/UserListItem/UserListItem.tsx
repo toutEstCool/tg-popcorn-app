@@ -47,7 +47,7 @@ export const UserListItem = ({
               <>
                 <span className={s.userInfoLvl}>{userReferrals.userName}</span>
                 <span className={s.userInfoNickName}>
-                  (пока данных нет) $CORNCOIN222
+                  (пока данных нет) $CORNCOIN
                 </span>
               </>
             ) : (

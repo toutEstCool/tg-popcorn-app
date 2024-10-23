@@ -5,10 +5,10 @@ import s from "./UserProfilePage.module.css";
 import { useParams } from "react-router-dom";
 
 import { Loader } from "../../../shared/ui/Loader";
-import { useProfile } from "../../../features/user-v2/model/useProfile";
 import { UserCard } from "../../../entities/userCard";
 import { AchievementsList } from "../../../features/achievements";
-import { useAchievementsList } from "../../../features/achievements/hooks/useAchievementsList";
+import { useAchievementsList } from "../../../features/achievements/model/hooks/useAchievementsList";
+import { useProfile } from "../../../features/user/model/hooks/useProfile";
 
 export const UserProfilePage = () => {
   const { userId } = useParams<{ userId: string }>();
