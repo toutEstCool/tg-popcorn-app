@@ -24,6 +24,12 @@ export const UserXPBar = memo(
     end,
     isProfile = true,
   }: IUserXPBarProps) => {
+    const progressWidth = gradeInfo
+      ? ((score - gradeInfo.scoreFromInclusive) /
+          (gradeInfo.scoreToExclusive - gradeInfo.scoreFromInclusive)) *
+        100
+      : 0;
+
     return (
       <div className={classNames(s.UserXPBarWrapper, className)}>
         <span className={s.userLvl}>
@@ -56,7 +62,7 @@ export const UserXPBar = memo(
             style={{
               height: "9px",
               background: "#DBB157",
-              width: `${gradeInfo?.progressPercents || score * 10}%`,
+              width: `${progressWidth}%`,
               borderRadius: "28px",
             }}
           ></div>

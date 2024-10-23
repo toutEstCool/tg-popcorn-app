@@ -8,12 +8,12 @@ import { HeaderWithBackButton } from "../../../shared/ui/HeaderWithBackButton";
 import { Loader } from "../../../shared/ui/Loader";
 import { ReferralProgram } from "../../../shared/ui/ReferralProgram";
 import { RewardDisplay } from "../../../shared/ui/RewardDisplay";
-import { UserXPBar } from "../../../shared/ui/UserXPBar";
+import { UserReferralBar } from "../../../shared/ui/UserReferralBar";
 import { AppLayout } from "../../../widgets/AppLayout";
 import s from "./EarnPage.module.css";
 
 export const EarnPage = () => {
-  const { referrals, userReferralsCount, isLoading } = useReferrals({
+  const { referrals, isLoading } = useReferrals({
     take: 5,
     skip: 0,
   });
@@ -51,10 +51,10 @@ export const EarnPage = () => {
           </div>
           <ReferralProgram />
           <div className={s.referralWrapper}>
-            <UserXPBar
+            <UserReferralBar
               className={s.xbBar}
-              score={userReferralsCount}
-              end={10}
+              referrals={referrals}
+              totalCount={10}
               isProfile={false}
             />
             <div style={{ marginTop: "10px" }}>

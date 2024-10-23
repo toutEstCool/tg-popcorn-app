@@ -111,14 +111,12 @@ export const TestPage = () => {
             queryKey: ["user-achievements"],
           });
 
-          const achievementReceivedId = data?.achievementReceivedId;
-
-          if (achievementReceivedId) {
+          if (data?.isSuccess && data?.achievementResult) {
             navigate("/test-finish", {
-              state: { achievementId: achievementReceivedId },
+              state: { achievementResult: data.achievementResult },
             });
           } else {
-            console.error("Achievement ID отсутствует в ответе");
+            console.error("Achievement result отсутствует в ответе");
             navigate("/profile");
           }
         },
@@ -134,6 +132,7 @@ export const TestPage = () => {
       <HeaderWithBackButton
         onClick={handlePreviousQuestion}
         title={testInfo?.title ?? "Тест"}
+        className={s.headerTitle}
       />
       <section className={s.testWrapper}>
         <div className={s.testDescription}>

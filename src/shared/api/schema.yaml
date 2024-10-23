@@ -149,6 +149,37 @@
         }
       }
     },
+    "/api/Achievements/linkWithTest": {
+      "post": {
+        "tags": [
+          "Achievements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAchievementWithTestCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAchievementWithTestCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAchievementWithTestCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/signIn": {
       "post": {
         "tags": [
@@ -1976,6 +2007,67 @@
         },
         "additionalProperties": false
       },
+      "LinkAchievementWithTestCommand": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "achievementId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testScoreFrom": {
+            "type": "number",
+            "format": "double"
+          },
+          "isTestScoreFromInclusive": {
+            "type": "boolean"
+          },
+          "testScoreTo": {
+            "type": "number",
+            "format": "double"
+          },
+          "isTestScoreToInclusive": {
+            "type": "boolean"
+          },
+          "nameRu": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionRu": {
+            "type": "string"
+          },
+          "descriptionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiredActionRu": {
+            "type": "string"
+          },
+          "requiredActionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageClaimedUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUnclaimedUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageResultUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshTokenCommand": {
         "type": "object",
         "properties": {
@@ -2115,7 +2207,47 @@
           "achievementReceivedId": {
             "type": "integer",
             "format": "int64",
+            "nullable": true,
+            "deprecated": true
+          },
+          "achievementResult": {
+            "$ref": "#/components/schemas/TestAchievementResultDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestAchievementResultDto": {
+        "required": [
+          "descriptionEn",
+          "descriptionRu",
+          "imageUrl",
+          "scoreForResult",
+          "titleEn",
+          "titleRu"
+        ],
+        "type": "object",
+        "properties": {
+          "titleRu": {
+            "type": "string"
+          },
+          "titleEn": {
+            "type": "string",
             "nullable": true
+          },
+          "descriptionRu": {
+            "type": "string"
+          },
+          "descriptionEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "scoreForResult": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -2420,6 +2552,7 @@
       "UserReferralDto": {
         "required": [
           "fullName",
+          "scoreForReferral",
           "userId",
           "userName"
         ],
@@ -2434,6 +2567,10 @@
           },
           "userName": {
             "type": "string"
+          },
+          "scoreForReferral": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
