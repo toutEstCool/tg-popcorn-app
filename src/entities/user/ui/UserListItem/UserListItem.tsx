@@ -41,7 +41,7 @@ export const UserListItem = ({
                 <span className={s.userInfoLvlV2}>
                   LVL {user.gradeInfo.level}. {user.gradeInfo?.grade}
                 </span>
-                <span className={s.userInfoNickNameV2}>{user.userName}</span>
+                <span className={s.userInfoNickNameV2}>{user.fullName}</span>
               </>
             ) : userReferrals ? (
               <>
